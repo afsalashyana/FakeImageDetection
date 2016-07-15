@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" fx:id="anchorPane" prefHeight="531.0"
+            prefWidth="1032.0" xmlns="http://javafx.com/javafx/8.0.65"
+            fx:controller="com.qburst.neural.user_interface.FXMLDocumentController">
+    <children>
+        <Button fx:id="load" layoutX="110.0" layoutY="381.0" mnemonicParsing="false" onAction="#loadImage"
+                prefHeight="37.0" prefWidth="144.0" text="Load Image" AnchorPane.bottomAnchor="41.0"/>
+        <ImageView fx:id="imageView" fitHeight="320.0" fitWidth="361.0" layoutX="14.0" layoutY="30.0"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="14.0"
+                   AnchorPane.rightAnchor="567.0" AnchorPane.topAnchor="30.0"/>
+        <Separator layoutX="393.0" orientation="VERTICAL" prefHeight="459.0" prefWidth="6.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        <LineChart fx:id="LineChart" createSymbols="false" layoutX="413.0" layoutY="30.0" prefHeight="241.0"
+                   prefWidth="499.0" title="RGB Data" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="30.0"
+                   AnchorPane.topAnchor="30.0">
+            <xAxis>
+                <CategoryAxis fx:id="XAxis" prefHeight="39.0" prefWidth="419.0" side="BOTTOM"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="YAxis" label="Intensity" side="LEFT"/>
+            </yAxis>
+        </LineChart>
+        <TextArea fx:id="textArea" editable="false" layoutX="416.0" layoutY="250.0" prefHeight="268.0" prefWidth="595.0"
+                  promptText="MetaData" wrapText="true" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="416.0"
+                  AnchorPane.rightAnchor="21.0">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </TextArea>
+        <MenuBar layoutX="-11.0" layoutY="-5.0" prefHeight="29.0" prefWidth="403.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Compare">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadAnother" text="Add Another"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>

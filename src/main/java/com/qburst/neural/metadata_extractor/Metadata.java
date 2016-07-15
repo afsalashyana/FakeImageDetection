@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.Iterator;
 
 public class Metadata {
-    String data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<MetaData>";
+    private String data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<MetaData>";
 
     public String readAndDisplayMetadata(String fileName) {
         try {
@@ -47,18 +47,18 @@ public class Metadata {
         return data + "</MetaData>";
     }
 
-    void displayMetadata(Node root) {
+    private void displayMetadata(Node root) {
         displayMetadata(root, 0);
     }
 
-    void indent(int level) {
+    private void indent(int level) {
         for (int i = 0; i < level; i++) {
             System.out.print("    ");
             data += "    ";
         }
     }
 
-    void displayMetadata(Node node, int level) {
+    private void displayMetadata(Node node, int level) {
         // print open tag of element
         indent(level);
         System.out.print("<" + node.getNodeName());

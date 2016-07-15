@@ -12,14 +12,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class DrawingFrame extends JFrame {
-    public JComponent canvas;                        // handles graphics display
-    public BufferedImage image;                        // what to draw by default
-
-
-    public DrawingFrame(String title) {
-        super(title);
-        createCanvas();
-    }
+    private JComponent canvas;                           // handles graphics display
+    private BufferedImage image;                        // what to draw by default
 
     public DrawingFrame(String title, String filename) {
         super(title);
@@ -33,22 +27,7 @@ public class DrawingFrame extends JFrame {
         finishGUI(image.getWidth(), image.getHeight());
     }
 
-    public DrawingFrame(String title, BufferedImage image) {
-        super(title);
-        createCanvas();
-        finishGUI(image.getWidth(), image.getHeight());
-        setImage(image);
-    }
-
-
-    public DrawingFrame(String title, int width, int height) {
-        super(title);
-        createCanvas();
-        finishGUI(width, height);
-    }
-
-
-    protected void createCanvas() {
+    private void createCanvas() {
         canvas = new JComponent() {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -57,7 +36,7 @@ public class DrawingFrame extends JFrame {
         };
     }
 
-    public void finishGUI(int width, int height) {
+    private void finishGUI(int width, int height) {
         setSize(width, height);
         canvas.setPreferredSize(new Dimension(width, height));
         getContentPane().add(canvas);
@@ -68,7 +47,7 @@ public class DrawingFrame extends JFrame {
     }
 
 
-    public void draw(Graphics g) {
+    private void draw(Graphics g) {
         if (image != null) g.drawImage(image, 0, 0, null);
     }
 

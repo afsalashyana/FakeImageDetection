@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -22,6 +22,24 @@
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/resources/Libraries/xmpcore-5.1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: com.qburst:metadata:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/resources/Libraries/metadata-extractor-2.9.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: com.qburst:xmp_core:1.0">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/src/main/resources/Libraries/xmpcore-5.1.2.jar!/" />
         </CLASSES>

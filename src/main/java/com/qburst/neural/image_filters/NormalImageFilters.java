@@ -11,11 +11,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Random;
 
 public class NormalImageFilters {
 
     public static JMenuBar bar;
-    private DrawingFrame gui;            // handles the image display
+    private DrawingFrame gui;             // handles the image display
     private BufferedImage original;        // the unprocessed image, as read from a file
     private BufferedImage current;        // the version that's been processed
 
@@ -65,11 +66,11 @@ public class NormalImageFilters {
      *
      * @param args command-line arguments (ignored)
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                // Create an image processing object for the image.
-                NormalImageFilters proc = new NormalImageFilters("/home/qbuser/Desktop/Machine Learning/sample.jpg");
+                //Receive Image as Param
+                new NormalImageFilters(args[0]);
             }
         });
     }
@@ -98,7 +99,7 @@ public class NormalImageFilters {
             current = new BufferedImage(original.getColorModel(), original.copyData(null), original.getColorModel().isAlphaPremultiplied(), null);
         } else if (op == 'q') { // save a snapshot
             try {
-                ImageIO.write(current, "jpg", new File("/home/qbuser/Desktop/Machine Learning/sample_1.jpg"));
+                ImageIO.write(current, "jpg", new File("processed_ "+ new Random().nextInt(100)+" .jpg"));
                 System.out.println("Saved a snapshot");
             } catch (Exception e) {
                 System.err.println("Couldn't save snapshot.");
@@ -323,7 +324,8 @@ public class NormalImageFilters {
         current = result;
     }
 
-    public void addExtras() {
+    //Add menubar with image filter options
+    private void addExtras() {
         bar = new JMenuBar();
         JMenu menu = new JMenu("Operations");
         JMenuItem item1 = new JMenuItem("Average - A");

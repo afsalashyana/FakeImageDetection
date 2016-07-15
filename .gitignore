@@ -1,0 +1,4 @@
+#Leave Intellij files
+.idea/
+*.iml
+*.iws

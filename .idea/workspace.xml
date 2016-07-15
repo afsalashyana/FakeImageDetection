@@ -2,38 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d572b37c-0d9f-406d-b64d-c949c69d7b55" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/custom_tools/DrawingFrame$1.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/custom_tools/DrawingFrame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/custom_tools/DrawingFrame.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/custom_tools/DrawingFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/custom_tools/ImageHistogram.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/custom_tools/ImageHistogram.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$1.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$10.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$11.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$12.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$2.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$3.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$4.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$5.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$6.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$7.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$8.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$9.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/image_filters/NormalImageFilters.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/metadata_extractor/Metadata.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/metadata_extractor/Metadata.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/metadata_extractor_gui.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/metadata_extractor_gui.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/user_interface/FXMLDocumentController$1.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/user_interface/FXMLDocumentController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/user_interface/FXMLDocumentController$2.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/user_interface/FXMLDocumentController$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/qburst/neural/user_interface/FXMLDocumentController.class" afterPath="$PROJECT_DIR$/target/classes/com/qburst/neural/user_interface/FXMLDocumentController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MetadataPhase.iml" afterPath="$PROJECT_DIR$/MetadataPhase.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/qburst/neural/custom_tools/DrawingFrame.java" afterPath="$PROJECT_DIR$/src/main/java/com/qburst/neural/custom_tools/DrawingFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/qburst/neural/image_filters/NormalImageFilters.java" afterPath="$PROJECT_DIR$/src/main/java/com/qburst/neural/image_filters/NormalImageFilters.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/qburst/neural/metadata_extractor/Metadata.java" afterPath="$PROJECT_DIR$/src/main/java/com/qburst/neural/metadata_extractor/Metadata.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/qburst/neural/user_interface/FXMLDocumentController.java" afterPath="$PROJECT_DIR$/src/main/java/com/qburst/neural/user_interface/FXMLDocumentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ui/FXMLDocument.fxml" afterPath="$PROJECT_DIR$/target/classes/ui/FXMLDocument.fxml" />
     </list>
     <ignored path="MetadataPhase.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,28 +29,28 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="288">
+              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1242">
-              <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+            <state relative-caret-position="-741">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NormalImageFilters.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NormalImageFilters.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/qburst/neural/image_filters/NormalImageFilters.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7020">
-              <caret line="405" column="24" selection-start-line="405" selection-start-column="24" selection-end-line="405" selection-end-column="24" />
+            <state relative-caret-position="905">
+              <caret line="408" column="24" selection-start-line="408" selection-start-column="24" selection-end-line="408" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,7 +63,14 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
               <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-              <folding />
+              <folding>
+                <element signature="e#0#1750#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1511#1512#0" expanded="false" />
+                <element signature="e#1576#1577#0" expanded="false" />
+                <element signature="e#1615#1616#0" expanded="false" />
+                <element signature="e#1643#1644#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -103,17 +80,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
               <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FXMLDocumentController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/qburst/neural/user_interface/FXMLDocumentController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1597#1598#0" expanded="false" />
+                <element signature="e#1637#1638#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,8 +92,8 @@
       <file leaf-file-name="metadata_extractor_gui.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/qburst/neural/metadata_extractor_gui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="199">
+              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -133,7 +104,19 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
               <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2239#2240#0" expanded="false" />
+                <element signature="e#2269#2270#0" expanded="false" />
+                <element signature="e#2315#2316#0" expanded="false" />
+                <element signature="e#2349#2350#0" expanded="false" />
+                <element signature="e#2393#2394#0" expanded="false" />
+                <element signature="e#2425#2426#0" expanded="false" />
+                <element signature="e#2471#2472#0" expanded="false" />
+                <element signature="e#2505#2506#0" expanded="false" />
+                <element signature="e#2550#2551#0" expanded="false" />
+                <element signature="e#2583#2584#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -705,16 +688,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28225806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16812749" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -722,15 +707,13 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28225806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -775,7 +758,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-          <folding />
+          <folding>
+            <element signature="e#0#1750#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1511#1512#0" expanded="false" />
+            <element signature="e#1576#1577#0" expanded="false" />
+            <element signature="e#1615#1616#0" expanded="false" />
+            <element signature="e#1643#1644#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -783,7 +773,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1597#1598#0" expanded="false" />
+            <element signature="e#1637#1638#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -807,7 +801,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2239#2240#0" expanded="false" />
+            <element signature="e#2269#2270#0" expanded="false" />
+            <element signature="e#2315#2316#0" expanded="false" />
+            <element signature="e#2349#2350#0" expanded="false" />
+            <element signature="e#2393#2394#0" expanded="false" />
+            <element signature="e#2425#2426#0" expanded="false" />
+            <element signature="e#2471#2472#0" expanded="false" />
+            <element signature="e#2505#2506#0" expanded="false" />
+            <element signature="e#2550#2551#0" expanded="false" />
+            <element signature="e#2583#2584#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -822,21 +828,18 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/qburst/neural/image_filters/NormalImageFilters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7020">
-          <caret line="405" column="24" selection-start-line="405" selection-start-column="24" selection-end-line="405" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/qburst/neural/custom_tools/DrawingFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-          <folding />
+          <folding>
+            <element signature="e#0#1750#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1511#1512#0" expanded="false" />
+            <element signature="e#1576#1577#0" expanded="false" />
+            <element signature="e#1615#1616#0" expanded="false" />
+            <element signature="e#1643#1644#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -844,7 +847,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2239#2240#0" expanded="false" />
+            <element signature="e#2269#2270#0" expanded="false" />
+            <element signature="e#2315#2316#0" expanded="false" />
+            <element signature="e#2349#2350#0" expanded="false" />
+            <element signature="e#2393#2394#0" expanded="false" />
+            <element signature="e#2425#2426#0" expanded="false" />
+            <element signature="e#2471#2472#0" expanded="false" />
+            <element signature="e#2505#2506#0" expanded="false" />
+            <element signature="e#2550#2551#0" expanded="false" />
+            <element signature="e#2583#2584#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -852,15 +867,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/qburst/neural/metadata_extractor_gui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1597#1598#0" expanded="false" />
+            <element signature="e#1637#1638#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -874,17 +885,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/qburst/neural/metadata_extractor_gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+        <state relative-caret-position="-741">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/qburst/neural/image_filters/NormalImageFilters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="905">
+          <caret line="408" column="24" selection-start-line="408" selection-start-column="24" selection-end-line="408" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

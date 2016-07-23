@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="777.0" styleClass="launch_panel" stylesheets="@../stylesheets/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="566.0" fitWidth="884.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@b1.png" />
+         </image>
+         <effect>
+            <GaussianBlur radius="19.0" />
+         </effect>
+      </ImageView>
+      <AnchorPane prefHeight="407.0" prefWidth="632.0" stylesheets="@../stylesheets/main.css">
+         <children>
+            <Text fill="#eff88c" layoutX="3.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fake Image Detector Powered By AI" textAlignment="CENTER" wrappingWidth="770.9999903440475">
+               <font>
+                  <Font name="Ubuntu" size="19.0" />
+               </font>
+            </Text>
+            <Text fontSmoothingType="LCD" layoutX="3.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Christopher" textAlignment="CENTER" wrappingWidth="770.9999966353644">
+               <font>
+                  <Font name="TakaoPGothic" size="41.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="0.8942307692307693" endY="1.0" startX="0.0721153846153846">
+                     <stops>
+                        <Stop color="#46ff7de3" />
+                        <Stop color="#24d3b3" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

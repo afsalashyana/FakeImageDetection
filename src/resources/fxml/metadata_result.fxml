@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="918.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="com.qburst.ai.fake_image_detection.controllers.Metadata_result_controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.ai.fake_image_detection.controllers.Metadata_result_controller">
    <children>
-      <JFXListView fx:id="meta_data_list_view" cellHorizontalMargin="2.0" depthProperty="1" layoutX="-6.0" layoutY="-17.0" opacity="0.39" prefHeight="477.0" prefWidth="918.0" stylesheets="@../stylesheets/main.css" />
+      <PieChart fx:id="pie_chart" prefHeight="522.0" prefWidth="394.0" stylesheets="@../stylesheets/main.css" title="Metadata Overview">
+         <effect>
+            <Glow />
+         </effect>
+      </PieChart>
+      <JFXButton fx:id="resultButton" buttonType="RAISED" layoutX="466.0" layoutY="130.0" prefHeight="262.0" prefWidth="289.0" ripplerFill="RED" styleClass="meta_data_result" stylesheets="@../stylesheets/main.css" text="Result Here">
+         <font>
+            <Font name="Roboto Regular" size="22.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

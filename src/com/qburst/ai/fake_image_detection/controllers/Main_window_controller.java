@@ -143,7 +143,7 @@ public class Main_window_controller implements Initializable {
             st.setToX(1);
             st.setToY(1);
 
-            tt.setToX(10f);
+            tt.setToX(360f);
             tt.setToY(10f);
 
             ParallelTransition pt = new ParallelTransition(load_image_button, st, tt);

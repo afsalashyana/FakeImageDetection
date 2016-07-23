@@ -8,18 +8,22 @@
     -fx-text-fill: #ffffff;
 }
 
-
-.jfx-list-cell {
-	-fx-background-insets: 0.0 ; 
-	-fx-text-fill: WHITE; 
-}
-.jfx-list-cell:odd, .jfx-list-cell:even {
-	-fx-background-color:  transparent;
-}
-.jfx-list-cell:filled:hover { 
-	-fx-text-fill: black;
+.meta_data_result{
+    -fx-background-color: #03A9F4;
+    -fx-text-fill: #ffffff;
 }
 
-.jfx-list-cell .jfx-rippler{
-	-fx-rippler-fill:BLUE;
+
+.default-color0.chart-pie { -fx-pie-color: #d50000; }
+.default-color1.chart-pie { -fx-pie-color: #64DD17; }
+
+
+.chart-title {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 1.6em;
+}
+
+.chart-content {
+    -fx-padding: 30px; 
+    -fx-text-fill: #ffffff;
 }

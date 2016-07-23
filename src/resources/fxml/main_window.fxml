@@ -23,7 +23,7 @@
             <GaussianBlur radius="20.1" />
          </effect>
       </ImageView>
-      <AnchorPane prefHeight="407.0" prefWidth="632.0" stylesheets="@../stylesheets/main.css">
+      <AnchorPane fx:id="anchorPane" prefHeight="407.0" prefWidth="632.0" stylesheets="@../stylesheets/main.css">
          <children>
             <Text fx:id="description" fill="WHITE" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fake Image Detector Powered By AI" textAlignment="CENTER" wrappingWidth="936.6666773557663" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-13.666677355766296">
                <font>

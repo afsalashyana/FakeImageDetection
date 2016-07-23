@@ -5,5 +5,21 @@
 .load_image_button{
     -fx-background-color: #03A9F4;
     -fx-background-radius: 200px;
-    -fx-text-fill: #ffffff
+    -fx-text-fill: #ffffff;
+}
+
+
+.jfx-list-cell {
+	-fx-background-insets: 0.0 ; 
+	-fx-text-fill: WHITE; 
+}
+.jfx-list-cell:odd, .jfx-list-cell:even {
+	-fx-background-color:  transparent;
+}
+.jfx-list-cell:filled:hover { 
+	-fx-text-fill: black;
+}
+
+.jfx-list-cell .jfx-rippler{
+	-fx-rippler-fill:BLUE;
 }

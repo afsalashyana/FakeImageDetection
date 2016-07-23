@@ -3,23 +3,24 @@ package com.qburst.ai.fake_image_detection.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.animation.ParallelTransition;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -39,6 +40,9 @@ public class Main_window_controller implements Initializable {
 
     @FXML
     private Text description;
+ 
+    @FXML
+    private AnchorPane anchorPane;
 
     Boolean isFirstTime = true;
 
@@ -144,6 +148,8 @@ public class Main_window_controller implements Initializable {
 
             ParallelTransition pt = new ParallelTransition(load_image_button, st, tt);
             pt.play();
+            
+            loadMetadataResult();
         });
 
     }
@@ -159,6 +165,15 @@ public class Main_window_controller implements Initializable {
         load_image_button.setFont(Font.font("Roboto", FontWeight.NORMAL, 8));
         load_image_button.setText("Checking Metadata..");
 
+    }
+
+    private void loadMetadataResult() {
+        try {
+            AnchorPane result = FXMLLoader.load(getClass().getResource("/resources/fxml/metadata_result.fxml"));
+            anchorPane.getChildren().add(result);
+        } catch (IOException ex) {
+            Logger.getLogger(Main_window_controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

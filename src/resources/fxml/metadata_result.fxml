@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="918.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="com.qburst.ai.fake_image_detection.controllers.Metadata_result_controller">
+   <children>
+      <JFXListView fx:id="meta_data_list_view" cellHorizontalMargin="2.0" depthProperty="1" layoutX="-6.0" layoutY="-17.0" opacity="0.39" prefHeight="477.0" prefWidth="918.0" stylesheets="@../stylesheets/main.css" />
+   </children>
+</AnchorPane>

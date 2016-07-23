@@ -15,7 +15,7 @@
 
 <StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#loadAnimation" prefHeight="592.0" prefWidth="858.0" styleClass="launch_panel" stylesheets="@../stylesheets/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.ai.fake_image_detection.controllers.Main_window_controller">
     <children>
-        <ImageView fitHeight="615.0" fitWidth="982.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="backgroundImageView" fitHeight="615.0" fitWidth="982.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@infinity_image.png" />
             </image>

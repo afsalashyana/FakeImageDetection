@@ -3,22 +3,26 @@ package com.qburst.ai.fake_image_detection.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,9 +31,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class Main_window_controller implements Initializable {
@@ -60,6 +61,8 @@ public class Main_window_controller implements Initializable {
     ParallelTransition buttonParallelTransition;
     @FXML
     private ImageView homeIcon;
+    @FXML
+    private ImageView backgroundImageView;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -113,6 +116,11 @@ public class Main_window_controller implements Initializable {
             return;
         }
 
+        try {
+            backgroundImageView.setImage(new Image(new FileInputStream(processingFile)));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main_window_controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
         removeBannersandDescs();
         loadMetaDataCheck();
     }
@@ -136,6 +144,7 @@ public class Main_window_controller implements Initializable {
         tDescription.setToY(1000);
         ParallelTransition pt = new ParallelTransition(tChristopher, tDescription);
         pt.play();
+
     }
 
     private void loadMetaDataCheck() {
@@ -144,23 +153,36 @@ public class Main_window_controller implements Initializable {
         metadata_processor processor = new metadata_processor(processingFile);
 
         bulgingTransition.setOnFinished((e) -> {
-            TranslateTransition tt = new TranslateTransition(Duration.millis(duration), load_image_button);
-            ScaleTransition st = new ScaleTransition(Duration.millis(duration), load_image_button);
+            TranslateTransition tt = new TranslateTransition(Duration.millis(duration - 500), load_image_button);
+            ScaleTransition st = new ScaleTransition(Duration.millis(duration - 500), load_image_button);
             st.setToX(1);
             st.setToY(1);
 
-            tt.setToX(360f);
-            tt.setToY(10f);
+            tt.setToX(-150f);
+            tt.setToY(20f);
 
             ParallelTransition pt = new ParallelTransition(load_image_button, st, tt);
             pt.play();
 
             pt.setOnFinished((e1) -> {
                 loadMetadataResult();
+                load_image_button.setFont(Font.font("Roboto", FontWeight.LIGHT, 20));
+                load_image_button.setText("Test On AI");
                 homeIcon.setVisible(true);
-            });
 
+                Timeline timeline = new Timeline();
+                timeline.setCycleCount(1);
+
+                KeyValue keyValueX = new KeyValue(load_image_button.prefWidthProperty(), 400);
+                KeyValue keyValueY = new KeyValue(load_image_button.prefHeightProperty(), 50);
+                Duration duration = Duration.millis(800);
+                KeyFrame keyFrame = new KeyFrame(duration, keyValueX, keyValueY);
+                timeline.getKeyFrames().add(keyFrame);
+
+                timeline.play();
+            });
         });
+
     }
 
     private void startSimpleMetaDataAnimation() {
@@ -191,6 +213,7 @@ public class Main_window_controller implements Initializable {
             StackPane pane = FXMLLoader.load(getClass().getResource("/resources/fxml/main_window.fxml"));
             rootPane.getChildren().clear();
             rootPane.getChildren().setAll(pane);
+            metadata_processor.extracted_data = "";
         } catch (IOException ex) {
             Logger.getLogger(Main_window_controller.class.getName()).log(Level.SEVERE, null, ex);
         }

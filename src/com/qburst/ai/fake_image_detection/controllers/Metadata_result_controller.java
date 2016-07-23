@@ -6,6 +6,7 @@ import com.qburst.ai.fake_image_detection.ui.Toast;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,6 +38,7 @@ public class Metadata_result_controller implements Initializable {
     @FXML
     private JFXButton resultButton;
 
+    Metadata_display_controller metadata_display_controller;
     int fakeness = 1;
     int real = 1;
     String output = "";
@@ -86,9 +88,7 @@ public class Metadata_result_controller implements Initializable {
         } else if (real == fakeness) {
             resultButton.setText("Cant Determine. Proceed with AI");
             resultButton.setStyle("-fx-background-color:#455A64");
-        }
-        else
-        {
+        } else {
             resultButton.setText("Digitally Altered. Not from Camera");
             resultButton.setStyle("-fx-background-color:#FF5722");
         }
@@ -99,6 +99,7 @@ public class Metadata_result_controller implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/metadata_display.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            metadata_display_controller = fxmlLoader.getController();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
@@ -194,7 +195,9 @@ public class Metadata_result_controller implements Initializable {
         pie_chart.setData(pieChartData);
         pieChartData.add(new PieChart.Data("Fake", fakeness));
         pieChartData.add(new PieChart.Data("Real", real));
-
+        pie_chart.setLegendVisible(false);
+        pie_chart.setTitle("");
+        
         final Label caption = new Label("");
         caption.setTextFill(Color.WHITE);
         caption.setStyle("-fx-font: 24 arial;");
@@ -209,7 +212,8 @@ public class Metadata_result_controller implements Initializable {
                 caption.setTranslateX(e.getSceneX());
                 caption.setTranslateY(e.getSceneY());
                 String text = String.format("%.1f%%", 100 * data.getPieValue() / total);
-                Toast.makeText((Stage) anchorPane.getScene().getWindow(), fakeReason, 5000, 500, 500);
+                if(fakeReason.length()>2)
+                   Toast.makeText((Stage) anchorPane.getScene().getWindow(), fakeReason, 5000, 500, 500);
                 caption.setText(text);
             }
         });

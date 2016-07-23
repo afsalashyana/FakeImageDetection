@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -11,27 +13,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="777.0" styleClass="launch_panel" stylesheets="@../stylesheets/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#loadAnimation" prefHeight="592.0" prefWidth="858.0" styleClass="launch_panel" stylesheets="@../stylesheets/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.ai.fake_image_detection.controllers.Main_window_controller">
    <children>
-      <ImageView fitHeight="566.0" fitWidth="884.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="615.0" fitWidth="982.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@b1.png" />
+            <Image url="@infinity_image.png" />
          </image>
          <effect>
-            <GaussianBlur radius="19.0" />
+            <GaussianBlur radius="20.1" />
          </effect>
       </ImageView>
       <AnchorPane prefHeight="407.0" prefWidth="632.0" stylesheets="@../stylesheets/main.css">
          <children>
-            <Text fill="#eff88c" layoutX="3.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fake Image Detector Powered By AI" textAlignment="CENTER" wrappingWidth="770.9999903440475">
+            <Text fx:id="description" fill="WHITE" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fake Image Detector Powered By AI" textAlignment="CENTER" wrappingWidth="936.6666773557663" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-13.666677355766296">
                <font>
-                  <Font name="Ubuntu" size="19.0" />
+                  <Font name="Roboto Light" size="23.0" />
                </font>
+               <effect>
+                  <DropShadow color="#110101" height="172.79" radius="88.93" spread="0.13" width="184.93" />
+               </effect>
             </Text>
-            <Text fontSmoothingType="LCD" layoutX="3.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Christopher" textAlignment="CENTER" wrappingWidth="770.9999966353644">
+            <Text fx:id="christopher" fontSmoothingType="LCD" layoutX="3.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Christopher" textAlignment="CENTER" wrappingWidth="920.3333706588019" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <font>
-                  <Font name="TakaoPGothic" size="41.0" />
+                  <Font name="Roboto Light" size="48.0" />
                </font>
                <fill>
                   <LinearGradient endX="0.8942307692307693" endY="1.0" startX="0.0721153846153846">
@@ -45,6 +49,11 @@
                   <Glow level="1.0" />
                </effect>
             </Text>
+            <JFXButton fx:id="load_image_button" buttonType="RAISED" layoutX="407.0" layoutY="460.0" onAction="#loadImageSelector" prefHeight="118.0" prefWidth="122.0" ripplerFill="#96e6fc" styleClass="load_image_button" stylesheets="@../stylesheets/main.css" text="Load ">
+               <font>
+                  <Font name="Roboto Medium" size="15.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

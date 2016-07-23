@@ -1,3 +1,9 @@
 .panel2{
     -fx-background-color: #0f0f0f;
 }
+
+.load_image_button{
+    -fx-background-color: #03A9F4;
+    -fx-background-radius: 200px;
+    -fx-text-fill: #ffffff
+}

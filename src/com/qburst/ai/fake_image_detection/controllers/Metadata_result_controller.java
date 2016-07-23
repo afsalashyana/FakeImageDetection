@@ -66,14 +66,17 @@ public class Metadata_result_controller implements Initializable {
                     }
                 }
             }
-            resultButton.setText("Tampered With\n" + version.replaceAll("[(,)]", ""));
+            if (version.length() < 2) {
+                resultButton.setText("Fake Image With Adobe Tag\n");
+            } else {
+                resultButton.setText("Tampered With\n" + version.replaceAll("[(,)]", ""));
+            }
             resultButton.setStyle("-fx-background-color:#ff0000");
         } else if (extractedData.contains("Gimp") || extractedData.contains("GIMP")) {
             resultButton.setText("Tampered With Gimp");
             resultButton.setStyle("-fx-background-color:#ff0000");
         }
 
-        generatePercentage();
     }
 
     void displayMetaData() {
@@ -121,27 +124,39 @@ public class Metadata_result_controller implements Initializable {
             ctr++;
             if (string.toUpperCase().contains("ADOBE")) {
                 fakeness += 3;
-                fakeReason += "Detected Adobe Tag" + "\n";
+                if (!fakeReason.contains("Detected Adobe Tag")) {
+                    fakeReason += "Detected Adobe Tag" + "\n";
+                }
             }
             if (string.toUpperCase().contains("PHOTOSHOP")) {
                 fakeness += 10;
-                fakeReason += "Detected Photoshop Tag" + "\n";
+                if (!fakeReason.contains("Detected Photoshop Tag")) {
+                    fakeReason += "Detected Photoshop Tag" + "\n";
+                }
             }
             if (string.toUpperCase().contains("GIMP")) {
                 fakeness += 10;
-                fakeReason += "Detected Gimp Tag" + "\n";
+                if (!fakeReason.contains("Detected Gimp Tag")) {
+                    fakeReason += "Detected Gimp Tag" + "\n";
+                }
             }
             if (string.toUpperCase().contains("COREL")) {
                 fakeness += 10;
-                fakeReason += "Detected Corel Tag" + "\n";
+                if (!fakeReason.contains("Detected Corel Tag")) {
+                    fakeReason += "Detected Corel Tag" + "\n";
+                }
             }
             if (string.toUpperCase().contains("PAINT")) {
                 fakeness += 10;
-                fakeReason += "Detected Paint Tag" + "\n";
+                if (!fakeReason.contains("Detected Paint Tag")) {
+                    fakeReason += "Detected Paint Tag" + "\n";
+                }
             }
             if (string.toUpperCase().contains("PIXLR")) {
                 fakeness += 10;
-                fakeReason += "Detected Pixlr Tag" + "\n";
+                if (!fakeReason.contains("Detected Pixlr Tag")) {
+                    fakeReason += "Detected Pixlr Tag" + "\n";
+                }
             }
         }
 
@@ -170,19 +185,18 @@ public class Metadata_result_controller implements Initializable {
         final ObservableList<Node> children = anchorPane.getChildren();
         children.add(caption);
 
-        for (final PieChart.Data data : pie_chart.getData()) {
-            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-                    new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent e) {
-                    caption.setTranslateX(e.getSceneX());
-                    caption.setTranslateY(e.getSceneY());
-                    String text = String.format("%.1f%%", 100 * data.getPieValue() / total);
-                    Toast.makeText((Stage) anchorPane.getScene().getWindow(), fakeReason, 10000, 500, 500);
-                    caption.setText(text);
-                }
-            });
-        }
+        PieChart.Data data = pie_chart.getData().get(0);  //Fake
+        data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                caption.setTranslateX(e.getSceneX());
+                caption.setTranslateY(e.getSceneY());
+                String text = String.format("%.1f%%", 100 * data.getPieValue() / total);
+                Toast.makeText((Stage) anchorPane.getScene().getWindow(), fakeReason, 5000, 500, 500);
+                caption.setText(text);
+            }
+        });
     }
 
 }

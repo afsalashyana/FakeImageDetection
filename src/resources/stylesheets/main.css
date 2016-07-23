@@ -19,8 +19,8 @@
 
 
 .chart-title {
-  -fx-text-fill: #ffffff;
-  -fx-font-size: 1.6em;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.6em;
 }
 
 .chart-content {
@@ -29,14 +29,14 @@
 }
 
 .axis-label {
-  -fx-text-fill: #ffffff;
+    -fx-text-fill: #ffffff;
 }
 
 .chart-pie-label-line {
     -fx-stroke: #ffffff;
     -fx-fill: #ffffff;
 }
- 
+
 .chart-pie-label {
     -fx-fill: #ffffff;
     -fx-font-size: 1.5em;

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class metadata_processor {
 
     File imageFile;
-    public static String extracted_data;
+    public static String extracted_data = "";
     Metadata data = null;
 
     public metadata_processor(File imageFile) {
@@ -22,9 +22,9 @@ public class metadata_processor {
             Logger.getLogger(metadata_processor.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (Directory directory : data.getDirectories()) {
+            extracted_data += "----------------------------------------------"+ directory.getName() + "\n";
             for (Tag tag : directory.getTags()) {
-                System.out.println(tag);
-                extracted_data+=tag + "\n";
+                extracted_data += tag + "\n";
             }
             if (directory.hasErrors()) {
                 for (String error : directory.getErrors()) {

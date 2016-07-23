@@ -129,7 +129,7 @@ public class Main_window_controller implements Initializable {
             final FileChooser fileChooser) {
         fileChooser.setTitle("View Pictures");
         fileChooser.setInitialDirectory(
-                new File(System.getProperty("user.home") + "/Pictures/Selected")
+                new File(System.getProperty("user.home") + "/Pictures/Whatsapp Images")
         );
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
         fileChooser.getExtensionFilters().addAll(extFilter

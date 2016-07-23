@@ -93,6 +93,9 @@ public class Metadata_result_controller implements Initializable {
             resultButton.setStyle("-fx-background-color:#FF5722");
         }
 
+        if (extractedData.contains("Original Transmission Reference")) {
+//            Toast.makeText((Stage) anchorPane.getScene().getWindow(), "Downloaded From Facebook ?", 5000, 100, 1000);
+        }
     }
 
     void displayMetaData() {
@@ -197,7 +200,7 @@ public class Metadata_result_controller implements Initializable {
         pieChartData.add(new PieChart.Data("Real", real));
         pie_chart.setLegendVisible(false);
         pie_chart.setTitle("");
-        
+
         final Label caption = new Label("");
         caption.setTextFill(Color.WHITE);
         caption.setStyle("-fx-font: 24 arial;");
@@ -212,8 +215,9 @@ public class Metadata_result_controller implements Initializable {
                 caption.setTranslateX(e.getSceneX());
                 caption.setTranslateY(e.getSceneY());
                 String text = String.format("%.1f%%", 100 * data.getPieValue() / total);
-                if(fakeReason.length()>2)
-                   Toast.makeText((Stage) anchorPane.getScene().getWindow(), fakeReason, 5000, 500, 500);
+                if (fakeReason.length() > 2) {
+                    Toast.makeText((Stage) anchorPane.getScene().getWindow(), fakeReason, 5000, 500, 500);
+                }
                 caption.setText(text);
             }
         });

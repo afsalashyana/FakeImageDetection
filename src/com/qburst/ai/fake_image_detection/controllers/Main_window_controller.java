@@ -15,8 +15,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -24,6 +27,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class Main_window_controller implements Initializable {
@@ -52,6 +58,8 @@ public class Main_window_controller implements Initializable {
 
     ScaleTransition bulgingTransition;
     ParallelTransition buttonParallelTransition;
+    @FXML
+    private ImageView homeIcon;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -113,11 +121,10 @@ public class Main_window_controller implements Initializable {
             final FileChooser fileChooser) {
         fileChooser.setTitle("View Pictures");
         fileChooser.setInitialDirectory(
-                new File(System.getProperty("user.home"))
+                new File(System.getProperty("user.home") + "/Pictures/Selected")
         );
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+        fileChooser.getExtensionFilters().addAll(extFilter
         );
 
     }
@@ -148,9 +155,12 @@ public class Main_window_controller implements Initializable {
             ParallelTransition pt = new ParallelTransition(load_image_button, st, tt);
             pt.play();
 
-            loadMetadataResult();
-        });
+            pt.setOnFinished((e1) -> {
+                loadMetadataResult();
+                homeIcon.setVisible(true);
+            });
 
+        });
     }
 
     private void startSimpleMetaDataAnimation() {
@@ -170,6 +180,17 @@ public class Main_window_controller implements Initializable {
         try {
             AnchorPane result = FXMLLoader.load(getClass().getResource("/resources/fxml/metadata_result.fxml"));
             anchorPane.getChildren().add(result);
+        } catch (IOException ex) {
+            Logger.getLogger(Main_window_controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void rollBack(MouseEvent event) {
+        try {
+            StackPane pane = FXMLLoader.load(getClass().getResource("/resources/fxml/main_window.fxml"));
+            rootPane.getChildren().clear();
+            rootPane.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(Main_window_controller.class.getName()).log(Level.SEVERE, null, ex);
         }

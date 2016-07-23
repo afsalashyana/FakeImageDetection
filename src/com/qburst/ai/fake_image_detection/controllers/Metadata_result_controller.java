@@ -75,6 +75,22 @@ public class Metadata_result_controller implements Initializable {
         } else if (extractedData.contains("Gimp") || extractedData.contains("GIMP")) {
             resultButton.setText("Tampered With Gimp");
             resultButton.setStyle("-fx-background-color:#ff0000");
+        } else if (real > fakeness) {
+            if (fakeness < 3) {
+                resultButton.setText("Seems like Real Camera Image");
+                resultButton.setStyle("-fx-background-color:#64DD17");
+            } else {
+                resultButton.setText("Metadata Is Clean");
+                resultButton.setStyle("-fx-background-color:#64DD17");
+            }
+        } else if (real == fakeness) {
+            resultButton.setText("Cant Determine. Proceed with AI");
+            resultButton.setStyle("-fx-background-color:#455A64");
+        }
+        else
+        {
+            resultButton.setText("Digitally Altered. Not from Camera");
+            resultButton.setStyle("-fx-background-color:#FF5722");
         }
 
     }
@@ -197,6 +213,7 @@ public class Metadata_result_controller implements Initializable {
                 caption.setText(text);
             }
         });
+
     }
 
 }

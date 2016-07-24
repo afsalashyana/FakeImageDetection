@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#loadAnimation" prefHeight="592.0" prefWidth="858.0" styleClass="launch_panel" stylesheets="@../stylesheets/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.ai.fake_image_detection.controllers.Neural_net_interface_controller">
+   <children>
+      <ImageView fx:id="backgroundImageView" fitHeight="615.0" fitWidth="982.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@infinity_image.png" />
+         </image>
+         <effect>
+            <GaussianBlur radius="21.64" />
+         </effect>
+      </ImageView>
+      <AnchorPane fx:id="anchorPane" prefHeight="407.0" prefWidth="632.0" stylesheets="@../stylesheets/main.css">
+         <children>
+            <Text fx:id="description" fill="WHITE" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fake Image Detector Powered By AI" textAlignment="CENTER" wrappingWidth="936.6666773557663" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-13.666677355766296">
+               <font>
+                  <Font name="Roboto Light" size="23.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#110101" height="172.79" radius="88.93" spread="0.13" width="184.93" />
+               </effect>
+            </Text>
+            <Text fx:id="christopher" fontSmoothingType="LCD" layoutX="3.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Christopher" textAlignment="CENTER" wrappingWidth="920.3333706588019" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="Roboto Light" size="48.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="0.8942307692307693" endY="1.0" startX="0.0721153846153846">
+                     <stops>
+                        <Stop color="#46ff7de3" />
+                        <Stop color="#24d3b3" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Text>
+            <JFXButton fx:id="navigation_button" buttonType="RAISED" layoutX="298.0" layoutY="132.0" prefHeight="328.0" prefWidth="340.0" ripplerFill="#96e6fc" styleClass="load_image_button" stylesheets="@../stylesheets/main.css" text="Initializing Neural Network " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Roboto Medium" size="28.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="homeIcon" fitHeight="63.0" fitWidth="62.0" layoutX="821.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@home_icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

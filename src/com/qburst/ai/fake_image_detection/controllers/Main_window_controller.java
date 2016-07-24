@@ -18,9 +18,11 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.DepthTest;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -103,6 +105,8 @@ public class Main_window_controller implements Initializable {
         if (processingFile != null) {
             return;
         }
+        
+        System.err.println("Launching File Chooser");
         fileChooser = new FileChooser();
         configureFileChooser(fileChooser);
         fileChooser.setTitle("Open Resource File");
@@ -160,7 +164,7 @@ public class Main_window_controller implements Initializable {
             st.setToY(1);
 
             tt.setToX(-150f);
-            tt.setToY(-420f);
+            tt.setToY(80f);
 
             Timeline timeline = new Timeline();
             timeline.setCycleCount(1);
@@ -175,10 +179,20 @@ public class Main_window_controller implements Initializable {
 
             pt.setOnFinished((e1) -> {
                 loadMetadataResult();
-                load_image_button.setFont(Font.font("Roboto", FontWeight.LIGHT, 20));
                 load_image_button.setText("Test On AI");
+                load_image_button.setFont(Font.font("Roboto", FontWeight.BOLD,20));
                 homeIcon.setVisible(true);
-
+//                Neural Network Entry
+                load_image_button.setOnMouseClicked((e2) -> {
+                    System.out.println("Loading NN........");
+                    try {
+                        anchorPane.getChildren().clear();
+                        StackPane pane = FXMLLoader.load(getClass().getResource("/resources/fxml/neural_net_interface.fxml"));
+                        anchorPane.getChildren().setAll(pane);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Metadata_result_controller.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
             });
         });
 

@@ -1,6 +1,7 @@
 package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
 import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,7 +52,6 @@ public class Main_window_controller implements Initializable {
     private AnchorPane anchorPane;
 
     Boolean isFirstTime = true;
-
     FileChooser fileChooser;
     int duration = 1500;
 
@@ -66,6 +66,7 @@ public class Main_window_controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
     }
 
     private void animate() {
@@ -87,7 +88,6 @@ public class Main_window_controller implements Initializable {
         buttonParallelTransition.setOnFinished((e) -> {
             load_image_button.setOpacity(1);
         });
-
     }
 
     @FXML
@@ -118,7 +118,8 @@ public class Main_window_controller implements Initializable {
 
         try {
             backgroundImageView.setImage(new Image(new FileInputStream(processingFile)));
-        } catch (FileNotFoundException ex) {
+            backgroundImageView.setOpacity(0.5);
+        } catch (Exception ex) {
             Logger.getLogger(Main_window_controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         removeBannersandDescs();
@@ -159,7 +160,7 @@ public class Main_window_controller implements Initializable {
             st.setToY(1);
 
             tt.setToX(-150f);
-            tt.setToY(20f);
+            tt.setToY(-420f);
 
             ParallelTransition pt = new ParallelTransition(load_image_button, st, tt);
             pt.play();

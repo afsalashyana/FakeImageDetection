@@ -13,6 +13,10 @@
     -fx-text-fill: #ffffff;
 }
 
+.launch_panel{
+    -fx-background-color: black;
+}
+
 
 .default-color0.chart-pie { -fx-pie-color: #f44336; }
 .default-color1.chart-pie { -fx-pie-color: #76FF03; }
@@ -41,3 +45,14 @@
     -fx-fill: #ffffff;
     -fx-font-size: 1.5em;
 } 
+
+
+.jfx-snackbar-content {
+    -fx-background-color: #1B5E20;
+}
+
+.jfx-snackbar-toast {
+    -fx-text-fill: #ffffff;
+    -fx-font: bold;
+    -fx-font-size: 16;  
+}

@@ -1,6 +1,7 @@
 package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
 import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
 import com.qburst.ai.fake_image_detection.ui.Toast;
 import java.net.URL;
@@ -43,6 +44,7 @@ public class Metadata_result_controller implements Initializable {
     int real = 1;
     String output = "";
     String fakeReason = "";
+    String realReason = "";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -93,8 +95,10 @@ public class Metadata_result_controller implements Initializable {
             resultButton.setStyle("-fx-background-color:#FF5722");
         }
 
-        if (extractedData.contains("Original Transmission Reference")) {
-//            Toast.makeText((Stage) anchorPane.getScene().getWindow(), "Downloaded From Facebook ?", 5000, 100, 1000);
+        if (extractedData.contains("Original Transmission Reference")&&extractedData.contains("Special Instructions")) {
+            JFXSnackbar snackbar = new JFXSnackbar(anchorPane);
+            snackbar.getStylesheets().add(getClass().getResource("/resources/stylesheets/main.css").toExternalForm());
+            snackbar.show("Downloaded Image From Facebook", 10000);
         }
     }
 
@@ -122,6 +126,7 @@ public class Metadata_result_controller implements Initializable {
     private void generatePercentage() {
         real = 1;
         fakeness = 1;
+        realReason = "Contains ";
         String extractedData = metadata_processor.extracted_data;
         ArrayList<String> componentsToCheck = new ArrayList<>();
         componentsToCheck.add("Exif IFD0");
@@ -137,8 +142,13 @@ public class Metadata_result_controller implements Initializable {
         for (String string : componentsToCheck) {
             if (extractedData.contains(string)) {
                 real++;
+                realReason += string + ",";
+                if(real%5==0)
+                    realReason+="\n";
             }
         }
+        realReason = realReason.substring(0,realReason.length()-1);  //Remove last Comma
+        
         int ctr = 0;
         for (String string : metadata_processor.extracted_data.split("\n")) {
             ctr++;
@@ -182,13 +192,13 @@ public class Metadata_result_controller implements Initializable {
 
         if (ctr < 15) {
             fakeness += 4;
-            fakeReason += "Very Low Metadata Content" + "\n";
+            fakeReason += "Very Low Metadata Content. Edited" + "\n";
         } else if (ctr < 21) {
             fakeness += 3;
-            fakeReason += "Low Metadata Content" + "\n";
+            fakeReason += "Low Metadata Content. Edited" + "\n";
         } else if (ctr < 30) {
             fakeness += 1;
-            fakeReason += "Average Metadata Content" + "\n";
+            fakeReason += "Average Metadata Content. Edited" + "\n";
         }
         int total = fakeness + real;
 
@@ -216,7 +226,26 @@ public class Metadata_result_controller implements Initializable {
                 caption.setTranslateY(e.getSceneY());
                 String text = String.format("%.1f%%", 100 * data.getPieValue() / total);
                 if (fakeReason.length() > 2) {
-                    Toast.makeText((Stage) anchorPane.getScene().getWindow(), fakeReason, 5000, 500, 500);
+                    JFXSnackbar snackbar = new JFXSnackbar(anchorPane);
+                    snackbar.getStylesheets().add(getClass().getResource("/resources/stylesheets/main.css").toExternalForm());
+                    snackbar.show(fakeReason, 8000);
+                }
+                caption.setText(text);
+            }
+        });
+        
+        PieChart.Data data1 = pie_chart.getData().get(1);  //Fake
+        data1.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                caption.setTranslateX(e.getSceneX());
+                caption.setTranslateY(e.getSceneY());
+                String text = String.format("%.1f%%", 100 * data1.getPieValue() / total);
+                if (realReason.length() > 10) {
+                    JFXSnackbar snackbar = new JFXSnackbar(anchorPane);
+                    snackbar.getStylesheets().add(getClass().getResource("/resources/stylesheets/main.css").toExternalForm());
+                    snackbar.show(realReason + " Information", 8000);
                 }
                 caption.setText(text);
             }

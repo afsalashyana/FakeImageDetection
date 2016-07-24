@@ -2,11 +2,8 @@ package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.qburst.ai.fake_image_detection.neural_network.image_processor.error_level_analyzer;
-import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,9 +33,15 @@ public class Neural_net_interface_controller implements Initializable {
 
     public static String imageLocation = "";
 
+    public static String getImageLocation() {
+        return imageLocation = Main_window_controller.processingFile.getAbsolutePath();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         startAnimation();
+        getImageLocation();
+        
         error_level_analyzer elaAnalyzer = new error_level_analyzer(imageLocation, 95);
         Thread elaMaker = new Thread(elaAnalyzer);
         elaMaker.start();

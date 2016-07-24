@@ -5,7 +5,11 @@ import ij.io.FileSaver;
 import static ij.io.FileSaver.setJpegQuality;
 import ij.plugin.ContrastEnhancer;
 import ij.plugin.ImageCalculator;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class error_level_analyzer implements Runnable{
     String fileLocation;
@@ -25,14 +29,22 @@ public class error_level_analyzer implements Runnable{
     @Override
     public void run() {
         runningStatus = true;
-        ImagePlus orig = new ImagePlus(fileLocation);
+        Image img;
+        try {
+            System.out.println("Loading Image :" + fileLocation);
+            img = ImageIO.read(new File(fileLocation));
+        } catch (IOException ex) {
+            System.err.println("Null Image");
+            return;
+        }
+        ImagePlus orig = new ImagePlus("Source Image",img);
 
         String basePath = System.getProperty("user.dir") + "/" + orig.getTitle();
         String origPath = basePath + "-original.jpg";
         String resavedPath = basePath +  "-resaved.jpg";
         String elaPath =basePath  + "-ELA.png";
 
-        FileSaver fs = new FileSaver(null);
+        FileSaver fs = new FileSaver(orig);
         setJpegQuality(100);
         fs.saveAsJpeg(origPath);
 
@@ -45,7 +57,7 @@ public class error_level_analyzer implements Runnable{
         diff.setTitle("ELA @ " + quality + "%");
 
         ContrastEnhancer c = new ContrastEnhancer();
-//        c.stretchHistogram(diff, 0.1);
+        c.stretchHistogram(diff, 0.1);
 
         fs = new FileSaver(diff);
         fs.saveAsPng(elaPath);

@@ -39,7 +39,7 @@ public class error_level_analyzer implements Runnable{
         }
         ImagePlus orig = new ImagePlus("Source Image",img);
 
-        String basePath = System.getProperty("user.dir") + "/" + orig.getTitle();
+        String basePath = "/tmp/" + orig.getTitle();
         String origPath = basePath + "-original.jpg";
         String resavedPath = basePath +  "-resaved.jpg";
         String elaPath =basePath  + "-ELA.png";

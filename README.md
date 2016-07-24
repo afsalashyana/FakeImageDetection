@@ -31,4 +31,6 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 ###Screenshots
 <img src=http://i.imgur.com/vzfdecs.png>
 <img src=http://i.imgur.com/T3TVsuj.png>
-<img src=http://i.imgur.com/qnzNQLc.png>
+<img src=http://i.imgur.com/GLNGz9j.png>
+<img src=http://i.imgur.com/z8DzhGD.png>
+<img src=http://i.imgur.com/kKfDCOX.png>

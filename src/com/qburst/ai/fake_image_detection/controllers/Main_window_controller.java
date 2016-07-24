@@ -53,21 +53,22 @@ public class Main_window_controller implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
-    Boolean isFirstTime = true;
-    FileChooser fileChooser;
-    int duration = 1500;
-
-    public static File processingFile = null;
-
-    ScaleTransition bulgingTransition;
-    ParallelTransition buttonParallelTransition;
     @FXML
     private ImageView homeIcon;
     @FXML
     private ImageView backgroundImageView;
+    
+    int duration = 1500;
+    FileChooser fileChooser;
+    Boolean isFirstTime = true;
+    ScaleTransition bulgingTransition;
+    ParallelTransition buttonParallelTransition;
+    public static File processingFile = null;
+    public static StackPane parentPaneForAll ;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        parentPaneForAll = rootPane;
 
     }
 

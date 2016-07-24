@@ -54,7 +54,7 @@
                   <Font name="Roboto Medium" size="28.0" />
                </font>
             </JFXButton>
-            <ImageView fx:id="homeIcon" fitHeight="63.0" fitWidth="62.0" layoutX="821.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="homeIcon" fitHeight="63.0" fitWidth="62.0" layoutX="821.0" layoutY="19.0" onMouseClicked="#rollBack" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@home_icon.png" />
                </image>

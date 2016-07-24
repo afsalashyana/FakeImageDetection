@@ -162,7 +162,15 @@ public class Main_window_controller implements Initializable {
             tt.setToX(-150f);
             tt.setToY(-420f);
 
-            ParallelTransition pt = new ParallelTransition(load_image_button, st, tt);
+            Timeline timeline = new Timeline();
+            timeline.setCycleCount(1);
+
+            KeyValue keyValueX = new KeyValue(load_image_button.prefWidthProperty(), 400);
+            KeyValue keyValueY = new KeyValue(load_image_button.prefHeightProperty(), 50);
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(duration - 500), keyValueX, keyValueY);
+            timeline.getKeyFrames().add(keyFrame);
+
+            ParallelTransition pt = new ParallelTransition(load_image_button, st, tt, timeline);
             pt.play();
 
             pt.setOnFinished((e1) -> {
@@ -171,16 +179,6 @@ public class Main_window_controller implements Initializable {
                 load_image_button.setText("Test On AI");
                 homeIcon.setVisible(true);
 
-                Timeline timeline = new Timeline();
-                timeline.setCycleCount(1);
-
-                KeyValue keyValueX = new KeyValue(load_image_button.prefWidthProperty(), 400);
-                KeyValue keyValueY = new KeyValue(load_image_button.prefHeightProperty(), 50);
-                Duration duration = Duration.millis(800);
-                KeyFrame keyFrame = new KeyFrame(duration, keyValueX, keyValueY);
-                timeline.getKeyFrames().add(keyFrame);
-
-                timeline.play();
             });
         });
 

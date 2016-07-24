@@ -54,11 +54,11 @@
                         <Font name="Roboto Medium" size="15.0" />
                     </font>
                 </JFXButton>
-            <ImageView fx:id="homeIcon" fitHeight="63.0" fitWidth="62.0" layoutX="821.0" layoutY="19.0" onMouseClicked="#rollBack" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@home_icon.png" />
-               </image>
-            </ImageView>
+                <ImageView fx:id="homeIcon" fitHeight="63.0" fitWidth="62.0" layoutX="821.0" layoutY="19.0" onMouseClicked="#rollBack" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@home_icon.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
     </children>

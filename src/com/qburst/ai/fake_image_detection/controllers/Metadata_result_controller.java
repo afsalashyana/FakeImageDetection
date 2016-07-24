@@ -3,11 +3,9 @@ package com.qburst.ai.fake_image_detection.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
-import com.qburst.ai.fake_image_detection.ui.Toast;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +13,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -95,10 +92,15 @@ public class Metadata_result_controller implements Initializable {
             resultButton.setStyle("-fx-background-color:#FF5722");
         }
 
-        if (extractedData.contains("Original Transmission Reference")&&extractedData.contains("Special Instructions")) {
+        if (extractedData.contains("Original Transmission Reference") && extractedData.contains("Special Instructions")) {
             JFXSnackbar snackbar = new JFXSnackbar(anchorPane);
             snackbar.getStylesheets().add(getClass().getResource("/resources/stylesheets/main.css").toExternalForm());
             snackbar.show("Downloaded Image From Facebook", 10000);
+        }
+        if (extractedData.contains("Software - Google")) {
+            JFXSnackbar snackbar = new JFXSnackbar(anchorPane);
+            snackbar.getStylesheets().add(getClass().getResource("/resources/stylesheets/main.css").toExternalForm());
+            snackbar.show("Tampered By Google. May be from Google+", 10000);
         }
     }
 
@@ -143,12 +145,13 @@ public class Metadata_result_controller implements Initializable {
             if (extractedData.contains(string)) {
                 real++;
                 realReason += string + ",";
-                if(real%5==0)
-                    realReason+="\n";
+                if (real % 5 == 0) {
+                    realReason += "\n";
+                }
             }
         }
-        realReason = realReason.substring(0,realReason.length()-1);  //Remove last Comma
-        
+        realReason = realReason.substring(0, realReason.length() - 1);  //Remove last Comma
+
         int ctr = 0;
         for (String string : metadata_processor.extracted_data.split("\n")) {
             ctr++;
@@ -186,6 +189,12 @@ public class Metadata_result_controller implements Initializable {
                 fakeness += 10;
                 if (!fakeReason.contains("Detected Pixlr Tag")) {
                     fakeReason += "Detected Pixlr Tag" + "\n";
+                }
+            }
+            if (string.contains("Software - Google")) {
+                fakeness += 10;
+                if (!fakeReason.contains("Google's Signature Found: Possibly Google+")) {
+                    fakeReason += "Google's Signature Found: Possibly Google+" + "\n";
                 }
             }
         }
@@ -233,7 +242,7 @@ public class Metadata_result_controller implements Initializable {
                 caption.setText(text);
             }
         });
-        
+
         PieChart.Data data1 = pie_chart.getData().get(1);  //Fake
         data1.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
                 new EventHandler<MouseEvent>() {

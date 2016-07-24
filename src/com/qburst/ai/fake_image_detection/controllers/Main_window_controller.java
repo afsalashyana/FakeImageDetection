@@ -57,14 +57,14 @@ public class Main_window_controller implements Initializable {
     private ImageView homeIcon;
     @FXML
     private ImageView backgroundImageView;
-    
+
     int duration = 1500;
     FileChooser fileChooser;
     Boolean isFirstTime = true;
     ScaleTransition bulgingTransition;
     ParallelTransition buttonParallelTransition;
     public static File processingFile = null;
-    public static StackPane parentPaneForAll ;
+    public static StackPane parentPaneForAll;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -106,7 +106,7 @@ public class Main_window_controller implements Initializable {
         if (processingFile != null) {
             return;
         }
-        
+
         System.err.println("Launching File Chooser");
         fileChooser = new FileChooser();
         configureFileChooser(fileChooser);
@@ -181,9 +181,9 @@ public class Main_window_controller implements Initializable {
             pt.setOnFinished((e1) -> {
                 loadMetadataResult();
                 load_image_button.setText("Test On AI");
-                load_image_button.setFont(Font.font("Roboto", FontWeight.BOLD,20));
+                load_image_button.setFont(Font.font("Roboto", FontWeight.BOLD, 20));
                 homeIcon.setVisible(true);
-                
+
 //                Neural Network Entry
                 load_image_button.setOnMouseClicked((e2) -> {
                     System.out.println("Loading NN........");

@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,17 +18,7 @@ public class neural_net_processor extends NotifyingThread {
     static BufferedImage image;
     static NeuralNetwork nnet;
     static ImageRecognitionPlugin imageRecognition;
-
-    public neural_net_processor(BufferedImage image) throws FileNotFoundException {
-        this.image = image;
-        nnet = NeuralNetwork.load(new FileInputStream("/home/qbuser/NeurophProjects/BinaryClassification2/Neural Networks/CNN2.nnet")); // load trained neural network saved with Neuroph Studio
-        imageRecognition = (ImageRecognitionPlugin) nnet.getPlugin(ImageRecognitionPlugin.class); // get the image recognition plugin from neural network
-    }
-
-    @Override
-    public void doRun() {
-
-    }
+    public static double real = 0, fake = 0;
 
     public static void main(String[] args) {
         try {
@@ -37,8 +26,7 @@ public class neural_net_processor extends NotifyingThread {
             image = ImageIO.read(new File("/home/afsal/Desktop/Screenshot 2016-07-24 12:55:50.png"));
             System.out.println("Loading NN....");
             File NNetwork = new File("nnet/CNN2.nnet");
-            if(!NNetwork.exists())
-            {
+            if (!NNetwork.exists()) {
                 System.err.println("Cant Find NN");
                 return;
             }
@@ -54,5 +42,27 @@ public class neural_net_processor extends NotifyingThread {
         }
     }
 
+    public neural_net_processor(BufferedImage image) {
+        this.image = image;
+    }
+
+    @Override
+    public void doRun() {
+        try {
+            File NNetwork = new File("nnet/CNN2.nnet");
+            if (!NNetwork.exists()) {
+                System.err.println("Cant Find NN");
+                return;
+            }
+            nnet = NeuralNetwork.load(new FileInputStream(NNetwork)); // load trained neural network saved with Neuroph Studio
+            imageRecognition = (ImageRecognitionPlugin) nnet.getPlugin(ImageRecognitionPlugin.class); // get the image recognition plugin from neural network
+            HashMap<String, Double> output = imageRecognition.recognizeImage(image);
+            real = output.get("real");
+            fake = output.get("faked");
+            System.out.println(output.toString());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(neural_net_processor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

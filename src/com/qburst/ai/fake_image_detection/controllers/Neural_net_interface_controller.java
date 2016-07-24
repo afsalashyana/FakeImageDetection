@@ -1,16 +1,23 @@
 package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.qburst.ai.fake_image_detection.neural_network.core.neural_net_processor;
 import com.qburst.ai.fake_image_detection.neural_network.image_processor.error_level_analyzer;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.ThreadCompleteListener;
 import ij.ImagePlus;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +32,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Neural_net_interface_controller implements Initializable, ThreadCompleteListener {
+
+    public static String imageLocation = "";
+
+    public static String getImageLocation() {
+        return imageLocation = Main_window_controller.processingFile.getAbsolutePath();
+    }
 
     @FXML
     private StackPane rootPane;
@@ -41,14 +54,10 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
     @FXML
     private ImageView homeIcon;
 
-    public static String imageLocation = "";
     ScaleTransition bulgingTransition;
     error_level_analyzer elaAnalyzer;
+    neural_net_processor nprocessor;
     BufferedImage elaImage;
-
-    public static String getImageLocation() {
-        return imageLocation = Main_window_controller.processingFile.getAbsolutePath();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,6 +65,7 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
         getImageLocation();
 
         elaAnalyzer = new error_level_analyzer(imageLocation, 95);
+        elaAnalyzer.setName("elaAnalyzer");
         elaAnalyzer.addListener(this);
         elaAnalyzer.start();
 
@@ -97,11 +107,78 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
         });
     }
 
+    void finalMoveOfIndicator() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Timeline timeline = new Timeline();
+                timeline.setCycleCount(1);
+
+                KeyValue keyValueX = new KeyValue(navigation_button.prefWidthProperty(), 300);
+                KeyFrame keyFrame = new KeyFrame(Duration.millis(2000), keyValueX);
+                timeline.getKeyFrames().add(keyFrame);
+
+                timeline.play();
+                navigation_button.setStyle("-fx-background-radius: 0px;");
+            }
+        });
+    }
+
+    void loadResult() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                double real = neural_net_processor.real * 100;
+                double fake = neural_net_processor.fake * 100;
+                DecimalFormat df2 = new DecimalFormat(".#");
+                if (fake > real) {
+                    navigation_button.setStyle("-fx-background-color:#f44336");
+                    navigation_button.setText("FAKE IMAGE" + "\nConfidence :" + df2.format(fake) + "%");
+                } else {
+                    navigation_button.setStyle("-fx-background-color:#4CAF50");
+                    navigation_button.setText("REAL IMAGE" + "\nConfidence :" + df2.format(real) + "%");
+                }
+
+                addELAListener();
+            }
+
+            private void addELAListener() {
+                navigation_button.setOnAction((e) -> {
+                    new ImagePlus("Error Level Analysis", elaImage).show();
+                });
+            }
+        });
+    }
+
+    private void removeBannersandDescs() {
+        TranslateTransition tChristopher = new TranslateTransition(Duration.millis(1000), christopher);
+        TranslateTransition tDescription = new TranslateTransition(Duration.millis(1000), description);
+        tChristopher.setToY(-500);
+        tDescription.setToY(-500);
+        ParallelTransition pt = new ParallelTransition(tChristopher, tDescription);
+        pt.play();
+
+    }
+
     @Override
     public void notifyOfThreadComplete(Thread thread) {
-        updateIndicatorText("Serializing Image");
-        elaImage = elaAnalyzer.getFilteredImage();
-        new ImagePlus("Error Level Analysis", elaImage).show();
+        switch (thread.getName()) {
+            case "elaAnalyzer":
+                updateIndicatorText("Serializing Image");
+                elaImage = elaAnalyzer.getFilteredImage();
+                updateIndicatorText("Connecting to Neural Network");
+                nprocessor = new neural_net_processor(elaImage);
+                nprocessor.setName("nprocessor");
+                nprocessor.addListener(this);
+                nprocessor.start();
+                removeBannersandDescs();
+                break;
+            case "nprocessor":
+                bulgingTransition.stop();
+                updateIndicatorText("Done");
+                loadResult();
+        }
+
     }
 
 }

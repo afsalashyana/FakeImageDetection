@@ -224,6 +224,7 @@ public class Main_window_controller implements Initializable {
 
     @FXML
     private void rollBack(MouseEvent event) {
+        processingFile = null;
         try {
             StackPane pane = FXMLLoader.load(getClass().getResource("/resources/fxml/main_window.fxml"));
             rootPane.getChildren().clear();

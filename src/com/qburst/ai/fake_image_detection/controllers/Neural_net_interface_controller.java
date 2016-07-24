@@ -3,6 +3,8 @@ package com.qburst.ai.fake_image_detection.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.qburst.ai.fake_image_detection.neural_network.image_processor.error_level_analyzer;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.ThreadCompleteListener;
+import ij.ImagePlus;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +43,8 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
 
     public static String imageLocation = "";
     ScaleTransition bulgingTransition;
+    error_level_analyzer elaAnalyzer;
+    BufferedImage elaImage;
 
     public static String getImageLocation() {
         return imageLocation = Main_window_controller.processingFile.getAbsolutePath();
@@ -51,7 +55,7 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
         startAnimation();
         getImageLocation();
 
-        error_level_analyzer elaAnalyzer = new error_level_analyzer(imageLocation, 95);
+        elaAnalyzer = new error_level_analyzer(imageLocation, 95);
         elaAnalyzer.addListener(this);
         elaAnalyzer.start();
 
@@ -74,7 +78,7 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
 
     @FXML
     private void rollBack(MouseEvent event) {
-        Main_window_controller.processingFile=null;
+        Main_window_controller.processingFile = null;
         try {
             Stage stage = (Stage) rootPane.getScene().getWindow();
             Scene pane = new Scene(FXMLLoader.load(getClass().getResource("/resources/fxml/main_window.fxml")));
@@ -96,6 +100,8 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
     @Override
     public void notifyOfThreadComplete(Thread thread) {
         updateIndicatorText("Serializing Image");
+        elaImage = elaAnalyzer.getFilteredImage();
+        new ImagePlus("Error Level Analysis", elaImage).show();
     }
 
 }

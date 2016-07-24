@@ -69,7 +69,6 @@ public class error_level_analyzer extends NotifyingThread {
 
         ImageProcessor ip = diff.getProcessor();
         ip = ip.resize(200, 200);
-        new ImagePlus("croppedImage", ip).show();
         filteredImage = ip.getBufferedImage();
         runningStatus = false;
     }

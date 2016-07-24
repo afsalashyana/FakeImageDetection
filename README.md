@@ -22,6 +22,8 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 - [x] Design a User Interface
 - [x] Implement Image Feature Extractor
 - [x] Design Neural Network using Neuroph Studio
+- [x] Implement Neural Network interface with JavaFX
+- [ ] Connect Neural Network 
 - [ ] Integrate Neural Network to Master 
 - [ ] Train Network
 - [ ] Test Network

@@ -25,3 +25,8 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 - [ ] Integrate Neural Network to Master 
 - [ ] Train Network
 - [ ] Test Network
+
+###Screenshots
+<img src=http://i.imgur.com/vzfdecs.png>
+<img src=http://i.imgur.com/T3TVsuj.png>
+<img src=http://i.imgur.com/qnzNQLc.png>

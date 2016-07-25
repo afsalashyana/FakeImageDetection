@@ -53,6 +53,5 @@
 
 .jfx-snackbar-toast {
     -fx-text-fill: #ffffff;
-    -fx-font: bold;
     -fx-font-size: 16;  
 }

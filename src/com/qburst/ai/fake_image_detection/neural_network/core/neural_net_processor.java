@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javax.imageio.ImageIO;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.imgrec.ImageRecognitionPlugin;
@@ -46,12 +49,25 @@ public class neural_net_processor extends NotifyingThread {
         this.image = image;
     }
 
+    void notifyUser() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Neural Network Missing");
+                alert.setHeaderText("Cant find network file");
+                alert.setContentText("Please make sure that CNN2.nnet is located at nnet/CNN2.nnet");
+                alert.showAndWait();
+            }
+        });
+    }
+
     @Override
     public void doRun() {
         try {
             File NNetwork = new File("nnet/CNN2.nnet");
             if (!NNetwork.exists()) {
-                System.err.println("Cant Find NN");
+                notifyUser();
                 return;
             }
             nnet = NeuralNetwork.load(new FileInputStream(NNetwork)); // load trained neural network saved with Neuroph Studio

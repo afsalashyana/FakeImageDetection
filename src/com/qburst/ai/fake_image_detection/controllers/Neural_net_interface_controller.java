@@ -134,9 +134,13 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
                 if (fake > real) {
                     navigation_button.setStyle("-fx-background-color:#f44336");
                     navigation_button.setText("FAKE IMAGE" + "\nConfidence :" + df2.format(fake) + "%");
-                } else {
+                } else if(fake==real){
                     navigation_button.setStyle("-fx-background-color:#4CAF50");
                     navigation_button.setText("REAL IMAGE" + "\nConfidence :" + df2.format(real) + "%");
+                }else
+                {
+                    navigation_button.setStyle("-fx-background-color:#4CAF50");
+                    navigation_button.setText("Process Failed. 50-50 Chance");
                 }
 
                 addELAListener();

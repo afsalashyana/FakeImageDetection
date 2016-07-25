@@ -7,12 +7,11 @@ import static ij.io.FileSaver.setJpegQuality;
 import ij.plugin.ContrastEnhancer;
 import ij.plugin.ImageCalculator;
 import ij.process.ImageProcessor;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class error_level_analyzer extends NotifyingThread {
@@ -21,12 +20,28 @@ public class error_level_analyzer extends NotifyingThread {
     int quality = 95;
     Boolean runningStatus = false;
     BufferedImage filteredImage = null;
+    Dimension sampledDimension ;
 
     public error_level_analyzer(String fileLocation, int quality) {
         this.fileLocation = fileLocation;
         this.quality = quality;
+        this.sampledDimension = new Dimension(200,200);
+    }
+    public error_level_analyzer(String fileLocation, int quality, Dimension sampledDimension) {
+        this.fileLocation = fileLocation;
+        this.quality = quality;
+        this.sampledDimension = sampledDimension;
     }
 
+    public void setSampledDimension(Dimension sampledDimension) {
+        this.sampledDimension = sampledDimension;
+    }
+
+    public Dimension getSampledDimension() {
+        return sampledDimension;
+    }
+
+    
     public BufferedImage getFilteredImage() {
         return filteredImage;
     }
@@ -63,12 +78,12 @@ public class error_level_analyzer extends NotifyingThread {
 
         ContrastEnhancer c = new ContrastEnhancer();
         c.stretchHistogram(diff, 0.1);
-        //        fs = new FileSaver(diff);
+//        fs = new FileSaver(diff);
 //        fs.saveAsPng(elaPath);
 //        diff.show();
 
         ImageProcessor ip = diff.getProcessor();
-        ip = ip.resize(200, 200);
+        ip = ip.resize((int)sampledDimension.getWidth(), (int)sampledDimension.getHeight());
         filteredImage = ip.getBufferedImage();
         runningStatus = false;
     }

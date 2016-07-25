@@ -20,22 +20,25 @@ import javax.swing.JProgressBar;
 public class Ela_processor extends NotifyingThread {
 
     String fileLocation;
+    String destination = "output/processed";
     int quality = 95;
     Boolean runningStatus = false;
     Dimension sampledDimension;
     ArrayList<String> supportedExtensions;
     int baseCount = 1;
 
-    public Ela_processor(String fileLocation, int quality) {
+    public Ela_processor(String fileLocation, String destination, int quality) {
         this.fileLocation = fileLocation;
+        this.destination = destination + "/";
         this.quality = quality;
     }
 
-    public Ela_processor(String dirLoc, int quality, ArrayList<String> supportedExtensions, Dimension dimension) {
+    public Ela_processor(String dirLoc, String destination, int quality, ArrayList<String> supportedExtensions, Dimension dimension) {
         this.fileLocation = dirLoc;
         this.quality = quality;
         this.sampledDimension = dimension;
         this.supportedExtensions = supportedExtensions;
+        this.destination = destination + "/";
     }
 
     public void setSampledDimension(Dimension sampledDimension) {
@@ -101,15 +104,17 @@ public class Ela_processor extends NotifyingThread {
                 ip = ip.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
                 FileSaver resultSaver = new FileSaver(new ImagePlus("Result", ip.getBufferedImage()));
 
-                String savePath = "output/processed/" + Image_converter_ui.bName + (baseCount + processedSize) + ".png";
+                String savePath = destination + Image_converter_ui.bName + (baseCount + processedSize) + ".png";
                 resultSaver.saveAsPng(savePath);
 //                System.out.println("Saved " + file.getName() + " to " + savePath);
 
                 runningStatus = false;
-                double percentage = (processedSize+1) / totalSize;
+                double percentage = ((processedSize + 1) / totalSize);
 
-                Image_converter_ui.progress.setValue(processedSize);
-                Image_converter_ui.progress.setString(String.format("%f", percentage));
+                Image_converter_ui.progress.setValue(processedSize*100);
+                Image_converter_ui.progress.setString(String.format("%.1f", percentage*100) + "%");
+
+                processedSize++;
             }
         } catch (Exception e) {
             System.err.println("Error Occured at Ela_processor :");
@@ -120,7 +125,7 @@ public class Ela_processor extends NotifyingThread {
     private void checkForImageConflict() {
         baseCount = 1;
         while (true) {
-            String savePath = "output/processed/" + Image_converter_ui.bName + (baseCount + 1) + ".png";
+            String savePath = destination + Image_converter_ui.bName + (baseCount + 1) + ".png";
             if (new File(savePath).exists()) {
                 baseCount++;
             } else {

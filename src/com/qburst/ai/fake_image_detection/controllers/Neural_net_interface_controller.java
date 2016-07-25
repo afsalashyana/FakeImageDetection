@@ -2,6 +2,7 @@ package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
+import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
 import com.qburst.ai.fake_image_detection.neural_network.core.neural_net_processor;
 import com.qburst.ai.fake_image_detection.neural_network.image_processor.error_level_analyzer;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.ThreadCompleteListener;
@@ -90,6 +91,7 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
     @FXML
     private void rollBack(MouseEvent event) {
         Main_window_controller.processingFile = null;
+        metadata_processor.extracted_data = "";
         try {
             Stage stage = (Stage) rootPane.getScene().getWindow();
             Scene pane = new Scene(FXMLLoader.load(getClass().getResource("/resources/fxml/main_window.fxml")));

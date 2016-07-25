@@ -8,14 +8,16 @@ import java.util.ArrayList;
 public final class Image_standardizer implements ThreadCompleteListener {
 
     File sourceDir = null;
+    File destDir = null;
     Dimension resolution = null;
     File[] availableFiles = null;
     ArrayList<String> supportedExtensions;
 
-    public Image_standardizer(File sourceDirectory, Dimension finalResolution) {
+    public Image_standardizer(File sourceDirectory, File destinationDirectory,Dimension finalResolution) {
         System.out.println("Starting new Image Standardizer");
         sourceDir = sourceDirectory;
         resolution = finalResolution;
+        destDir = destinationDirectory;
         init();
         loadDirectory(sourceDir.getAbsolutePath());
         processImages();
@@ -33,7 +35,8 @@ public final class Image_standardizer implements ThreadCompleteListener {
 
     void processImages() {
         System.out.println("Calling Processor with dimension " + resolution);
-        Ela_processor imageProcessor = new Ela_processor(sourceDir.getAbsolutePath(), 95, supportedExtensions, resolution);
+        Ela_processor imageProcessor = 
+                new Ela_processor(sourceDir.getAbsolutePath(), destDir.getAbsolutePath(),95, supportedExtensions, resolution);
         imageProcessor.addListener(this);
         imageProcessor.start();
     }
@@ -53,7 +56,7 @@ public final class Image_standardizer implements ThreadCompleteListener {
     }
 
     public static void main(String[] args) {
-        Image_standardizer image_standardizer = new Image_standardizer(new File("/home/qbuser/Pictures/Wallpapers"), new Dimension(200, 200));
+        Image_standardizer image_standardizer = new Image_standardizer(new File("/home/qbuser/Pictures/Wallpapers"), new File("output/"),new Dimension(200, 200));
     }
 
     @Override

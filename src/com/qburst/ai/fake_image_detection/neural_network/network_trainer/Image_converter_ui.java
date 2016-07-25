@@ -178,7 +178,7 @@ public class Image_converter_ui extends javax.swing.JFrame {
         }
         if(sourceDir!=null&&destDir!=null)
         {
-            Image_standardizer ims = new Image_standardizer(sourceDir, dim);
+            Image_standardizer ims = new Image_standardizer(sourceDir, destDir,dim);
         }else
         {
             System.out.println("Source Not selected");
@@ -193,9 +193,9 @@ public class Image_converter_ui extends javax.swing.JFrame {
         System.out.println("Will be saving to :" + f.getAbsoluteFile());
         if(f!=null&&!f.isFile())
         {
-            sourceDir = f;
+            destDir = f;
             output.setText(destDir.getAbsolutePath());
-            jButton1.setText("Loaded");
+            jButton3.setText("Loaded");
         }else
         {
             System.err.println("Invalid Source");

@@ -25,8 +25,10 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 - [x] Implement Neural Network interface with JavaFX
 - [x] Connect Neural Network 
 - [x] Integrate Neural Network to Master 
-- [ ] Train Network
-- [ ] Test Network
+- [x] Train Network
+- [x] Test Network
+- [ ] Train with more data
+- [ ] Reach success rate of 90%
 
 ###Screenshots
 <img src=http://i.imgur.com/vzfdecs.png>

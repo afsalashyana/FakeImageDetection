@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Image_standardizer implements ThreadCompleteListener {
+public final class Image_standardizer implements ThreadCompleteListener {
 
     File sourceDir = null;
     Dimension resolution = null;
@@ -28,6 +28,7 @@ public class Image_standardizer implements ThreadCompleteListener {
         supportedExtensions.add("png");
         supportedExtensions.add("JPEG");
         supportedExtensions.add("PNG");
+        supportedExtensions.add("TIF");
     }
 
     void processImages() {
@@ -52,12 +53,13 @@ public class Image_standardizer implements ThreadCompleteListener {
     }
 
     public static void main(String[] args) {
-        new Image_standardizer(new File("/home/qbuser/Pictures/Wallpapers"), new Dimension(200, 200));
+        Image_standardizer image_standardizer = new Image_standardizer(new File("/home/qbuser/Pictures/Wallpapers"), new Dimension(200, 200));
     }
 
     @Override
     public void notifyOfThreadComplete(Thread thread) {
         System.out.println("Starting new Image Standardizer");
         System.out.println("Image Processing Completed");
+        System.exit(0);
     }
 }

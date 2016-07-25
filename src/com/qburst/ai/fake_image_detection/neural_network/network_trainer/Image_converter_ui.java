@@ -8,6 +8,7 @@ import java.io.File;
 public class Image_converter_ui extends javax.swing.JFrame {
 
     File sourceDir = null;
+    File destDir = null;
     Dimension dim = null;
     public static String bName = "real_";
     
@@ -31,6 +32,8 @@ public class Image_converter_ui extends javax.swing.JFrame {
         progress = new javax.swing.JProgressBar();
         jLabel3 = new javax.swing.JLabel();
         batchName = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        output = new javax.swing.JLabel();
 
         chooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
 
@@ -43,6 +46,8 @@ public class Image_converter_ui extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        source.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel1.setText("Width");
 
@@ -62,6 +67,15 @@ public class Image_converter_ui extends javax.swing.JFrame {
         jLabel3.setText("Batch Name");
 
         batchName.setText("real_");
+
+        jButton3.setText("Load Output Folder");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        output.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,12 +103,20 @@ public class Image_converter_ui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(width, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(batchName))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(151, 151, 151))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +135,11 @@ public class Image_converter_ui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(batchName, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(progress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,7 +176,7 @@ public class Image_converter_ui extends javax.swing.JFrame {
             e.printStackTrace();
             return;
         }
-        if(sourceDir!=null)
+        if(sourceDir!=null&&destDir!=null)
         {
             Image_standardizer ims = new Image_standardizer(sourceDir, dim);
         }else
@@ -159,15 +185,25 @@ public class Image_converter_ui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        chooser.showDialog(rootPane, "Select Output Directory");
+        File f = null;
+        chooser.accept(f);
+        f = chooser.getSelectedFile();
+        System.out.println("Will be saving to :" + f.getAbsoluteFile());
+        if(f!=null&&!f.isFile())
+        {
+            sourceDir = f;
+            output.setText(destDir.getAbsolutePath());
+            jButton1.setText("Loaded");
+        }else
+        {
+            System.err.println("Invalid Source");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -186,11 +222,8 @@ public class Image_converter_ui extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Image_converter_ui().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Image_converter_ui().setVisible(true);
         });
     }
 
@@ -200,9 +233,11 @@ public class Image_converter_ui extends javax.swing.JFrame {
     private javax.swing.JTextField height;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel output;
     public static javax.swing.JProgressBar progress;
     private javax.swing.JLabel source;
     private javax.swing.JTextField width;

@@ -25,7 +25,7 @@ public class error_level_analyzer extends NotifyingThread {
     public error_level_analyzer(String fileLocation, int quality) {
         this.fileLocation = fileLocation;
         this.quality = quality;
-        this.sampledDimension = new Dimension(200,200);
+        this.sampledDimension = new Dimension(100,100);
     }
     public error_level_analyzer(String fileLocation, int quality, Dimension sampledDimension) {
         this.fileLocation = fileLocation;

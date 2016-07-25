@@ -24,6 +24,7 @@ public class Ela_processor extends NotifyingThread {
     Boolean runningStatus = false;
     Dimension sampledDimension;
     ArrayList<String> supportedExtensions;
+    int baseCount = 1;
 
     public Ela_processor(String fileLocation, int quality) {
         this.fileLocation = fileLocation;
@@ -44,27 +45,27 @@ public class Ela_processor extends NotifyingThread {
     public Dimension getSampledDimension() {
         return sampledDimension;
     }
-    
-    
+
     @Override
     public void doRun() {
-        System.out.println("Changing Images to size " + sampledDimension);
-        
-        File[] availableFiles = new File(fileLocation).listFiles();
-        int totalSize = availableFiles.length;
-  
-        Image_converter_ui.progress.setStringPainted(true);
-        Image_converter_ui.progress.setMaximum(totalSize);
-        int processedSize=0;
-        
-        
-        for (File file : availableFiles) {
-            String ext = file.getName().split("[.]")[1];
-            if (!supportedExtensions.contains(ext)) {
-                System.out.println("Dropping " + file.getName() + " due to unsupported extension");
-                return;
-            }
-            try {
+        try {
+            System.out.println("Changing Images to size " + sampledDimension);
+
+            File[] availableFiles = new File(fileLocation).listFiles();
+            int totalSize = availableFiles.length;
+
+            Image_converter_ui.progress.setStringPainted(true);
+            Image_converter_ui.progress.setMaximum(totalSize);
+            int processedSize = 0;
+            checkForImageConflict();
+
+            for (File file : availableFiles) {
+
+                String ext = file.getName().split("[.]")[1];
+                if (!supportedExtensions.contains(ext)) {
+                    System.out.println("Dropping " + file.getName() + " due to unsupported extension");
+                    continue;
+                }
                 runningStatus = true;
                 Image img;
                 try {
@@ -98,23 +99,35 @@ public class Ela_processor extends NotifyingThread {
 
                 ImageProcessor ip = diff.getProcessor();
                 ip = ip.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
-                FileSaver resultSaver = new FileSaver(new ImagePlus("Result",ip.getBufferedImage()));
-                
-                String savePath = "output/processed/" + Image_converter_ui.bName +(processedSize+1) + ".png";
+                FileSaver resultSaver = new FileSaver(new ImagePlus("Result", ip.getBufferedImage()));
+
+                String savePath = "output/processed/" + Image_converter_ui.bName + (baseCount + processedSize) + ".png";
                 resultSaver.saveAsPng(savePath);
 //                System.out.println("Saved " + file.getName() + " to " + savePath);
-               
+
                 runningStatus = false;
-                DecimalFormat format = new DecimalFormat(".##");
-                double percentage = (++processedSize)/totalSize;
-                
+                double percentage = (processedSize+1) / totalSize;
+
                 Image_converter_ui.progress.setValue(processedSize);
-                Image_converter_ui.progress.setString(String.format("%.d", percentage));
-                
-            } catch (Exception ex) {
-                System.out.println("Error Occured during processing" + ex.getLocalizedMessage());
+                Image_converter_ui.progress.setString(String.format("%f", percentage));
+            }
+        } catch (Exception e) {
+            System.err.println("Error Occured at Ela_processor :");
+            e.printStackTrace();
+        }
+    }
+
+    private void checkForImageConflict() {
+        baseCount = 1;
+        while (true) {
+            String savePath = "output/processed/" + Image_converter_ui.bName + (baseCount + 1) + ".png";
+            if (new File(savePath).exists()) {
+                baseCount++;
+            } else {
+                break;
             }
         }
+        System.out.println("There are " + (baseCount - 1) + " images already. Starting from " + baseCount);
     }
 
 }

@@ -2,6 +2,7 @@
     -fx-background-color: #0f0f0f;
 }
 
+/*welcome screen main navigation button*/
 .load_image_button{
     -fx-background-color: #03A9F4;
     -fx-background-radius: 200px;
@@ -17,21 +18,21 @@
     -fx-background-color: black;
 }
 
-
+/*Overriding default Pie chart colours*/
 .default-color0.chart-pie { -fx-pie-color: #f44336; }
 .default-color1.chart-pie { -fx-pie-color: #76FF03; }
 
-
+/*Piechart title style*/
 .chart-title {
     -fx-text-fill: #ffffff;
     -fx-font-size: 1.6em;
 }
-
+/*Piechart content styles*/
 .chart-content {
     -fx-padding: 30px; 
     -fx-text-fill: #ffffff;
 }
-
+/*Piechart axis label*/
 .axis-label {
     -fx-text-fill: #ffffff;
 }
@@ -46,11 +47,11 @@
     -fx-font-size: 1.5em;
 } 
 
+/*Metadata result snackbar styling*/
 
 .jfx-snackbar-content {
     -fx-background-color: #e53935;
 }
-
 .jfx-snackbar-toast {
     -fx-text-fill: #ffffff;
     -fx-font-size: 16;  

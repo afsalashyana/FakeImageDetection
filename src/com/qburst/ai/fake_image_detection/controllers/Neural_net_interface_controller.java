@@ -1,6 +1,7 @@
 package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
 import com.qburst.ai.fake_image_detection.neural_network.core.neural_net_processor;
 import com.qburst.ai.fake_image_detection.neural_network.image_processor.error_level_analyzer;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.ThreadCompleteListener;
@@ -131,18 +132,29 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
                 double real = neural_net_processor.real * 100;
                 double fake = neural_net_processor.fake * 100;
                 DecimalFormat df2 = new DecimalFormat(".#");
-                if (fake > real) {
+                if (real < 10 && fake < 10) {
+                    String possibility;
+                    if (real >= fake) {
+                        possibility = "Possibly Real";
+                    } else {
+                        possibility = "Possibly FAKE";
+                    }
+                    navigation_button.setStyle("-fx-background-color:#f44336");
+                    navigation_button.setText("Cant Determine whether fake or not " + possibility);
+                    JFXSnackbar snackbar = new JFXSnackbar(rootPane);
+                    snackbar.getStylesheets().add(getClass().getResource("/resources/stylesheets/main.css").toExternalForm());
+                    snackbar.show("Real = " + df2.format(fake) + "% and Fake = " + df2.format(real) + "%", 10000);
+
+                } else if (fake > real) {
                     navigation_button.setStyle("-fx-background-color:#f44336");
                     navigation_button.setText("FAKE IMAGE" + "\nConfidence :" + df2.format(fake) + "%");
-                } else if(fake==real){
+                } else if (fake < real) {
                     navigation_button.setStyle("-fx-background-color:#4CAF50");
                     navigation_button.setText("REAL IMAGE" + "\nConfidence :" + df2.format(real) + "%");
-                }else
-                {
+                } else {
                     navigation_button.setStyle("-fx-background-color:#4CAF50");
                     navigation_button.setText("Process Failed. 50-50 Chance");
                 }
-
                 addELAListener();
             }
 

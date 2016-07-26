@@ -1,7 +1,6 @@
 package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXSnackbar;
 import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
 import com.qburst.ai.fake_image_detection.neural_network.core.neural_net_processor;
 import com.qburst.ai.fake_image_detection.neural_network.image_processor.error_level_analyzer;

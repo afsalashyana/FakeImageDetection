@@ -1,5 +1,7 @@
 package com.qburst.ai.fake_image_detection.neural_network.network_trainer;
 
+import com.qburst.ai.fake_image_detection.common.cAlert;
+import com.qburst.ai.fake_image_detection.controllers.Batch_image_processorController;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.NotifyingThread;
 import ij.ImagePlus;
 import ij.io.FileSaver;
@@ -12,11 +14,9 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JProgressBar;
 
 public class Ela_processor extends NotifyingThread {
 
@@ -56,18 +56,14 @@ public class Ela_processor extends NotifyingThread {
             System.out.println("Changing Images to size " + sampledDimension);
 
             File[] availableFiles = new File(fileLocation).listFiles();
-            int totalSize = availableFiles.length;
-
-            Image_converter_ui.progress.setStringPainted(true);
-            Image_converter_ui.progress.setMaximum(totalSize);
-            int processedSize = 0;
+            float totalSize = availableFiles.length;
+            float processedSize = 0;
             checkForImageConflict();
 
             for (File file : availableFiles) {
-
                 String ext = file.getName().split("[.]")[1];
                 if (!supportedExtensions.contains(ext)) {
-                    System.out.println("Dropping " + file.getName() + " due to unsupported extension --"+ file.getName().split("[.]")[1]);
+                    System.out.println("Dropping " + file.getName() + " due to unsupported extension --" + file.getName().split("[.]")[1]);
                     continue;
                 }
                 runningStatus = true;
@@ -80,8 +76,7 @@ public class Ela_processor extends NotifyingThread {
                     return;
                 }
                 ImagePlus orig = new ImagePlus("Source Image", img);
-                if(orig.getWidth()<sampledDimension.getWidth()||orig.getHeight()<sampledDimension.getHeight())
-                {
+                if (orig.getWidth() < sampledDimension.getWidth() || orig.getHeight() < sampledDimension.getHeight()) {
                     System.err.println("Too Small to process");
                     continue;
                 }
@@ -100,7 +95,13 @@ public class Ela_processor extends NotifyingThread {
                 ImagePlus resaved = new ImagePlus(resavedPath);
 
                 ImageCalculator calc = new ImageCalculator();
-                ImagePlus diff = calc.run("create difference", orig, resaved);
+                ImagePlus diff;
+                try {
+                    diff = calc.run("create difference", orig, resaved);
+                } catch (Exception e) {
+                    cAlert.showAlert("Error Occured", e.getMessage(), Alert.AlertType.ERROR);
+                    continue;
+                }
                 diff.setTitle("ELA @ " + quality + "%");
 
                 ContrastEnhancer c = new ContrastEnhancer();
@@ -108,40 +109,38 @@ public class Ela_processor extends NotifyingThread {
 
                 ImageProcessor ip = diff.getProcessor();
                 ImageProcessor imp;
-                if(ip.getWidth()>ip.getHeight())
-                {
+                if (ip.getWidth() > ip.getHeight()) {
                     Rectangle rec = new Rectangle(0, 0, ip.getHeight(), ip.getHeight());
                     ip.setRoi(rec);
                     imp = ip.crop();
-                }else{
+                } else {
                     Rectangle rec = new Rectangle(0, 0, ip.getWidth(), ip.getWidth());
                     ip.setRoi(rec);
-                    imp = ip.crop();                    
+                    imp = ip.crop();
                 }
                 imp = imp.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
                 FileSaver resultSaver = new FileSaver(new ImagePlus("Result", imp.getBufferedImage()));
 
-                String savePath = destination + Image_converter_ui.bName + (baseCount + processedSize) + ".png";
+                String savePath = destination + Batch_image_processorController.bName + (baseCount + processedSize) + ".png";
                 resultSaver.saveAsPng(savePath);
 
                 runningStatus = false;
-                double percentage = ((processedSize + 1) / totalSize);
 
-                Image_converter_ui.progress.setValue(processedSize);
-                Image_converter_ui.progress.setString(String.format("%.1f", (percentage*100)) + "%" + processedSize+ "/" + totalSize);
+                float percentage = processedSize / totalSize;
 
+                Batch_image_processorController.progress.setProgress(percentage);
                 processedSize++;
+
             }
         } catch (Exception e) {
-            System.err.println("Error Occured at Ela_processor :");
-            e.printStackTrace();
+            System.err.println("Error Occured at Ela_processor :" + e.getMessage());
         }
     }
 
     private void checkForImageConflict() {
         baseCount = 1;
         while (true) {
-            String savePath = destination + Image_converter_ui.bName + (baseCount + 1) + ".png";
+            String savePath = destination + Batch_image_processorController.bName + (baseCount + 1) + ".png";
             if (new File(savePath).exists()) {
                 baseCount++;
             } else {

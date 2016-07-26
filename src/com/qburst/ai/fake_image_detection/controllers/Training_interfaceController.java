@@ -82,6 +82,7 @@ public class Training_interfaceController implements Initializable {
         series = new XYChart.Series();
         series.setName("Learning Curve 1");
         errorChart.getData().add(series);
+        
     }
 
     public void notifyLearningCompleted() {

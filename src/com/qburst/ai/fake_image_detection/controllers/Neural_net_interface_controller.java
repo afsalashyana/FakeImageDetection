@@ -139,13 +139,10 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
                     if (real >= fake) {
                         possibility = "Possibly Real";
                     } else {
-                        possibility = "Possibly FAKE";
+                        possibility = "Possibly Fake";
                     }
-                    navigation_button.setStyle("-fx-background-color:#f44336");
+                    navigation_button.setStyle("-fx-background-color:#EF6C00");
                     navigation_button.setText("Cant Determine whether fake or not " + possibility);
-                    JFXSnackbar snackbar = new JFXSnackbar(rootPane);
-                    snackbar.getStylesheets().add(getClass().getResource("/resources/stylesheets/main.css").toExternalForm());
-                    snackbar.show("Real = " + df2.format(fake) + "% and Fake = " + df2.format(real) + "%", 10000);
 
                 } else if (fake > real) {
                     navigation_button.setStyle("-fx-background-color:#f44336");

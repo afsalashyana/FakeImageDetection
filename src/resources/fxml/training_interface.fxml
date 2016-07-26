@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.ai.fake_image_detection.controllers.Training_interfaceController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="343.0">
+         <children>
+            <JFXButton fx:id="sourceIndicator" buttonType="RAISED" layoutX="33.0" layoutY="45.0" onAction="#loadImageSource" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #29B6F6; -fx-text-fill: #ffffff;" text="Choose Image Source" />
+            <JFXTextField fx:id="realLabel" layoutX="86.0" layoutY="114.0" promptText="Real Image label" />
+            <JFXTextField fx:id="fakeLabel" layoutX="84.0" layoutY="165.0" promptText="Fake Image Label" />
+            <JFXButton fx:id="startButton" buttonType="RAISED" layoutX="78.0" layoutY="277.0" onAction="#startTraining" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #29B6F6; -fx-text-fill: #ffffff;" text="Start Training" />
+            <JFXCheckBox fx:id="srcIndicator" layoutX="232.0" layoutY="54.0" text=" " />
+         </children>
+      </AnchorPane>
+      <LineChart fx:id="lineChart" layoutX="352.0" title="Training Info">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

@@ -31,6 +31,7 @@ public final class Image_standardizer implements ThreadCompleteListener {
         supportedExtensions.add("JPEG");
         supportedExtensions.add("PNG");
         supportedExtensions.add("TIF");
+        supportedExtensions.add("tif");
     }
 
     void processImages() {

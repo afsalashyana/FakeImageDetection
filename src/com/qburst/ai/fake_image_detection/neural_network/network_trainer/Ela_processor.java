@@ -9,6 +9,7 @@ import ij.plugin.ImageCalculator;
 import ij.process.ImageProcessor;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -66,19 +67,24 @@ public class Ela_processor extends NotifyingThread {
 
                 String ext = file.getName().split("[.]")[1];
                 if (!supportedExtensions.contains(ext)) {
-                    System.out.println("Dropping " + file.getName() + " due to unsupported extension");
+                    System.out.println("Dropping " + file.getName() + " due to unsupported extension --"+ file.getName().split("[.]")[1]);
                     continue;
                 }
                 runningStatus = true;
                 Image img;
                 try {
-                    System.out.println("Loading Image :" + file.getAbsolutePath());
+//                    System.out.println("Loading Image :" + file.getAbsolutePath());
                     img = ImageIO.read(file);
                 } catch (IOException ex) {
                     System.err.println("Null Image");
                     return;
                 }
                 ImagePlus orig = new ImagePlus("Source Image", img);
+                if(orig.getWidth()<sampledDimension.getWidth()||orig.getHeight()<sampledDimension.getHeight())
+                {
+                    System.err.println("Too Small to process");
+                    continue;
+                }
 
                 String basePath = "output/";
                 String origPath = basePath + "original.jpg";
@@ -98,21 +104,31 @@ public class Ela_processor extends NotifyingThread {
                 diff.setTitle("ELA @ " + quality + "%");
 
                 ContrastEnhancer c = new ContrastEnhancer();
-                c.stretchHistogram(diff, 0.1);
+                c.stretchHistogram(diff, 0.05);
 
                 ImageProcessor ip = diff.getProcessor();
-                ip = ip.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
-                FileSaver resultSaver = new FileSaver(new ImagePlus("Result", ip.getBufferedImage()));
+                ImageProcessor imp;
+                if(ip.getWidth()>ip.getHeight())
+                {
+                    Rectangle rec = new Rectangle(0, 0, ip.getHeight(), ip.getHeight());
+                    ip.setRoi(rec);
+                    imp = ip.crop();
+                }else{
+                    Rectangle rec = new Rectangle(0, 0, ip.getWidth(), ip.getWidth());
+                    ip.setRoi(rec);
+                    imp = ip.crop();                    
+                }
+                imp = imp.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
+                FileSaver resultSaver = new FileSaver(new ImagePlus("Result", imp.getBufferedImage()));
 
                 String savePath = destination + Image_converter_ui.bName + (baseCount + processedSize) + ".png";
                 resultSaver.saveAsPng(savePath);
-//                System.out.println("Saved " + file.getName() + " to " + savePath);
 
                 runningStatus = false;
                 double percentage = ((processedSize + 1) / totalSize);
 
-                Image_converter_ui.progress.setValue(processedSize*100);
-                Image_converter_ui.progress.setString(String.format("%.1f", percentage*100) + "%");
+                Image_converter_ui.progress.setValue(processedSize);
+                Image_converter_ui.progress.setString(String.format("%.1f", (percentage*100)) + "%" + processedSize+ "/" + totalSize);
 
                 processedSize++;
             }

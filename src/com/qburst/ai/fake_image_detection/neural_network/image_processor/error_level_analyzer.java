@@ -9,6 +9,7 @@ import ij.plugin.ImageCalculator;
 import ij.process.ImageProcessor;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,13 +21,14 @@ public class error_level_analyzer extends NotifyingThread {
     int quality = 95;
     Boolean runningStatus = false;
     BufferedImage filteredImage = null;
-    Dimension sampledDimension ;
+    Dimension sampledDimension;
 
     public error_level_analyzer(String fileLocation, int quality) {
         this.fileLocation = fileLocation;
         this.quality = quality;
-        this.sampledDimension = new Dimension(100,100);
+        this.sampledDimension = new Dimension(100, 100);
     }
+
     public error_level_analyzer(String fileLocation, int quality, Dimension sampledDimension) {
         this.fileLocation = fileLocation;
         this.quality = quality;
@@ -41,7 +43,6 @@ public class error_level_analyzer extends NotifyingThread {
         return sampledDimension;
     }
 
-    
     public BufferedImage getFilteredImage() {
         return filteredImage;
     }
@@ -77,14 +78,27 @@ public class error_level_analyzer extends NotifyingThread {
         diff.setTitle("ELA @ " + quality + "%");
 
         ContrastEnhancer c = new ContrastEnhancer();
-        c.stretchHistogram(diff, 0.1);
+        c.stretchHistogram(diff, 0.05);
+
 //        fs = new FileSaver(diff);
 //        fs.saveAsPng(elaPath);
 //        diff.show();
-
         ImageProcessor ip = diff.getProcessor();
-        ip = ip.resize((int)sampledDimension.getWidth(), (int)sampledDimension.getHeight());
-        filteredImage = ip.getBufferedImage();
+
+        ImageProcessor imp;
+        if (ip.getWidth() > ip.getHeight()) {
+            Rectangle rec = new Rectangle(0, 0, ip.getHeight(), ip.getHeight());
+            ip.setRoi(rec);
+            imp = ip.crop();
+        } else {
+            Rectangle rec = new Rectangle(0, 0, ip.getWidth(), ip.getWidth());
+            ip.setRoi(rec);
+            imp = ip.crop();
+        }
+        
+        
+        imp = imp.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
+        filteredImage = imp.getBufferedImage();
         runningStatus = false;
     }
 

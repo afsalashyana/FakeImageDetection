@@ -73,6 +73,8 @@ public class neural_net_processor extends NotifyingThread {
             nnet = NeuralNetwork.load(new FileInputStream(NNetwork)); // load trained neural network saved with Neuroph Studio
             imageRecognition = (ImageRecognitionPlugin) nnet.getPlugin(ImageRecognitionPlugin.class); // get the image recognition plugin from neural network
             HashMap<String, Double> output = imageRecognition.recognizeImage(image);
+            if(output==null)
+                System.err.println("Image Recognition Failed");
             real = output.get("real");
             fake = output.get("faked");
             System.out.println(output.toString());

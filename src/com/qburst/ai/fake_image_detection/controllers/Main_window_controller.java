@@ -174,7 +174,6 @@ public class Main_window_controller implements Initializable {
                 load_image_button.setText("Test On AI");
                 load_image_button.setFont(Font.font("Roboto", FontWeight.BOLD, 20));
                 homeIcon.setVisible(true);
-
 //                Neural Network Entry
                 load_image_button.setOnMouseClicked((e2) -> {
                     System.out.println("Loading NN........");

@@ -27,7 +27,11 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 - [x] Integrate Neural Network to Master 
 - [x] Train Network
 - [x] Test Network
-- [ ] Train with more data
+- [x] Read feedback from user and learn instantly
+- [x] Add network training interface
+- [x] Add module to apply error level analysis on a set of images
+- [x] Improve look and feel
+- [x] Train with more data
 - [ ] Reach success rate of 90%
 
 ###Screenshots

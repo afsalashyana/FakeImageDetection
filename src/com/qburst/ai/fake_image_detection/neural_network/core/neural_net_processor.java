@@ -19,7 +19,7 @@ import org.neuroph.imgrec.ImageRecognitionPlugin;
 public class neural_net_processor extends NotifyingThread {
 
     static BufferedImage image;
-    static NeuralNetwork nnet;
+    public static NeuralNetwork nnet;
     static ImageRecognitionPlugin imageRecognition;
     public static double real = 0, fake = 0;
 
@@ -65,17 +65,21 @@ public class neural_net_processor extends NotifyingThread {
     @Override
     public void doRun() {
         try {
-            File NNetwork = new File("nnet/CNN2.nnet");
-            if (!NNetwork.exists()) {
-                notifyUser();
-                return;
+            if (nnet == null) { //Bypass network reload during comeback through home button
+                File NNetwork = new File("nnet/CNN2.nnet");
+                System.out.println("Nueral network loaded = " + NNetwork.getAbsolutePath());
+                if (!NNetwork.exists()) {
+                    notifyUser();
+                    return;
+                }
+                nnet = NeuralNetwork.load(new FileInputStream(NNetwork)); // load trained neural network saved with Neuroph Studio
+                System.out.println("Learning Rule = " + nnet.getLearningRule());
+                imageRecognition = (ImageRecognitionPlugin) nnet.getPlugin(ImageRecognitionPlugin.class); // get the image recognition plugin from neural network
             }
-            nnet = NeuralNetwork.load(new FileInputStream(NNetwork)); // load trained neural network saved with Neuroph Studio
-            System.out.println("Learning Rule = " + nnet.getLearningRule());
-            imageRecognition = (ImageRecognitionPlugin) nnet.getPlugin(ImageRecognitionPlugin.class); // get the image recognition plugin from neural network
             HashMap<String, Double> output = imageRecognition.recognizeImage(image);
-            if(output==null)
+            if (output == null) {
                 System.err.println("Image Recognition Failed");
+            }
             real = output.get("real");
             fake = output.get("faked");
             System.out.println(output.toString());

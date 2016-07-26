@@ -43,7 +43,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <JFXButton fx:id="neuralSource" buttonType="RAISED" layoutX="138.0" layoutY="28.0" onAction="#loadNeuralNetwork" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Image Source" />
+            <JFXButton fx:id="neuralSource" buttonType="RAISED" layoutX="138.0" layoutY="28.0" onAction="#loadNeuralNetwork" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Neural Network" />
             <JFXCheckBox fx:id="nnIndicator" layoutX="337.0" layoutY="37.0" text=" " />
          </children>
       </AnchorPane>

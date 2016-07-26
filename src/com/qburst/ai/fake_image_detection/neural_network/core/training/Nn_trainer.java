@@ -80,7 +80,7 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
     public void saveLearnedNetwork(String path) {
         try {
             nnet.save(path);
-            cAlert.showAlert("Saved", "Neural network file saved to " + path, Alert.AlertType.INFORMATION);
+            cAlert.showAlert("Saved", "Neural network saved" + path, Alert.AlertType.INFORMATION);
         } catch (Exception e) {
             System.err.println("Failed");
         }
@@ -108,6 +108,11 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
             mBackpropagation.setLearningRate(learningRate);
             mBackpropagation.setMaxError(maxError);
             mBackpropagation.setMomentum(momentum);
+            
+            System.out.println("Network Information\nLabel = " + nnet.getLabel()
+            + "\n Input Neurons = " + nnet.getInputsCount()
+            + "\n Number of layers = " + nnet.getLayersCount()
+             );
 
             mBackpropagation.addListener(this);
             System.out.println("Starting training......");

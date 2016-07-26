@@ -58,6 +58,7 @@ public class error_level_analyzer extends NotifyingThread {
             System.err.println("Null Image");
             return;
         }
+        System.out.println("Dimensio is set to " + sampledDimension);
         ImagePlus orig = new ImagePlus("Source Image", img);
 
         String basePath = "/tmp/";

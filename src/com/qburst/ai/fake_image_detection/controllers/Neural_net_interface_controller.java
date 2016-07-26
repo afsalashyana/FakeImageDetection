@@ -1,8 +1,10 @@
 package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
 import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
 import com.qburst.ai.fake_image_detection.neural_network.core.neural_net_processor;
+import com.qburst.ai.fake_image_detection.neural_network.core.training.single_image_learner;
 import com.qburst.ai.fake_image_detection.neural_network.image_processor.error_level_analyzer;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.ThreadCompleteListener;
 import ij.ImagePlus;
@@ -10,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,10 +23,16 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -55,6 +64,7 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
     @FXML
     private ImageView homeIcon;
 
+    Neural_net_interface_controller thisObject = this;
     ScaleTransition bulgingTransition;
     error_level_analyzer elaAnalyzer;
     neural_net_processor nprocessor;
@@ -153,6 +163,45 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
                     navigation_button.setStyle("-fx-background-color:#4CAF50");
                     navigation_button.setText("Process Failed. 50-50 Chance");
                 }
+
+                final JFXSnackbar snackbar = new JFXSnackbar(rootPane);
+                snackbar.getStylesheets().add(getClass().getResource("/resources/stylesheets/main.css").toExternalForm());
+                EventHandler handler = new EventHandler() {
+                    @Override
+                    public void handle(Event event) {
+                        snackbar.unregisterSnackbarContainer(rootPane);
+                        Alert alert = new Alert(AlertType.CONFIRMATION);
+                        alert.setTitle("Confirmation Dialog");
+                        alert.setContentText("Is this image Fake or Real ?");
+
+                        ButtonType fakeButton = new ButtonType("Fake");
+                        ButtonType realButton = new ButtonType("Real");
+                        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+                        alert.getButtonTypes().setAll(fakeButton, realButton, buttonTypeCancel);
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == fakeButton) {
+                            navigation_button.setText("Learning...");
+                            single_image_learner learner
+                                    = new single_image_learner(neural_net_processor.nnet, elaImage, false);
+                            learner.addListener(thisObject);
+                            learner.setName("learner");
+                            learner.start();
+                        } else if (result.get() == realButton) {
+                            navigation_button.setText("Learning...");
+                            single_image_learner learner
+                                    = new single_image_learner(neural_net_processor.nnet, elaImage, true);
+                            learner.addListener(thisObject);
+                            learner.setName("learner");
+                            learner.start();
+                        } else {
+
+                        }
+                    }
+                };
+                snackbar.show("Isn't That Right ? Help Me Grow", "Okay", 10000, handler);
+
                 addELAListener();
             }
 
@@ -163,8 +212,6 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
             }
         });
     }
-    
-
 
     private void removeBannersandDescs() {
         TranslateTransition tChristopher = new TranslateTransition(Duration.millis(1000), christopher);
@@ -193,8 +240,11 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
                 bulgingTransition.stop();
                 updateIndicatorText("Done");
                 loadResult();
+                break;
+            case "learner":
+                updateIndicatorText("Learning Complete");
+                break;
         }
 
     }
-
 }

@@ -1,11 +1,10 @@
 package com.qburst.ai.fake_image_detection.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXSnackbar;
+import com.qburst.ai.fake_image_detection.common.cAlert;
 import com.qburst.ai.fake_image_detection.metadata_extractor.metadata_processor;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,11 +17,9 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.DepthTest;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -111,11 +108,7 @@ public class Main_window_controller implements Initializable {
         fileChooser.setTitle("Open Resource File");
         processingFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
         if (processingFile == null) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("No File Selected");
-            alert.setHeaderText("Select an Image :-(");
-            alert.setContentText("You haven't selected any images");
-            alert.showAndWait();
+            cAlert.showAlert("No File Selected", "You haven't selected any images", AlertType.ERROR);
             return;
         }
 

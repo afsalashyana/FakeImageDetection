@@ -1,5 +1,6 @@
 package com.qburst.ai.fake_image_detection.neural_network.core.training;
 
+import com.qburst.ai.fake_image_detection.common.cAlert;
 import com.qburst.ai.fake_image_detection.controllers.Training_interfaceController;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.NotifyingThread;
 import java.awt.Dimension;
@@ -15,8 +16,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.apache.commons.io.FilenameUtils;
+import org.neuroph.core.Layer;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.events.LearningEvent;
@@ -30,6 +33,7 @@ import org.neuroph.nnet.learning.MomentumBackpropagation;
 public class Nn_trainer extends NotifyingThread implements LearningEventListener {
 
     File srcDirectory;
+    File nnFile;
     Dimension sampleDimension;
     ArrayList<String> imageLabels;
     NeuralNetwork nnet;
@@ -40,6 +44,7 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
     Training_interfaceController controller;
 
     public Nn_trainer(File srcDirectory,
+            File nnFile,
             Dimension sampleDimension,
             ArrayList<String> imageLabels,
             XYChart.Series series,
@@ -49,6 +54,7 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
         this.imageLabels = imageLabels;
         this.series = series;
         this.controller = controller;
+        this.nnFile = nnFile;
     }
 
     public void setMomentum(float momentum) {
@@ -74,7 +80,7 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
     public void saveLearnedNetwork(String path) {
         try {
             nnet.save(path);
-            System.out.println("Saved @" + path);
+            cAlert.showAlert("Saved", "Neural network file saved to " + path, Alert.AlertType.INFORMATION);
         } catch (Exception e) {
             System.err.println("Failed");
         }
@@ -96,13 +102,8 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
             }
             Map<String, FractionRgbData> imageRgbData = ImageUtilities.getFractionRgbDataForImages(imagesMap);
             DataSet learningData = ImageRecognitionHelper.createRGBTrainingSet(imageLabels, imageRgbData);
-            File NNetwork = new File("nnet/CNN2.nnet");
-            if (!NNetwork.exists()) {
-                System.out.println("Missing NN");
-                return;
-            }
 
-            nnet = NeuralNetwork.load(new FileInputStream(NNetwork)); //Load NNetwork
+            nnet = NeuralNetwork.load(new FileInputStream(nnFile)); //Load NNetwork
             MomentumBackpropagation mBackpropagation = (MomentumBackpropagation) nnet.getLearningRule();
             mBackpropagation.setLearningRate(learningRate);
             mBackpropagation.setMaxError(maxError);
@@ -111,7 +112,6 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
             mBackpropagation.addListener(this);
             System.out.println("Starting training......");
             nnet.learn(learningData, mBackpropagation);
-
             //Training Completed
             controller.notifyLearningCompleted();
         } catch (FileNotFoundException ex) {

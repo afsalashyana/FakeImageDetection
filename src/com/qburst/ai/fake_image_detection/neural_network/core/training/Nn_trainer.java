@@ -1,5 +1,6 @@
 package com.qburst.ai.fake_image_detection.neural_network.core.training;
 
+import com.qburst.ai.fake_image_detection.controllers.Training_interfaceController;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.NotifyingThread;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -9,6 +10,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
 import org.apache.commons.io.FilenameUtils;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
@@ -29,13 +36,19 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
     float learningRate = 0f;
     float momentum = 0f;
     float maxError = 0f;
-    training_display display;
-    
+    XYChart.Series series;
+    Training_interfaceController controller;
 
-    public Nn_trainer(File srcDirectory, Dimension sampleDimension, ArrayList<String> imageLabels) {
+    public Nn_trainer(File srcDirectory,
+            Dimension sampleDimension,
+            ArrayList<String> imageLabels,
+            XYChart.Series series,
+            Training_interfaceController controller) {
         this.srcDirectory = srcDirectory;
         this.sampleDimension = sampleDimension;
         this.imageLabels = imageLabels;
+        this.series = series;
+        this.controller = controller;
     }
 
     public void setMomentum(float momentum) {
@@ -50,11 +63,28 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
         this.maxError = maxError;
     }
 
-    
+    public void stopLearning() {
+        try {
+            nnet.stopLearning();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void saveLearnedNetwork(String path) {
+        try {
+            nnet.save(path);
+            System.out.println("Saved @" + path);
+        } catch (Exception e) {
+            System.err.println("Failed");
+        }
+    }
+
     @Override
     public void doRun() {
         try {
             System.out.println("Starting training thread....." + sampleDimension.toString() + " and " + imageLabels.toString());
+
             HashMap<String, BufferedImage> imagesMap = new HashMap<String, BufferedImage>();
             for (File file : srcDirectory.listFiles()) {
                 imageLabels.add(FilenameUtils.removeExtension(file.getName()));
@@ -71,6 +101,7 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
                 System.out.println("Missing NN");
                 return;
             }
+
             nnet = NeuralNetwork.load(new FileInputStream(NNetwork)); //Load NNetwork
             MomentumBackpropagation mBackpropagation = (MomentumBackpropagation) nnet.getLearningRule();
             mBackpropagation.setLearningRate(learningRate);
@@ -80,17 +111,46 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
             mBackpropagation.addListener(this);
             System.out.println("Starting training......");
             nnet.learn(learningData, mBackpropagation);
-            display = new training_display();
+
+            //Training Completed
+            controller.notifyLearningCompleted();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage() + "\n" + ex.getLocalizedMessage());
         }
+
     }
 
     @Override
     public void handleLearningEvent(LearningEvent event) {
         BackPropagation bp = (BackPropagation) event.getSource();
         System.out.println(bp.getCurrentIteration() + ". iteration | Total network error: " + bp.getTotalNetworkError());
-        training_display.addData(bp.getCurrentIteration(), bp.getTotalNetworkError());
+        updateGrpahViaUiThread(bp.getCurrentIteration(), bp.getTotalNetworkError());
+    }
+
+    private void loadGraph() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/training_display.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Graph View");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    void updateGrpahViaUiThread(int iteration, Double error) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                updateGraph(iteration, error);
+            }
+        });
+    }
+
+    public void updateGraph(int iteration, Double error) {
+        series.getData().add(new XYChart.Data(String.valueOf(iteration), error));
     }
 
 }

@@ -3,22 +3,34 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.ai.fake_image_detection.controllers.Training_interfaceController">
    <children>
-      <AnchorPane prefHeight="449.0" prefWidth="537.0">
+      <AnchorPane prefHeight="449.0" prefWidth="920.0">
          <children>
             <JFXButton fx:id="sourceIndicator" buttonType="RAISED" layoutX="138.0" layoutY="45.0" onAction="#loadImageSource" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #29B6F6; -fx-text-fill: #ffffff;" text="Choose Image Source" />
             <JFXTextField fx:id="realLabel" labelFloat="true" layoutX="86.0" layoutY="124.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Real Image label" text="real" />
             <JFXTextField fx:id="fakeLabel" labelFloat="true" layoutX="292.0" layoutY="123.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Fake Image Label" text="faked" />
-            <JFXButton fx:id="startButton" buttonType="RAISED" layoutX="179.0" layoutY="375.0" onAction="#startTraining" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #29B6F6; -fx-text-fill: #ffffff;" text="Start Training" />
+            <JFXButton fx:id="startButton" accessibleText="start" buttonType="RAISED" layoutX="80.0" layoutY="372.0" onAction="#startTraining" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #29B6F6; -fx-text-fill: #ffffff;" text="Start Training" />
             <JFXCheckBox fx:id="srcIndicator" layoutX="337.0" layoutY="54.0" text=" " />
             <JFXTextField fx:id="width" labelFloat="true" layoutX="86.0" layoutY="179.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Width of Image" text="100" />
             <JFXTextField fx:id="height" labelFloat="true" layoutX="293.0" layoutY="178.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Height of Image" text="100" />
             <JFXTextField fx:id="learningRate" labelFloat="true" layoutX="87.0" layoutY="232.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Learning Rate" text="0.2" />
             <JFXTextField fx:id="momentum" labelFloat="true" layoutX="294.0" layoutY="234.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Momentum" text="0.7" />
             <JFXTextField fx:id="maxError" labelFloat="true" layoutX="87.0" layoutY="288.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Maximum Error" text="0.01" />
+            <LineChart fx:id="errorChart" layoutX="465.0" layoutY="12.0" title="Error Graph">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <JFXButton fx:id="saveButton" accessibleText="start" buttonType="RAISED" disable="true" layoutX="287.0" layoutY="370.0" onAction="#saveLearnedNetwork" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #29B6F6; -fx-text-fill: #ffffff;" text="Save Learned Network" />
          </children>
       </AnchorPane>
    </children>

@@ -163,6 +163,8 @@ public class Neural_net_interface_controller implements Initializable, ThreadCom
             }
         });
     }
+    
+
 
     private void removeBannersandDescs() {
         TranslateTransition tChristopher = new TranslateTransition(Duration.millis(1000), christopher);

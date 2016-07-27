@@ -1,5 +1,6 @@
 package com.qburst.fakeimagedetection.core.multithread;
 
+import com.qburst.fakeimagedetection.core.listener.ThreadCompleteListener;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 

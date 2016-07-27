@@ -3,10 +3,7 @@ package com.qburst.fakeimagedetection.ui.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.qburst.fakeimagedetection.ui.alert.Calert;
-import static com.qburst.fakeimagedetection.core.processor.NeuralNetProcessor.fake;
-import static com.qburst.fakeimagedetection.core.processor.NeuralNetProcessor.nNetworkpath;
 import static com.qburst.fakeimagedetection.core.processor.NeuralNetProcessor.nnet;
-import static com.qburst.fakeimagedetection.core.processor.NeuralNetProcessor.real;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -83,8 +80,8 @@ public class SingleImageAnalyzerController implements Initializable {
             if (output == null) {
                 System.err.println("Image Recognition Failed");
             }
-            real = output.get("real");
-            fake = output.get("faked");
+            double real = output.get("real");
+            double fake = output.get("faked");
             System.out.println(output.toString());
             Calert.showAlert("Result", "Real = " + real + "\nFake = " + fake, Alert.AlertType.INFORMATION);
         } catch (FileNotFoundException ex) {

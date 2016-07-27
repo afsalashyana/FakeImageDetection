@@ -1,5 +1,6 @@
 package com.qburst.fakeimagedetection.core.processor;
 
+import com.qburst.fakeimagedetection.core.listener.NeuralnetProcessorListener;
 import com.qburst.fakeimagedetection.core.multithread.NotifyingThread;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -22,7 +23,11 @@ public class NeuralNetProcessor extends NotifyingThread {
     public static NeuralNetwork nnet;
     static ImageRecognitionPlugin imageRecognition;
     public static String nNetworkpath = "nnet/CNN2.nnet";
-    public static double real = 0, fake = 0;
+    NeuralnetProcessorListener listener;
+
+    public void setListener(NeuralnetProcessorListener listener) {
+        this.listener = listener;
+    }
 
     public static void main(String[] args) {
         try {
@@ -82,9 +87,9 @@ public class NeuralNetProcessor extends NotifyingThread {
             if (output == null) {
                 System.err.println("Image Recognition Failed");
             }
-            real = output.get("real");
-            fake = output.get("faked");
             System.out.println(output.toString());
+            listener.neuralnetProcessCompleted(output);
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(NeuralNetProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }

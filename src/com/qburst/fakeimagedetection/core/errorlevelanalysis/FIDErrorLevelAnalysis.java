@@ -1,5 +1,6 @@
 package com.qburst.fakeimagedetection.core.errorlevelanalysis;
 
+import com.qburst.fakeimagedetection.core.listener.ErrorLevelAnalysisListener;
 import com.qburst.fakeimagedetection.core.multithread.NotifyingThread;
 import ij.ImagePlus;
 import ij.io.FileSaver;
@@ -15,41 +16,30 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Ela extends NotifyingThread {
+public class FIDErrorLevelAnalysis extends NotifyingThread{
 
     String fileLocation;
     int quality = 95;
     Boolean runningStatus = false;
-    BufferedImage filteredImage = null;
     Dimension sampledDimension;
+    ErrorLevelAnalysisListener listener;
+    
+//    public FIDErrorLevelAnalysis(String fileLocation, int quality) {
+//        this.fileLocation = fileLocation;
+//        this.quality = quality;
+//        this.sampledDimension = new Dimension(100, 100);
+//    }
 
-    public Ela(String fileLocation, int quality) {
-        this.fileLocation = fileLocation;
-        this.quality = quality;
-        this.sampledDimension = new Dimension(100, 100);
-    }
-
-    public Ela(String fileLocation, int quality, Dimension sampledDimension) {
+    public FIDErrorLevelAnalysis(String fileLocation, 
+            int quality, Dimension sampledDimension, ErrorLevelAnalysisListener listener) {
         this.fileLocation = fileLocation;
         this.quality = quality;
         this.sampledDimension = sampledDimension;
-    }
-
-    public void setSampledDimension(Dimension sampledDimension) {
-        this.sampledDimension = sampledDimension;
-    }
-
-    public Dimension getSampledDimension() {
-        return sampledDimension;
-    }
-
-    public BufferedImage getFilteredImage() {
-        return filteredImage;
+        this.listener = listener;
     }
 
     @Override
     public void doRun() {
-        runningStatus = true;
         Image img;
         try {
             System.out.println("Loading Image :" + fileLocation);
@@ -58,7 +48,7 @@ public class Ela extends NotifyingThread {
             System.err.println("Null Image");
             return;
         }
-        System.out.println("Dimensio is set to " + sampledDimension);
+        System.out.println("Dimension is set to " + sampledDimension);
         ImagePlus orig = new ImagePlus("Source Image", img);
 
         String basePath = "/tmp/";
@@ -94,8 +84,8 @@ public class Ela extends NotifyingThread {
         }
 
         imp = imp.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
-        filteredImage = imp.getBufferedImage();
-        runningStatus = false;
+        listener.elaCompleted(imp.getBufferedImage());
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.qburst.fakeimagedetection.core.multithread;
+package com.qburst.fakeimagedetection.core.listener;
 
 public interface ThreadCompleteListener {
 

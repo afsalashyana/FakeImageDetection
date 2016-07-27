@@ -1,6 +1,6 @@
 package com.qburst.fakeimagedetection.core.errorlevelanalysis;
 
-import com.qburst.fakeimagedetection.core.multithread.ThreadCompleteListener;
+import com.qburst.fakeimagedetection.core.listener.ThreadCompleteListener;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
@@ -30,6 +30,7 @@ public final class ImageStandardizer implements ThreadCompleteListener {
         supportedExtensions.add("png");
         supportedExtensions.add("JPEG");
         supportedExtensions.add("PNG");
+        supportedExtensions.add("TIFF");
         supportedExtensions.add("TIF");
         supportedExtensions.add("tif");
     }
@@ -56,13 +57,8 @@ public final class ImageStandardizer implements ThreadCompleteListener {
         System.out.println("Total " + availableFiles.length + " files are available");
     }
 
-    public static void main(String[] args) {
-        ImageStandardizer image_standardizer = new ImageStandardizer(new File("/home/qbuser/Pictures/Wallpapers"), new File("output/"), new Dimension(200, 200));
-    }
-
     @Override
     public void notifyOfThreadComplete(Thread thread) {
-        System.out.println("Starting new Image Standardizer");
         System.out.println("Image Processing Completed");
         System.exit(0);
     }

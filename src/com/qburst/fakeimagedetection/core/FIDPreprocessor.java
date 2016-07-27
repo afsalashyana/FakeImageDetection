@@ -1,0 +1,23 @@
+package com.qburst.fakeimagedetection.core;
+
+import com.qburst.fakeimagedetection.core.errorlevelanalysis.ImageStandardizer;
+import java.awt.Dimension;
+import java.io.File;
+
+public class FIDPreprocessor {
+    public static void main(String[] args) {
+        if(args==null||args.length<5)
+        {
+            System.err.println("Usage : <sourceDir> <destDir> <sWidth> <sHeight>");
+            return;
+        }
+        String srcDir = args[0];
+        String destDir = args[1];
+        String sWidth = args[2];
+        String sHeight = args[3];
+        
+        ImageStandardizer preprocessor = 
+                new ImageStandardizer(new File(srcDir), new File(destDir),
+                        new Dimension(Integer.parseInt(sWidth), Integer.parseInt(sHeight)));
+    }
+}

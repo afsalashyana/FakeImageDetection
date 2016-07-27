@@ -2,16 +2,20 @@ package com.qburst.fakeimagedetection.ui.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
+import com.qburst.fakeimagedetection.core.errorlevelanalysis.FIDErrorLevelAnalysis;
+import com.qburst.fakeimagedetection.core.listener.ErrorLevelAnalysisListener;
+import com.qburst.fakeimagedetection.core.listener.NeuralnetProcessorListener;
 import com.qburst.fakeimagedetection.core.metadata.MetadataProcessor;
 import com.qburst.fakeimagedetection.core.processor.NeuralNetProcessor;
 import com.qburst.fakeimagedetection.core.trainer.SingleImageTrainer;
-import com.qburst.fakeimagedetection.core.errorlevelanalysis.Ela;
-import com.qburst.fakeimagedetection.core.multithread.ThreadCompleteListener;
+import com.qburst.fakeimagedetection.core.listener.ThreadCompleteListener;
 import ij.ImagePlus;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -41,7 +45,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class NeuralnetInterfaceController implements Initializable, ThreadCompleteListener {
+public class NeuralnetInterfaceController implements
+        Initializable, ErrorLevelAnalysisListener, ThreadCompleteListener, NeuralnetProcessorListener {
 
     public static String imageLocation = "";
 
@@ -66,7 +71,7 @@ public class NeuralnetInterfaceController implements Initializable, ThreadComple
 
     NeuralnetInterfaceController thisObject = this;
     ScaleTransition bulgingTransition;
-    Ela elaAnalyzer;
+    FIDErrorLevelAnalysis elaAnalyzer;
     NeuralNetProcessor nprocessor;
     BufferedImage elaImage;
 
@@ -75,9 +80,8 @@ public class NeuralnetInterfaceController implements Initializable, ThreadComple
         startAnimation();
         getImageLocation();
 
-        elaAnalyzer = new Ela(imageLocation, 95);
+        elaAnalyzer = new FIDErrorLevelAnalysis(imageLocation, 95, new Dimension(100,100),this);
         elaAnalyzer.setName("elaAnalyzer");
-        elaAnalyzer.addListener(this);
         elaAnalyzer.start();
 
     }
@@ -136,12 +140,13 @@ public class NeuralnetInterfaceController implements Initializable, ThreadComple
         });
     }
 
-    void loadResult() {
+    void loadResult(HashMap<String, Double> result) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                double real = NeuralNetProcessor.real * 100;
-                double fake = NeuralNetProcessor.fake * 100;
+                double real = result.get("real");
+                double fake = result.get("faked");
+                
                 DecimalFormat df2 = new DecimalFormat(".#");
                 if (real < 10 && fake < 10) {
                     String possibility;
@@ -226,25 +231,30 @@ public class NeuralnetInterfaceController implements Initializable, ThreadComple
     @Override
     public void notifyOfThreadComplete(Thread thread) {
         switch (thread.getName()) {
-            case "elaAnalyzer":
-                updateIndicatorText("Serializing Image");
-                elaImage = elaAnalyzer.getFilteredImage();
-                updateIndicatorText("Connecting to Neural Network");
-                nprocessor = new NeuralNetProcessor(elaImage);
-                nprocessor.setName("nprocessor");
-                nprocessor.addListener(this);
-                nprocessor.start();
-                removeBannersandDescs();
-                break;
-            case "nprocessor":
-                bulgingTransition.stop();
-                updateIndicatorText("Done");
-                loadResult();
-                break;
             case "learner":
                 updateIndicatorText("Learning Complete");
                 break;
         }
+    }
+
+    @Override
+    public void elaCompleted(BufferedImage image) {
+        updateIndicatorText("Serializing Image");
+        elaImage = image;
+        updateIndicatorText("Connecting to Neural Network");
+        nprocessor = new NeuralNetProcessor(elaImage);
+        nprocessor.setName("nprocessor");
+        nprocessor.addListener(this);
+        nprocessor.setListener(this);
+        nprocessor.start();
+        removeBannersandDescs();
+    }
+
+    @Override
+    public void neuralnetProcessCompleted(HashMap<String, Double> result) {
+        bulgingTransition.stop();
+        updateIndicatorText("Done");
+        loadResult(result);
 
     }
 }

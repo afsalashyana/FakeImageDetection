@@ -14,6 +14,12 @@ public class FIDNetworkTrainer implements BatchImageTrainingListener {
     private final float MOMENTUM = 0.7f;
     
     public static void main(String[] args) {
+        if(args==null||args.length<6)
+        {
+            System.err.println("usage : <source> <neural path> <width> <height> <labels(comma seperated)>");
+            return;
+        }
+        
         String sourceDir = args[0];
         String neuralDir = args[1];
         String sWidth = args[2];

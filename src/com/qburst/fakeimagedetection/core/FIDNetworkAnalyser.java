@@ -19,6 +19,10 @@ public class FIDNetworkAnalyser implements ErrorLevelAnalysisListener {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
+        if(args==null||args.length<5)
+        {
+            System.err.println("Usage : <neural net file> <image file> <quality> <width> <height>");
+        }
         String neuralSource = args[0];
         String imageLoc = args[1];
         String quality = args[2];

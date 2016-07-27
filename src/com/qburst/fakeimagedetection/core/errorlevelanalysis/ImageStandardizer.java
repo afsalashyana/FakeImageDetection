@@ -13,14 +13,14 @@ public final class ImageStandardizer implements ThreadCompleteListener {
     File[] availableFiles = null;
     ArrayList<String> supportedExtensions;
 
-    public ImageStandardizer(File sourceDirectory, File destinationDirectory, Dimension finalResolution) {
+    public ImageStandardizer(File sourceDirectory, File destinationDirectory, Dimension finalResolution, String outLabel) {
         System.out.println("Starting new Image Standardizer");
         sourceDir = sourceDirectory;
         resolution = finalResolution;
         destDir = destinationDirectory;
         init();
         loadDirectory(sourceDir.getAbsolutePath());
-        processImages();
+        processImages(outLabel);
     }
 
     void init() {
@@ -35,10 +35,10 @@ public final class ImageStandardizer implements ThreadCompleteListener {
         supportedExtensions.add("tif");
     }
 
-    void processImages() {
+    void processImages(String outLabel) {
         System.out.println("Calling Processor with dimension " + resolution);
         ErrorLevelAnalyzer imageProcessor
-                = new ErrorLevelAnalyzer(sourceDir.getAbsolutePath(), destDir.getAbsolutePath(), 95, supportedExtensions, resolution);
+                = new ErrorLevelAnalyzer(sourceDir.getAbsolutePath(), destDir.getAbsolutePath(), 95, supportedExtensions, resolution, outLabel);
         imageProcessor.addListener(this);
         imageProcessor.start();
     }

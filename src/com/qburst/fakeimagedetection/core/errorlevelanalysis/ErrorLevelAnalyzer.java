@@ -1,7 +1,6 @@
 package com.qburst.fakeimagedetection.core.errorlevelanalysis;
 
 import com.qburst.fakeimagedetection.ui.alert.Calert;
-import com.qburst.fakeimagedetection.ui.controllers.BatchImageProcessorController;
 import com.qburst.fakeimagedetection.core.multithread.NotifyingThread;
 import ij.ImagePlus;
 import ij.io.FileSaver;
@@ -26,6 +25,7 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
     int quality = 95;
     Boolean runningStatus = false;
     Dimension sampledDimension;
+    String outLabel;
     ArrayList<String> supportedExtensions;
     int baseCount = 1;
 
@@ -35,12 +35,13 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
         this.quality = quality;
     }
 
-    public ErrorLevelAnalyzer(String dirLoc, String destination, int quality, ArrayList<String> supportedExtensions, Dimension dimension) {
+    public ErrorLevelAnalyzer(String dirLoc, String destination, int quality, ArrayList<String> supportedExtensions, Dimension dimension, String outLabel) {
         this.fileLocation = dirLoc;
         this.quality = quality;
         this.sampledDimension = dimension;
         this.supportedExtensions = supportedExtensions;
         this.destination = destination + "/";
+        this.outLabel = outLabel;
     }
 
     public void setSampledDimension(Dimension sampledDimension) {
@@ -123,15 +124,15 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
                 FileSaver resultSaver = new FileSaver(new ImagePlus("Result", imp.getBufferedImage()));
                 
                 DecimalFormat format = new DecimalFormat("#");
-                String savePath = destination + BatchImageProcessorController.bName + format.format(baseCount + processedSize) + ".png";
+                String savePath = destination + outLabel + format.format(baseCount + processedSize) + ".png";
                 resultSaver.saveAsPng(savePath);
 
                 runningStatus = false;
 
                 float percentage = processedSize / totalSize;
 
-                BatchImageProcessorController.statusOfProgress.setText("Processing " + file.getName() + "   " + format.format(processedSize) + " / " + format.format(totalSize));
-                BatchImageProcessorController.progress.setProgress(percentage);
+//                BatchImageProcessorController.statusOfProgress.setText("Processing " + file.getName() + "   " + format.format(processedSize) + " / " + format.format(totalSize));
+//                BatchImageProcessorController.progress.setProgress(percentage);
                 processedSize++;
 
             }
@@ -143,7 +144,7 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
     private void checkForImageConflict() {
         baseCount = 1;
         while (true) {
-            String savePath = destination + BatchImageProcessorController.bName + (baseCount + 1) + ".png";
+            String savePath = destination + outLabel + (baseCount + 1) + ".png";
             if (new File(savePath).exists()) {
                 baseCount++;
             } else {

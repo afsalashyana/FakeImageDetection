@@ -41,7 +41,7 @@ public class BatchImageProcessorController implements Initializable {
     public static ProgressBar progress;
     public static Text statusOfProgress;
 
-    public static String bName = "real_";
+    private String bName = "real_";
     @FXML
     private Text status;
 
@@ -81,7 +81,7 @@ public class BatchImageProcessorController implements Initializable {
         int height = Integer.parseInt(sHeight.getText());
         bName = outputBatchName.getText();
         if (srcDir != null && destDir != null) {
-            ImageStandardizer ims = new ImageStandardizer(srcDir, destDir, new Dimension(width, height));
+            ImageStandardizer ims = new ImageStandardizer(srcDir, destDir, new Dimension(width, height),bName);
         } else {
             System.out.println("Source Not selected");
         }

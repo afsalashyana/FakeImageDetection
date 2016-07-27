@@ -14,7 +14,7 @@ public class FIDNetworkTrainer implements BatchImageTrainingListener {
     private final float MOMENTUM = 0.7f;
     
     public static void main(String[] args) {
-        if(args==null||args.length<6)
+        if(args==null||args.length<5)
         {
             System.err.println("usage : <source> <neural path> <width> <height> <labels(comma seperated)>");
             return;
@@ -31,12 +31,12 @@ public class FIDNetworkTrainer implements BatchImageTrainingListener {
 
     @Override
     public void batchImageTrainingCompleted() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Training Completed");
     }
 
     @Override
     public void batchImageTrainingUpdate(int iteration, Double error) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Iteration "+ iteration + "\t Error = " + error);
     }
 
     private void run(String sourceDir, String neuralDir, String sWidth, String sHeight, String imageLabelString) {

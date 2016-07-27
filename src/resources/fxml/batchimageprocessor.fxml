@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="514.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.ai.fakeimagedetection.controllers.BatchImageProcessorController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="514.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.BatchImageProcessorController">
     <children>
         <JFXButton buttonType="RAISED" layoutX="136.0" layoutY="32.0" onAction="#loadSourceFolder" prefHeight="50.0" prefWidth="181.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Load Source Foder" />
         <JFXCheckBox fx:id="srcIndicator" layoutX="353.0" layoutY="49.0" text=" " />

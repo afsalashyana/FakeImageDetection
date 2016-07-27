@@ -14,6 +14,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javafx.scene.control.Alert;
 import javax.imageio.ImageIO;
@@ -127,7 +128,9 @@ public class Ela_processor extends NotifyingThread {
                 runningStatus = false;
 
                 float percentage = processedSize / totalSize;
-
+                DecimalFormat format = new DecimalFormat("##");
+                
+                Batch_image_processorController.statusOfProgress.setText("Processing " + file.getName() + "   " +format.format(processedSize) + " / " + format.format(totalSize));
                 Batch_image_processorController.progress.setProgress(percentage);
                 processedSize++;
 

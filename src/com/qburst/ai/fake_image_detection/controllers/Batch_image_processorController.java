@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 
 public class Batch_image_processorController implements Initializable {
@@ -38,12 +39,16 @@ public class Batch_image_processorController implements Initializable {
     private AnchorPane rootPane;
 
     public static ProgressBar progress;
+    public static Text statusOfProgress;
 
     public static String bName = "real_";
+    @FXML
+    private Text status;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         progress = progressBar;
+        statusOfProgress = status;
     }
 
     @FXML

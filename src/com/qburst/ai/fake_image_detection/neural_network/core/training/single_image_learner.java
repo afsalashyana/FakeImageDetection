@@ -1,10 +1,14 @@
 package com.qburst.ai.fake_image_detection.neural_network.core.training;
 
+import com.qburst.ai.fake_image_detection.common.cAlert;
+import com.qburst.ai.fake_image_detection.neural_network.core.neural_net_processor;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.NotifyingThread;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.scene.control.Alert;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.events.LearningEvent;
@@ -62,6 +66,12 @@ public class single_image_learner extends NotifyingThread implements LearningEve
         System.out.println("Starting training......");
         nnet.learn(learningData, mBackpropagation);
 
+        //Save Updated NN
+        try {
+            nnet.save(neural_net_processor.nNetworkpath);
+        } catch (Exception e) {
+            cAlert.showAlert("Cant save updated network", e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     @Override

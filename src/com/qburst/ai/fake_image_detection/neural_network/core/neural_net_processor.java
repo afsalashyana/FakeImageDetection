@@ -21,6 +21,7 @@ public class neural_net_processor extends NotifyingThread {
     static BufferedImage image;
     public static NeuralNetwork nnet;
     static ImageRecognitionPlugin imageRecognition;
+    public static String nNetworkpath = "nnet/CNN2.nnet";
     public static double real = 0, fake = 0;
 
     public static void main(String[] args) {
@@ -66,7 +67,7 @@ public class neural_net_processor extends NotifyingThread {
     public void doRun() {
         try {
             if (nnet == null) { //Bypass network reload during comeback through home button
-                File NNetwork = new File("nnet/CNN2.nnet");
+                File NNetwork = new File(nNetworkpath);
                 System.out.println("Nueral network loaded = " + NNetwork.getAbsolutePath());
                 if (!NNetwork.exists()) {
                     notifyUser();

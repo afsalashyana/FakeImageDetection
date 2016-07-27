@@ -26,10 +26,11 @@ public class neural_net_processor extends NotifyingThread {
 
     public static void main(String[] args) {
         try {
+            System.out.println("usage java -jar nn.jar image_to_be_processed file_of_neural_network");
             System.out.println("Loading Image....");
-            image = ImageIO.read(new File("/home/afsal/Desktop/Screenshot 2016-07-24 12:55:50.png"));
+            image = ImageIO.read(new File(args[0]));
             System.out.println("Loading NN....");
-            File NNetwork = new File("nnet/CNN2.nnet");
+            File NNetwork = new File(args[1]);
             if (!NNetwork.exists()) {
                 System.err.println("Cant Find NN");
                 return;

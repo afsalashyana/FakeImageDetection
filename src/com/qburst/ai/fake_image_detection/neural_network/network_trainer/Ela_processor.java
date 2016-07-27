@@ -121,16 +121,16 @@ public class Ela_processor extends NotifyingThread {
                 }
                 imp = imp.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
                 FileSaver resultSaver = new FileSaver(new ImagePlus("Result", imp.getBufferedImage()));
-
-                String savePath = destination + Batch_image_processorController.bName + (baseCount + processedSize) + ".png";
+                
+                DecimalFormat format = new DecimalFormat("#");
+                String savePath = destination + Batch_image_processorController.bName + format.format(baseCount + processedSize) + ".png";
                 resultSaver.saveAsPng(savePath);
 
                 runningStatus = false;
 
                 float percentage = processedSize / totalSize;
-                DecimalFormat format = new DecimalFormat("##");
-                
-                Batch_image_processorController.statusOfProgress.setText("Processing " + file.getName() + "   " +format.format(processedSize) + " / " + format.format(totalSize));
+
+                Batch_image_processorController.statusOfProgress.setText("Processing " + file.getName() + "   " + format.format(processedSize) + " / " + format.format(totalSize));
                 Batch_image_processorController.progress.setProgress(percentage);
                 processedSize++;
 

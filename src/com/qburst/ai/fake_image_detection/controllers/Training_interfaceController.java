@@ -82,7 +82,7 @@ public class Training_interfaceController implements Initializable {
         series = new XYChart.Series();
         series.setName("Learning Curve 1");
         errorChart.getData().add(series);
-        
+
     }
 
     public void notifyLearningCompleted() {
@@ -110,8 +110,8 @@ public class Training_interfaceController implements Initializable {
                 try {
                     rLabel = realLabel.getText();
                     fLabel = fakeLabel.getText();
-                    imageLabels.add(rLabel);
                     imageLabels.add(fLabel);
+                    imageLabels.add(rLabel);
                     int sampledWidth = Integer.parseInt(width.getText());
                     int sampledheight = Integer.parseInt(height.getText());
                     float lRate = Float.parseFloat(learningRate.getText());
@@ -161,7 +161,7 @@ public class Training_interfaceController implements Initializable {
     private void loadNeuralNetwork(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-       
+
         fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Neural Nets", "*.nnet"));
         nnFile = fileChooser.showOpenDialog(rootPane.getScene().getWindow());
 
@@ -184,8 +184,7 @@ public class Training_interfaceController implements Initializable {
             stage.setTitle("Neural Network Trainer");
             stage.setScene(new Scene(root1));
             stage.show();
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             cAlert.showAlert("Cant launch new window", e.getMessage(), Alert.AlertType.ERROR);
         }
     }

@@ -1,6 +1,5 @@
 package com.qburst.ai.fake_image_detection.neural_network.network_trainer;
 
-
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -27,4 +26,3 @@ public class Batch_processor_ela extends Application {
     }
 
 }
-

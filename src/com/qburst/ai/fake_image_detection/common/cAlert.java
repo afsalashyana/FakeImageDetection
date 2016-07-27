@@ -5,7 +5,7 @@ import javafx.scene.control.Alert.AlertType;
 
 public class cAlert {
 
-    public static void showAlert(String title,String Content, Alert.AlertType alertType) {
+    public static void showAlert(String title, String Content, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setContentText(Content);

@@ -108,11 +108,11 @@ public class Nn_trainer extends NotifyingThread implements LearningEventListener
             mBackpropagation.setLearningRate(learningRate);
             mBackpropagation.setMaxError(maxError);
             mBackpropagation.setMomentum(momentum);
-            
+
             System.out.println("Network Information\nLabel = " + nnet.getLabel()
-            + "\n Input Neurons = " + nnet.getInputsCount()
-            + "\n Number of layers = " + nnet.getLayersCount()
-             );
+                    + "\n Input Neurons = " + nnet.getInputsCount()
+                    + "\n Number of layers = " + nnet.getLayersCount()
+            );
 
             mBackpropagation.addListener(this);
             System.out.println("Starting training......");

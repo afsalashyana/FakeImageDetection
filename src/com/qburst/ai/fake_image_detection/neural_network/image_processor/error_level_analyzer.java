@@ -80,10 +80,6 @@ public class error_level_analyzer extends NotifyingThread {
 
         ContrastEnhancer c = new ContrastEnhancer();
         c.stretchHistogram(diff, 0.05);
-
-//        fs = new FileSaver(diff);
-//        fs.saveAsPng(elaPath);
-//        diff.show();
         ImageProcessor ip = diff.getProcessor();
 
         ImageProcessor imp;
@@ -96,8 +92,7 @@ public class error_level_analyzer extends NotifyingThread {
             ip.setRoi(rec);
             imp = ip.crop();
         }
-        
-        
+
         imp = imp.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
         filteredImage = imp.getBufferedImage();
         runningStatus = false;

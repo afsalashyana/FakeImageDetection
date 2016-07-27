@@ -1,14 +1,11 @@
 package com.qburst.ai.fake_image_detection.neural_network.core.training;
 
-import com.qburst.ai.fake_image_detection.common.cAlert;
 import com.qburst.ai.fake_image_detection.neural_network.core.neural_net_processor;
 import com.qburst.ai.fake_image_detection.neural_network.thread_sync.NotifyingThread;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.scene.control.Alert;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.events.LearningEvent;
@@ -28,6 +25,7 @@ public class single_image_learner extends NotifyingThread implements LearningEve
     float learningRate = 0.2f;
     float maxError = 0.01f;
     float momentum = 0.6f;
+    public static Boolean isDirty = false;
 
     public single_image_learner(NeuralNetwork nnet, BufferedImage image, Boolean isReal) {
         this.nnet = nnet;
@@ -42,10 +40,10 @@ public class single_image_learner extends NotifyingThread implements LearningEve
     public void doRun() {
         HashMap<String, BufferedImage> imagesMap = new HashMap<String, BufferedImage>();
         String fileName = "";
-        if (isReal) {
-            fileName = "real_1";
+        if (!isReal) {
+            fileName = "real";
         } else {
-            fileName = "faked_1";
+            fileName = "faked";
         }
 
         System.out.println("Teaching as " + fileName);
@@ -66,12 +64,9 @@ public class single_image_learner extends NotifyingThread implements LearningEve
         System.out.println("Starting training......");
         nnet.learn(learningData, mBackpropagation);
 
-        //Save Updated NN
-        try {
-            nnet.save(neural_net_processor.nNetworkpath);
-        } catch (Exception e) {
-            cAlert.showAlert("Cant save updated network", e.getMessage(), Alert.AlertType.ERROR);
-        }
+        //Mark nnet as dirty. Write on close
+        isDirty = true;
+        nnet.save(neural_net_processor.nNetworkpath);
     }
 
     @Override

@@ -160,19 +160,19 @@ public class Metadata_result_controller implements Initializable {
         for (String string : metadata_processor.extracted_data.split("\n")) {
             ctr++;
             if (string.toUpperCase().contains("ADOBE")) {
-                fakeness += 3;
+                fakeness += 6;
                 if (!fakeReason.contains("Detected Adobe Tag")) {
                     fakeReason += "Detected Adobe Tag" + "\n";
                 }
             }
             if (string.toUpperCase().contains("PHOTOSHOP")) {
-                fakeness += 10;
+                fakeness += 15;
                 if (!fakeReason.contains("Detected Photoshop Tag")) {
                     fakeReason += "Detected Photoshop Tag" + "\n";
                 }
             }
             if (string.toUpperCase().contains("GIMP")) {
-                fakeness += 10;
+                fakeness += 15;
                 if (!fakeReason.contains("Detected Gimp Tag")) {
                     fakeReason += "Detected Gimp Tag" + "\n";
                 }

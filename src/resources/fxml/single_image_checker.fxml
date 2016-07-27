@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="241.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.ai.fake_image_detection.controllers.Single_image_checkerController">
+    <children>
+        <JFXButton fx:id="neuralSource" buttonType="RAISED" layoutX="151.0" layoutY="44.0" onAction="#loadNeuralNetwork" prefHeight="33.0" prefWidth="216.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Neural Network" />
+        <JFXCheckBox fx:id="nnIndicator" layoutX="389.0" layoutY="54.0" text=" " />
+        <JFXButton fx:id="imgSource" buttonType="RAISED" layoutX="152.0" layoutY="99.0" onAction="#loadImage" prefHeight="33.0" prefWidth="216.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Image (ELA Applied)" />
+        <JFXCheckBox fx:id="imgIndicator" layoutX="388.0" layoutY="108.0" text=" " />
+        <JFXButton fx:id="startButton" buttonType="RAISED" layoutX="245.0" layoutY="184.0" onAction="#startCheck" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Check" />
+    </children>
+</AnchorPane>

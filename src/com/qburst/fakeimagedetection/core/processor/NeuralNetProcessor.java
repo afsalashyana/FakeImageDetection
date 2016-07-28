@@ -1,5 +1,6 @@
 package com.qburst.fakeimagedetection.core.processor;
 
+import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
 import com.qburst.fakeimagedetection.core.listener.NeuralnetProcessorListener;
 import com.qburst.fakeimagedetection.core.multithread.NotifyingThread;
 import java.awt.image.BufferedImage;
@@ -22,7 +23,6 @@ public class NeuralNetProcessor extends NotifyingThread {
     static BufferedImage image;
     public static NeuralNetwork nnet;
     static ImageRecognitionPlugin imageRecognition;
-    public static String nNetworkpath = "nnet/CNN2.nnet";
     NeuralnetProcessorListener listener;
 
     public void setListener(NeuralnetProcessorListener listener) {
@@ -63,7 +63,7 @@ public class NeuralNetProcessor extends NotifyingThread {
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Neural Network Missing");
                 alert.setHeaderText("Cant find network file");
-                alert.setContentText("Please make sure that CNN2.nnet is located at nnet/CNN2.nnet");
+                alert.setContentText("Please make sure that the file " + ConstantObjects.neuralNetworkPath + " exists");
                 alert.showAndWait();
             }
         });
@@ -72,8 +72,9 @@ public class NeuralNetProcessor extends NotifyingThread {
     @Override
     public void doRun() {
         try {
-            if (nnet == null) { //Bypass network reload during comeback through home button
-                File NNetwork = new File(nNetworkpath);
+            //Bypass network reload during comeback through home button
+            if (nnet == null) {
+                File NNetwork = new File(ConstantObjects.neuralNetworkPath);
                 System.out.println("Nueral network loaded = " + NNetwork.getAbsolutePath());
                 if (!NNetwork.exists()) {
                     notifyUser();
@@ -89,7 +90,7 @@ public class NeuralNetProcessor extends NotifyingThread {
             }
             System.out.println(output.toString());
             listener.neuralnetProcessCompleted(output);
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(NeuralNetProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }

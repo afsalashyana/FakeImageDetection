@@ -17,7 +17,7 @@
     <children>
         <ImageView fx:id="backgroundImageView" fitHeight="615.0" fitWidth="982.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@infinity_image.png" />
+                <Image url="@infinity.png" />
             </image>
             <effect>
                 <GaussianBlur radius="21.64" />
@@ -56,7 +56,7 @@
                 </JFXButton>
                 <ImageView fx:id="homeIcon" fitHeight="63.0" fitWidth="62.0" layoutX="821.0" layoutY="19.0" onMouseClicked="#rollBack" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@home_icon.png" />
+                        <Image url="@home.png" />
                     </image>
                 </ImageView>
             </children>

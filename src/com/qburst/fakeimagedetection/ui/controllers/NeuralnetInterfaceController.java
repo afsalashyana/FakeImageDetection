@@ -80,7 +80,7 @@ public class NeuralnetInterfaceController implements
         startAnimation();
         getImageLocation();
 
-        elaAnalyzer = new FIDErrorLevelAnalysis(imageLocation, 95, new Dimension(100,100),this);
+        elaAnalyzer = new FIDErrorLevelAnalysis(imageLocation, 95, new Dimension(100, 100), this);
         elaAnalyzer.setName("elaAnalyzer");
         elaAnalyzer.start();
 
@@ -144,8 +144,8 @@ public class NeuralnetInterfaceController implements
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                double real = result.get("real");
-                double fake = result.get("faked");
+                double real = result.get("real")*100;
+                double fake = result.get("faked")*100;
                 
                 DecimalFormat df2 = new DecimalFormat(".#");
                 if (real < 10 && fake < 10) {
@@ -255,6 +255,5 @@ public class NeuralnetInterfaceController implements
         bulgingTransition.stop();
         updateIndicatorText("Done");
         loadResult(result);
-
     }
 }

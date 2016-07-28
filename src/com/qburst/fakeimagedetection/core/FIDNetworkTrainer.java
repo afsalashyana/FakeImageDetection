@@ -12,14 +12,13 @@ public class FIDNetworkTrainer implements BatchImageTrainingListener {
     private final float MERROR = 0.01f;
     private final float LEARNING_RATE = 0.1f;
     private final float MOMENTUM = 0.7f;
-    
+
     public static void main(String[] args) {
-        if(args==null||args.length<5)
-        {
+        if (args == null || args.length < 5) {
             System.err.println("usage : <source> <neural path> <width> <height> <labels(comma seperated)>");
             return;
         }
-        
+
         String sourceDir = args[0];
         String neuralDir = args[1];
         String sWidth = args[2];
@@ -36,7 +35,7 @@ public class FIDNetworkTrainer implements BatchImageTrainingListener {
 
     @Override
     public void batchImageTrainingUpdate(int iteration, Double error) {
-        System.out.println("Iteration "+ iteration + "\t Error = " + error);
+        System.out.println("Iteration " + iteration + "\t Error = " + error);
     }
 
     private void run(String sourceDir, String neuralDir, String sWidth, String sHeight, String imageLabelString) {

@@ -1,5 +1,6 @@
 package com.qburst.fakeimagedetection.core.trainer;
 
+import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
 import com.qburst.fakeimagedetection.core.processor.NeuralNetProcessor;
 import com.qburst.fakeimagedetection.core.multithread.NotifyingThread;
 import java.awt.image.BufferedImage;
@@ -66,7 +67,6 @@ public class SingleImageTrainer extends NotifyingThread implements LearningEvent
 
         //Mark nnet as dirty. Write on close
         isDirty = true;
-        nnet.save(NeuralNetProcessor.nNetworkpath);
     }
 
     @Override

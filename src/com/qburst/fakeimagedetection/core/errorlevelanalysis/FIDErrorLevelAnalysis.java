@@ -16,21 +16,20 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class FIDErrorLevelAnalysis extends NotifyingThread{
+public class FIDErrorLevelAnalysis extends NotifyingThread {
 
     String fileLocation;
     int quality = 95;
     Boolean runningStatus = false;
     Dimension sampledDimension;
     ErrorLevelAnalysisListener listener;
-    
+
 //    public FIDErrorLevelAnalysis(String fileLocation, int quality) {
 //        this.fileLocation = fileLocation;
 //        this.quality = quality;
 //        this.sampledDimension = new Dimension(100, 100);
 //    }
-
-    public FIDErrorLevelAnalysis(String fileLocation, 
+    public FIDErrorLevelAnalysis(String fileLocation,
             int quality, Dimension sampledDimension, ErrorLevelAnalysisListener listener) {
         this.fileLocation = fileLocation;
         this.quality = quality;
@@ -86,6 +85,5 @@ public class FIDErrorLevelAnalysis extends NotifyingThread{
         imp = imp.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
         listener.elaCompleted(imp.getBufferedImage());
     }
-
 
 }

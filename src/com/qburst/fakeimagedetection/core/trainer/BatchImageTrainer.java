@@ -1,9 +1,8 @@
 package com.qburst.fakeimagedetection.core.trainer;
 
 import com.qburst.fakeimagedetection.core.listener.BatchImageTrainingListener;
-import com.qburst.fakeimagedetection.ui.alert.Calert;
-import com.qburst.fakeimagedetection.ui.controllers.TrainingInterfaceController;
 import com.qburst.fakeimagedetection.core.multithread.NotifyingThread;
+import com.qburst.fakeimagedetection.ui.alert.Calert;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,11 +11,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.apache.commons.io.FilenameUtils;

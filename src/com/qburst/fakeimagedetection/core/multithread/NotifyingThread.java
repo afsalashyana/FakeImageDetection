@@ -7,7 +7,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 public abstract class NotifyingThread extends Thread {
 
     private final Set<ThreadCompleteListener> listeners
-            = new CopyOnWriteArraySet<ThreadCompleteListener>();
+            = new CopyOnWriteArraySet<>();
 
     public final void addListener(final ThreadCompleteListener listener) {
         listeners.add(listener);
@@ -17,10 +17,10 @@ public abstract class NotifyingThread extends Thread {
         listeners.remove(listener);
     }
 
-    private final void notifyListeners() {
-        for (ThreadCompleteListener listener : listeners) {
+    private void notifyListeners() {
+        listeners.stream().forEach((listener) -> {
             listener.notifyOfThreadComplete(this);
-        }
+        });
     }
 
     @Override

@@ -3,10 +3,12 @@ package com.qburst.fakeimagedetection.ui.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.qburst.fakeimagedetection.ui.alert.Calert;
 import com.qburst.fakeimagedetection.core.metadata.MetadataProcessor;
+import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -128,7 +130,8 @@ public class LaunchScreeenController implements Initializable {
         fileChooser.setInitialDirectory(
                 new File(System.getProperty("user.home") + "/Pictures")
         );
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+        FileChooser.ExtensionFilter extFilter = 
+                new FileChooser.ExtensionFilter("Image Files", "*.JPG","*.jpg","*.png","*.PNG","*.jpeg","*.JPEG","*.TIFF","*.TIF");
         fileChooser.getExtensionFilters().addAll(extFilter
         );
 

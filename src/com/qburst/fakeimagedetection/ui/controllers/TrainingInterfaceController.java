@@ -123,7 +123,7 @@ public class TrainingInterfaceController implements
 
                     System.out.println("Starting training procedure");
                     neuralTrainer = new BatchImageTrainer(srcDir, nnFile,
-                            new Dimension(sampledWidth, sampledWidth), imageLabels,this);
+                            new Dimension(sampledWidth, sampledWidth), imageLabels, this);
                     neuralTrainer.setMaxError(mError);
                     neuralTrainer.setMomentum(moment);
                     neuralTrainer.setLearningRate(lRate);

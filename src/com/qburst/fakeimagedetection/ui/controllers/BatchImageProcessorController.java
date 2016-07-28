@@ -1,10 +1,10 @@
 package com.qburst.fakeimagedetection.ui.controllers;
 
 import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
 import com.qburst.fakeimagedetection.ui.alert.Calert;
 import com.qburst.fakeimagedetection.core.errorlevelanalysis.ImageStandardizer;
+import com.qburst.fakeimagedetection.core.listener.ErrorLevelAnalysisUpdateListener;
 import java.awt.Dimension;
 import java.io.File;
 import java.net.URL;
@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 
-public class BatchImageProcessorController implements Initializable {
+public class BatchImageProcessorController implements Initializable, ErrorLevelAnalysisUpdateListener {
 
     @FXML
     private JFXCheckBox srcIndicator;
@@ -38,17 +38,12 @@ public class BatchImageProcessorController implements Initializable {
     @FXML
     private AnchorPane rootPane;
 
-    public static ProgressBar progress;
-    public static Text statusOfProgress;
-
     private String bName = "real_";
     @FXML
     private Text status;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        progress = progressBar;
-        statusOfProgress = status;
     }
 
     @FXML
@@ -81,10 +76,18 @@ public class BatchImageProcessorController implements Initializable {
         int height = Integer.parseInt(sHeight.getText());
         bName = outputBatchName.getText();
         if (srcDir != null && destDir != null) {
-            ImageStandardizer ims = new ImageStandardizer(srcDir, destDir, new Dimension(width, height),bName);
+            ImageStandardizer ims = new ImageStandardizer(srcDir, destDir, new Dimension(width, height), bName);
+            ims.setListener(this);
+            ims.run();
         } else {
             System.out.println("Source Not selected");
         }
+    }
+
+    @Override
+    public void iterationCompleted(String data, Float percentage) {
+        status.setText(data);
+        progressBar.setProgress(percentage);
     }
 
 }

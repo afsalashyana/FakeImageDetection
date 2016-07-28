@@ -1,5 +1,6 @@
 package com.qburst.fakeimagedetection.ui;
 
+import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
 import com.qburst.fakeimagedetection.core.processor.NeuralNetProcessor;
 import com.qburst.fakeimagedetection.core.trainer.SingleImageTrainer;
 import java.util.Optional;
@@ -33,8 +34,8 @@ public class Main extends Application {
                 alert.setContentText("Do you want to save changes ?");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
-                    NeuralNetProcessor.nnet.save(NeuralNetProcessor.nNetworkpath);
-                    System.out.println("Saved to " + NeuralNetProcessor.nNetworkpath);
+                    NeuralNetProcessor.nnet.save(ConstantObjects.neuralNetworkPath);
+                    System.out.println("Saved to " + ConstantObjects.neuralNetworkPath);
                     System.exit(0);
                 } else {
                     System.out.println("Changes discared");

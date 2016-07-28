@@ -1,9 +1,12 @@
 package com.qburst.fakeimagedetection.core.errorlevelanalysis;
 
+import com.qburst.fakeimagedetection.core.listener.ErrorLevelAnalysisUpdateListener;
+import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
 import com.qburst.fakeimagedetection.core.listener.ThreadCompleteListener;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public final class ImageStandardizer implements ThreadCompleteListener {
 
@@ -12,33 +15,37 @@ public final class ImageStandardizer implements ThreadCompleteListener {
     Dimension resolution = null;
     File[] availableFiles = null;
     ArrayList<String> supportedExtensions;
+    ErrorLevelAnalysisUpdateListener listener;
+    String outputLabel;
 
     public ImageStandardizer(File sourceDirectory, File destinationDirectory, Dimension finalResolution, String outLabel) {
         System.out.println("Starting new Image Standardizer");
         sourceDir = sourceDirectory;
         resolution = finalResolution;
         destDir = destinationDirectory;
+        outputLabel = outLabel;
+    }
+
+    public void run() {
         init();
         loadDirectory(sourceDir.getAbsolutePath());
-        processImages(outLabel);
+        processImages(outputLabel);
+
+    }
+
+    public void setListener(ErrorLevelAnalysisUpdateListener listener) {
+        this.listener = listener;
     }
 
     void init() {
-        supportedExtensions = new ArrayList<>();
-        supportedExtensions.add("jpg");
-        supportedExtensions.add("JPG");
-        supportedExtensions.add("png");
-        supportedExtensions.add("JPEG");
-        supportedExtensions.add("PNG");
-        supportedExtensions.add("TIFF");
-        supportedExtensions.add("TIF");
-        supportedExtensions.add("tif");
+        supportedExtensions = new ArrayList<>(Arrays.asList(ConstantObjects.supportedExtensions));
     }
 
     void processImages(String outLabel) {
         System.out.println("Calling Processor with dimension " + resolution);
         ErrorLevelAnalyzer imageProcessor
                 = new ErrorLevelAnalyzer(sourceDir.getAbsolutePath(), destDir.getAbsolutePath(), 95, supportedExtensions, resolution, outLabel);
+        imageProcessor.setListener(listener);
         imageProcessor.addListener(this);
         imageProcessor.start();
     }

@@ -1,5 +1,6 @@
 package com.qburst.fakeimagedetection.core.errorlevelanalysis;
 
+import com.qburst.fakeimagedetection.core.listener.ErrorLevelAnalysisUpdateListener;
 import com.qburst.fakeimagedetection.ui.alert.Calert;
 import com.qburst.fakeimagedetection.core.multithread.NotifyingThread;
 import ij.ImagePlus;
@@ -27,12 +28,17 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
     Dimension sampledDimension;
     String outLabel;
     ArrayList<String> supportedExtensions;
+    ErrorLevelAnalysisUpdateListener listener;
     int baseCount = 1;
 
     public ErrorLevelAnalyzer(String fileLocation, String destination, int quality) {
         this.fileLocation = fileLocation;
         this.destination = destination + "/";
         this.quality = quality;
+    }
+
+    public void setListener(ErrorLevelAnalysisUpdateListener listener) {
+        this.listener = listener;
     }
 
     public ErrorLevelAnalyzer(String dirLoc, String destination, int quality, ArrayList<String> supportedExtensions, Dimension dimension, String outLabel) {
@@ -71,7 +77,6 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
                 runningStatus = true;
                 Image img;
                 try {
-//                    System.out.println("Loading Image :" + file.getAbsolutePath());
                     img = ImageIO.read(file);
                 } catch (IOException ex) {
                     System.err.println("Null Image");
@@ -90,7 +95,7 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
 
                 FileSaver fs = new FileSaver(orig);
                 setJpegQuality(100);
-                fs.saveAsJpeg(origPath);
+                fs.saveAsJpeg("/home/qbuser/tmp/"+file.getName());
 
                 setJpegQuality(quality);
                 fs.saveAsJpeg(resavedPath);
@@ -122,7 +127,7 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
                 }
                 imp = imp.resize((int) sampledDimension.getWidth(), (int) sampledDimension.getHeight());
                 FileSaver resultSaver = new FileSaver(new ImagePlus("Result", imp.getBufferedImage()));
-                
+
                 DecimalFormat format = new DecimalFormat("#");
                 String savePath = destination + outLabel + format.format(baseCount + processedSize) + ".png";
                 resultSaver.saveAsPng(savePath);
@@ -131,8 +136,8 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
 
                 float percentage = processedSize / totalSize;
 
-//                BatchImageProcessorController.statusOfProgress.setText("Processing " + file.getName() + "   " + format.format(processedSize) + " / " + format.format(totalSize));
-//                BatchImageProcessorController.progress.setProgress(percentage);
+                String status = "Processing " + file.getName() + "   " + format.format(processedSize) + " / " + format.format(totalSize);
+                listener.iterationCompleted(status, percentage);
                 processedSize++;
 
             }

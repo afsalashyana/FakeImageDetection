@@ -1,5 +1,6 @@
 package com.qburst.fakeimagedetection.ui;
 
+
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -8,16 +9,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
 
-public class BatchImageProcessor extends Application {
+public class BatchImageTester extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/batchimageprocessor.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/batchimagetester.fxml"));
 
         Scene scene = new Scene(root);
 
         stage.resizableProperty().setValue(false);
-        stage.setTitle("Batch ELA processor");
+        stage.setTitle("Batch Image Tester");
         stage.setScene(scene);
         stage.show();
     }

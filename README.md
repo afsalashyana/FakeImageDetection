@@ -5,7 +5,7 @@ The objective of this project is to identify fake images. The problem with exist
 Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image which are too difficult for human eye to detect. Even with a complex neural network, it is not possible to determine whether an image is fake or not without identifying a common factor across almost all fake images. This problem was addressed during feature engineering.
 
 ###Feature Engineering
-  1. Dr. Neal Krawetz proposed a method called [Error Level Analysis(ELA)] (http://www.hackerfactor.com/papers/bh-usa-07-krawetz-wp.pdf) that exploits the lossy compression of JPEG images. When an image is altered, the compression ratio of the specific portion changes with respect to other parts. A well trained neural network can detect the anomaly by and determine whether the image is fake or not.
+  1. Dr. Neal Krawetz proposed a method called [Error Level Analysis(ELA)](http://www.hackerfactor.com/papers/bh-usa-07-krawetz-wp.pdf) that exploits the lossy compression of JPEG images. When an image is altered, the compression ratio of the specific portion changes with respect to other parts. A well trained neural network can detect the anomaly by and determine whether the image is fake or not.
   2. The second parameter considered is metadata of the image. A parallel module is added to the program which checks the metadata to determine the signature of various image editing programs. Since it is costly to execute a neural network, the metadata inspection will considerably increase the performance by detecting tampering at an early stage.
 
 ###Tools Used
@@ -32,6 +32,9 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 - [x] Add module to apply error level analysis on a set of images
 - [x] Improve look and feel
 - [x] Train with more data
+- [x] Add batch testing module
+- [x] Detach User Inteface from core
+- [x] Implement Command Line Interface
 - [ ] Reach success rate of 90%
 
 ###Screenshots

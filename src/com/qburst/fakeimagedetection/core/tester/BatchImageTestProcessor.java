@@ -5,10 +5,7 @@ import com.qburst.fakeimagedetection.ui.alert.Calert;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javax.imageio.ImageIO;
 import org.neuroph.core.NeuralNetwork;
@@ -19,8 +16,9 @@ public class BatchImageTestProcessor implements Runnable {
     private int counter = 0;
     private int fullSuccess = 0;
     private int halfSuccess = 0;
+    private int error = 0;
     private double meanSquareError = 0;
-    private File nueralNetwork, realDir, fakeDir;
+    private final File nueralNetwork, realDir, fakeDir;
     BatchImageTestingListener listener;
 
     public BatchImageTestProcessor(File nueralNetwork, File realDir, File fakeDir) {
@@ -74,8 +72,10 @@ public class BatchImageTestProcessor implements Runnable {
                 halfSuccess++;
                 System.out.println("Required Out : Fake = 1, Real = 0 :: Output Fake = " + fake + " | Real = " + real);
             } else {
-                System.err.println("Required Out : Fake = 1, Real = 0 :: Output Fake = " + fake + " | Real = " + real);
+                System.err.println("Required Out : Fake = 1, Real = 0 :: Output Fake = " + fake + " | Real = " + real + fakeImage.getName());
             }
+            if(fake<0.8)
+                error++;
             meanSquareError += ((1 - fake) * (1 - fake));
         }
 
@@ -102,18 +102,23 @@ public class BatchImageTestProcessor implements Runnable {
                 halfSuccess++;
                 System.out.println("Required Out : Fake = 0, Real = 1 :: Output Fake = " + fake + " | Real = " + real);
             } else {
-                System.err.println("Required Out : Fake = 0, Real = 1 :: Output Fake = " + fake + " | Real = " + real);
+                System.err.println("Required Out : Fake = 0, Real = 1 :: Output Fake = " + fake + " | Real = " + real + realImage.getName());
             }
+            if(real<0.8)
+                error++;
             meanSquareError += ((1 - real) * (1 - real));
         }
         meanSquareError = meanSquareError / counter;
 
-        System.out.println("-------------------------------------------------------------------");
-        System.out.println("Number of image processed = " + counter);
-        System.out.println("100% Correct Detection = " + fullSuccess);
-        System.out.println("Ambigious Correct Detection = " + halfSuccess);
-        System.out.println("Mean Square Error = " + meanSquareError);
-        System.out.println("-------------------------------------------------------------------");
-        listener.testingComplete();
+        String result = "";
+        result+=("\n-------------------------------------------------------------------");
+        result+=("\nNumber of image processed = " + counter);
+        result+=("\n100% Correct Detection = " + fullSuccess);
+        result+=("\nAmbigious Correct Detection = " + halfSuccess);
+        result+=("\nTotal Error = " + error);
+        result+=("\nMean Square Error = " + meanSquareError);
+        result+=("\n-------------------------------------------------------------------");
+        System.out.println(result);
+        listener.testingComplete(result);
     }
 }

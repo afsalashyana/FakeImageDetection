@@ -1,5 +1,5 @@
 package com.qburst.fakeimagedetection.core.listener;
 
 public interface BatchImageTestingListener {
-    public void testingComplete();
+    public void testingComplete(String result);
 }

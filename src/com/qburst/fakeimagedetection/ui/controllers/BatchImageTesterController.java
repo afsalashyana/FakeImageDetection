@@ -100,8 +100,18 @@ public class BatchImageTesterController implements Initializable, BatchImageTest
         });
     }
 
+    void showResult(String result) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Calert.showAlert("Result", result, Alert.AlertType.INFORMATION);
+            }
+        });
+    }
+
     @Override
-    public void testingComplete() {
+    public void testingComplete(String result) {
+        showResult(result);
         updateText("Completed");
     }
 }

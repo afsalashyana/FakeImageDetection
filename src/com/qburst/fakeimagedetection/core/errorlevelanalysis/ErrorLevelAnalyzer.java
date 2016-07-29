@@ -95,7 +95,7 @@ public class ErrorLevelAnalyzer extends NotifyingThread {
 
                 FileSaver fs = new FileSaver(orig);
                 setJpegQuality(100);
-                fs.saveAsJpeg("/home/qbuser/tmp/"+file.getName());
+                fs.saveAsJpeg(origPath);
 
                 setJpegQuality(quality);
                 fs.saveAsJpeg(resavedPath);

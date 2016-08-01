@@ -74,8 +74,9 @@ public class BatchImageTestProcessor implements Runnable {
             } else {
                 System.err.println("Required Out : Fake = 1, Real = 0 :: Output Fake = " + fake + " | Real = " + real + fakeImage.getName());
             }
-            if(fake<0.8)
+            if (fake < 0.8) {
                 error++;
+            }
             meanSquareError += ((1 - fake) * (1 - fake));
         }
 
@@ -85,7 +86,7 @@ public class BatchImageTestProcessor implements Runnable {
             try {
                 output = imageRecognition.recognizeImage(ImageIO.read(realImage));
             } catch (Exception ex) {
-                System.err.println("Image Failed to Load " + realImage.getAbsolutePath()  + ex.getLocalizedMessage());
+                System.err.println("Image Failed to Load " + realImage.getAbsolutePath() + ex.getLocalizedMessage());
                 continue;
             }
             if (output == null) {
@@ -104,20 +105,21 @@ public class BatchImageTestProcessor implements Runnable {
             } else {
                 System.err.println("Required Out : Fake = 0, Real = 1 :: Output Fake = " + fake + " | Real = " + real + realImage.getName());
             }
-            if(real<0.8)
+            if (real < 0.8) {
                 error++;
+            }
             meanSquareError += ((1 - real) * (1 - real));
         }
         meanSquareError = meanSquareError / counter;
 
         String result = "";
-        result+=("\n-------------------------------------------------------------------");
-        result+=("\nNumber of image processed = " + counter);
-        result+=("\n100% Correct Detection = " + fullSuccess);
-        result+=("\nAmbigious Correct Detection = " + halfSuccess);
-        result+=("\nTotal Error = " + error);
-        result+=("\nMean Square Error = " + meanSquareError);
-        result+=("\n-------------------------------------------------------------------");
+        result += ("\n-------------------------------------------------------------------");
+        result += ("\nNumber of image processed = " + counter);
+        result += ("\n100% Correct Detection = " + fullSuccess);
+        result += ("\nAmbigious Correct Detection = " + halfSuccess);
+        result += ("\nTotal Error = " + error);
+        result += ("\nMean Square Error = " + meanSquareError);
+        result += ("\n-------------------------------------------------------------------");
         System.out.println(result);
         listener.testingComplete(result);
     }

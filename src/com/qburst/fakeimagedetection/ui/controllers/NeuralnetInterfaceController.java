@@ -144,9 +144,9 @@ public class NeuralnetInterfaceController implements
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                double real = result.get("real")*100;
-                double fake = result.get("faked")*100;
-                
+                double real = result.get("real") * 100;
+                double fake = result.get("faked") * 100;
+
                 DecimalFormat df2 = new DecimalFormat(".#");
                 if (real < 10 && fake < 10) {
                     String possibility;

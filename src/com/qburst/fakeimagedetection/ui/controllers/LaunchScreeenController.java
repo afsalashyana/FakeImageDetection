@@ -130,8 +130,8 @@ public class LaunchScreeenController implements Initializable {
         fileChooser.setInitialDirectory(
                 new File(System.getProperty("user.home") + "/Pictures")
         );
-        FileChooser.ExtensionFilter extFilter = 
-                new FileChooser.ExtensionFilter("Image Files", "*.JPG","*.jpg","*.png","*.PNG","*.jpeg","*.JPEG","*.TIFF","*.TIF");
+        FileChooser.ExtensionFilter extFilter
+                = new FileChooser.ExtensionFilter("Image Files", "*.JPG", "*.jpg", "*.png", "*.PNG", "*.jpeg", "*.JPEG", "*.TIFF", "*.TIF");
         fileChooser.getExtensionFilters().addAll(extFilter
         );
 

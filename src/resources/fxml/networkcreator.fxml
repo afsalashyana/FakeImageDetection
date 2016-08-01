@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="466.0" prefWidth="600.0" style="-fx-background-color: #e7e7e7;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.NetworkcreatorController">
+    <children>
+        <ScrollPane layoutX="92.0" layoutY="14.0">
+            <content>
+                <Pane fx:id="container" prefHeight="429.0" prefWidth="428.0">
+                    <children>
+                        <JFXTextField fx:id="neuralNetLabel" focusColor="#149061" labelFloat="true" layoutX="27.0" layoutY="60.0" maxWidth="373.0" minWidth="342.0" prefHeight="32.0" prefWidth="373.0" promptText="Neural Network Label" />
+                        <JFXTextField fx:id="width" focusColor="#149061" labelFloat="true" layoutX="27.0" layoutY="105.0" promptText="Sampling Width" />
+                        <JFXTextField fx:id="height" focusColor="#149061" labelFloat="true" layoutX="210.0" layoutY="105.0" maxWidth="186.0" minWidth="183.0" prefHeight="32.0" prefWidth="186.0" promptText="Sampling Height" />
+                        <JFXTextField fx:id="neuronLabelList" focusColor="#149061" labelFloat="true" layoutX="25.0" layoutY="216.0" maxWidth="373.0" minWidth="342.0" prefHeight="32.0" prefWidth="373.0" promptText="Comma Seperated Output Neuron Labels" />
+                        <JFXTextField fx:id="neuronCountList" focusColor="#149061" labelFloat="true" layoutX="26.0" layoutY="266.0" maxWidth="373.0" minWidth="342.0" prefHeight="32.0" prefWidth="373.0" promptText="Comma Seperated Neuron Counts" />
+                        <JFXButton buttonType="RAISED" layoutX="115.0" layoutY="375.0" onAction="#saveNeuralNet" prefHeight="41.0" prefWidth="219.0" style="-fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF;" text="Make &amp; Save Neural Network" />
+                        <JFXComboBox fx:id="colorMode" layoutX="31.0" layoutY="166.0" prefHeight="26.0" prefWidth="373.0" promptText="Select Color Mode" styleClass="combo-box-base" stylesheets="@../stylesheets/main.css" />
+                        <JFXComboBox fx:id="transferFunction" layoutX="29.0" layoutY="328.0" prefHeight="26.0" prefWidth="373.0" promptText="Select Transfer Function" styleClass="combo-box-base" stylesheets="@../stylesheets/main.css" />
+                        <Text fontSmoothingType="LCD" layoutX="1.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Multi Layer Perception Network Maker Wizard" textAlignment="CENTER" wrappingWidth="430.0000011920929">
+                            <font>
+                                <Font name="Roboto Light" size="19.0" />
+                            </font>
+                        </Text>
+                        <JFXSpinner fx:id="loadingSpinner" layoutX="45.0" layoutY="380.0" visible="false" />
+                    </children>
+                    <padding>
+                        <Insets left="60.0" />
+                    </padding>
+                </Pane>
+            </content>
+            <effect>
+                <DropShadow />
+            </effect>
+        </ScrollPane>
+    </children>
+</AnchorPane>

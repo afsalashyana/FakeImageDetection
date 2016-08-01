@@ -6,13 +6,13 @@
 
 
 <AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="375.0" prefWidth="528.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="com.qburst.fakeimagedetection.ui.controllers.BatchImageTesterController">
-   <children>
-      <JFXButton layoutX="134.0" layoutY="69.0" onAction="#chooseNeuralNetwork" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Choose Neural Network" />
-      <JFXButton layoutX="134.0" layoutY="134.0" onAction="#chooseRealImageSource" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Real Image Source" />
-      <JFXButton layoutX="135.0" layoutY="200.0" onAction="#chooseFakeImageSource" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Fake Image Source" />
-      <JFXCheckBox fx:id="neuralIndicator" layoutX="346.0" layoutY="85.0" text=" " />
-      <JFXCheckBox fx:id="realIndicator" layoutX="346.0" layoutY="149.0" text=" " />
-      <JFXCheckBox fx:id="fakeIndicator" layoutX="346.0" layoutY="214.0" text=" " />
-      <JFXButton fx:id="startButton" layoutX="211.0" layoutY="308.0" onAction="#startTesting" prefHeight="28.0" prefWidth="137.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Start Testing" />
-   </children>
+    <children>
+        <JFXButton layoutX="134.0" layoutY="69.0" onAction="#chooseNeuralNetwork" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Choose Neural Network" />
+        <JFXButton layoutX="134.0" layoutY="134.0" onAction="#chooseRealImageSource" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Real Image Source" />
+        <JFXButton layoutX="135.0" layoutY="200.0" onAction="#chooseFakeImageSource" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Fake Image Source" />
+        <JFXCheckBox fx:id="neuralIndicator" layoutX="346.0" layoutY="85.0" text=" " />
+        <JFXCheckBox fx:id="realIndicator" layoutX="346.0" layoutY="149.0" text=" " />
+        <JFXCheckBox fx:id="fakeIndicator" layoutX="346.0" layoutY="214.0" text=" " />
+        <JFXButton fx:id="startButton" layoutX="211.0" layoutY="308.0" onAction="#startTesting" prefHeight="28.0" prefWidth="137.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Start Testing" />
+    </children>
 </AnchorPane>

@@ -2,17 +2,26 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="375.0" prefWidth="528.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="com.qburst.fakeimagedetection.ui.controllers.BatchImageTesterController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="364.0" prefWidth="394.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.BatchImageTesterController">
     <children>
-        <JFXButton layoutX="134.0" layoutY="69.0" onAction="#chooseNeuralNetwork" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Choose Neural Network" />
-        <JFXButton layoutX="134.0" layoutY="134.0" onAction="#chooseRealImageSource" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Real Image Source" />
-        <JFXButton layoutX="135.0" layoutY="200.0" onAction="#chooseFakeImageSource" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Fake Image Source" />
-        <JFXCheckBox fx:id="neuralIndicator" layoutX="346.0" layoutY="85.0" text=" " />
-        <JFXCheckBox fx:id="realIndicator" layoutX="346.0" layoutY="149.0" text=" " />
-        <JFXCheckBox fx:id="fakeIndicator" layoutX="346.0" layoutY="214.0" text=" " />
-        <JFXButton fx:id="startButton" layoutX="211.0" layoutY="308.0" onAction="#startTesting" prefHeight="28.0" prefWidth="137.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Start Testing" />
+      <AnchorPane layoutX="55.0" layoutY="30.0" prefHeight="302.0" prefWidth="289.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+              <JFXButton buttonType="RAISED" layoutX="18.0" layoutY="28.0" onAction="#chooseNeuralNetwork" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Choose Neural Network" />
+              <JFXButton buttonType="RAISED" layoutX="18.0" layoutY="93.0" onAction="#chooseRealImageSource" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Real Image Source" />
+              <JFXButton buttonType="RAISED" layoutX="19.0" layoutY="159.0" onAction="#chooseFakeImageSource" prefHeight="48.0" prefWidth="192.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Fake Image Source" />
+              <JFXCheckBox fx:id="neuralIndicator" layoutX="230.0" layoutY="44.0" text=" " />
+              <JFXCheckBox fx:id="realIndicator" layoutX="230.0" layoutY="108.0" text=" " />
+              <JFXCheckBox fx:id="fakeIndicator" layoutX="230.0" layoutY="173.0" text=" " />
+              <JFXButton fx:id="startButton" buttonType="RAISED" layoutX="83.0" layoutY="240.0" onAction="#startTesting" prefHeight="28.0" prefWidth="137.0" style="-fx-background-color: #1976D2; -fx-text-fill: #FFFFFF;" text="Start Testing" />
+            <JFXSpinner fx:id="spinner" layoutX="18.0" layoutY="238.0" />
+         </children>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </AnchorPane>
     </children>
 </AnchorPane>

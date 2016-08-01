@@ -2,7 +2,7 @@ package com.qburst.fakeimagedetection.ui.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
-import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
+import com.jfoenix.controls.JFXSpinner;
 import com.qburst.fakeimagedetection.core.listener.BatchImageTestingListener;
 import com.qburst.fakeimagedetection.core.tester.BatchImageTestProcessor;
 import com.qburst.fakeimagedetection.ui.alert.Calert;
@@ -34,10 +34,12 @@ public class BatchImageTesterController implements Initializable, BatchImageTest
     File neuralNetwork;
     File realDir;
     File fakeDir;
+    @FXML
+    private JFXSpinner spinner;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        spinner.setVisible(false);
     }
 
     @FXML
@@ -89,6 +91,7 @@ public class BatchImageTesterController implements Initializable, BatchImageTest
         processor.setListener(this);
         Thread runnerThread = new Thread(processor);
         runnerThread.start();
+        spinner.setVisible(true);
     }
 
     void updateText(String text) {
@@ -111,6 +114,7 @@ public class BatchImageTesterController implements Initializable, BatchImageTest
 
     @Override
     public void testingComplete(String result) {
+        spinner.setVisible(false);
         showResult(result);
         updateText("Completed");
     }

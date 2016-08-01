@@ -4,19 +4,27 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="514.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.BatchImageProcessorController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="514.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.BatchImageProcessorController">
     <children>
-        <JFXButton buttonType="RAISED" layoutX="136.0" layoutY="32.0" onAction="#loadSourceFolder" prefHeight="50.0" prefWidth="181.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Load Source Foder" />
-        <JFXCheckBox fx:id="srcIndicator" layoutX="353.0" layoutY="49.0" text=" " />
-        <JFXTextField fx:id="sWidth" labelFloat="true" layoutX="59.0" layoutY="175.0" maxWidth="181.0" minWidth="181.0" prefHeight="35.0" prefWidth="181.0" promptText="Sampling Width" />
-        <JFXTextField fx:id="sHeight" labelFloat="true" layoutX="285.0" layoutY="174.0" maxWidth="181.0" minWidth="181.0" prefHeight="35.0" prefWidth="181.0" promptText="Sampling Height" />
-        <JFXTextField fx:id="outputBatchName" layoutX="62.0" layoutY="221.0" maxWidth="403.0" minWidth="401.0" prefHeight="32.0" prefWidth="403.0" promptText="Output Batch Name" />
-        <JFXButton buttonType="RAISED" layoutX="137.0" layoutY="93.0" onAction="#loadDestinationFolder" prefHeight="50.0" prefWidth="181.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Load Destination Foder" />
-        <JFXCheckBox fx:id="destIndicator" layoutX="354.0" layoutY="110.0" text=" " />
-        <JFXButton buttonType="RAISED" layoutX="224.0" layoutY="268.0" onAction="#startProcessing" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Start" />
+      <AnchorPane layoutX="50.0" layoutY="36.0" prefHeight="317.0" prefWidth="426.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+              <JFXButton buttonType="RAISED" layoutX="77.0" layoutY="12.0" onAction="#loadSourceFolder" prefHeight="50.0" prefWidth="181.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Load Source Foder" />
+              <JFXCheckBox fx:id="srcIndicator" layoutX="294.0" layoutY="29.0" text=" " />
+              <JFXTextField fx:id="sWidth" labelFloat="true" layoutX="11.0" layoutY="169.0" maxWidth="181.0" minWidth="170.0" prefHeight="35.0" prefWidth="170.0" promptText="Sampling Width" />
+              <JFXTextField fx:id="sHeight" labelFloat="true" layoutX="226.0" layoutY="168.0" maxWidth="181.0" minWidth="181.0" prefHeight="35.0" prefWidth="181.0" promptText="Sampling Height" />
+              <JFXTextField fx:id="outputBatchName" layoutX="16.0" layoutY="215.0" maxWidth="403.0" minWidth="390.0" prefHeight="32.0" prefWidth="390.0" promptText="Output Batch Name" />
+              <JFXButton buttonType="RAISED" layoutX="78.0" layoutY="73.0" onAction="#loadDestinationFolder" prefHeight="50.0" prefWidth="181.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Load Destination Foder" />
+              <JFXCheckBox fx:id="destIndicator" layoutX="295.0" layoutY="90.0" text=" " />
+              <JFXButton buttonType="RAISED" layoutX="165.0" layoutY="262.0" onAction="#startProcessing" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Start" />
+         </children>
+         <effect>
+            <DropShadow height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </AnchorPane>
         <ProgressBar fx:id="progressBar" layoutY="382.0" prefHeight="20.0" prefWidth="514.0" progress="0.0" />
         <Text fx:id="status" layoutX="-1.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="513.9999953272927" />
     </children>

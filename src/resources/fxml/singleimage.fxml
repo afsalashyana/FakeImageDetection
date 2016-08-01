@@ -2,14 +2,29 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="241.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.SingleImageAnalyzerController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="298.0" prefWidth="395.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.SingleImageAnalyzerController">
     <children>
-        <JFXButton fx:id="neuralSource" buttonType="RAISED" layoutX="151.0" layoutY="44.0" onAction="#loadNeuralNetwork" prefHeight="33.0" prefWidth="216.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Neural Network" />
-        <JFXCheckBox fx:id="nnIndicator" layoutX="389.0" layoutY="54.0" text=" " />
-        <JFXButton fx:id="imgSource" buttonType="RAISED" layoutX="152.0" layoutY="99.0" onAction="#loadImage" prefHeight="33.0" prefWidth="216.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Image (ELA Applied)" />
-        <JFXCheckBox fx:id="imgIndicator" layoutX="388.0" layoutY="108.0" text=" " />
-        <JFXButton fx:id="startButton" buttonType="RAISED" layoutX="245.0" layoutY="184.0" onAction="#startCheck" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Check" />
+      <AnchorPane layoutX="48.0" layoutY="22.0" prefHeight="253.0" prefWidth="305.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+              <JFXButton fx:id="neuralSource" layoutX="18.0" layoutY="76.0" onAction="#loadNeuralNetwork" prefHeight="33.0" prefWidth="216.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Neural Network" />
+              <JFXCheckBox fx:id="nnIndicator" layoutX="256.0" layoutY="86.0" text=" " />
+              <JFXButton fx:id="imgSource" layoutX="19.0" layoutY="131.0" onAction="#loadImage" prefHeight="33.0" prefWidth="216.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Image (ELA Applied)" />
+              <JFXCheckBox fx:id="imgIndicator" layoutX="255.0" layoutY="140.0" text=" " />
+              <JFXButton fx:id="startButton" buttonType="RAISED" layoutX="112.0" layoutY="193.0" onAction="#startCheck" prefHeight="33.0" prefWidth="87.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Check" />
+            <Text layoutX="5.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Single Image Checker" textAlignment="CENTER" wrappingWidth="296.09716796875">
+               <font>
+                  <Font name="Roboto Regular" size="18.0" />
+               </font>
+            </Text>
+         </children>
+         <effect>
+            <DropShadow height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </AnchorPane>
     </children>
 </AnchorPane>

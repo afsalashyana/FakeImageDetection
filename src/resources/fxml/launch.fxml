@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.effect.Glow?>
@@ -59,6 +62,18 @@
                         <Image url="@home.png" />
                     </image>
                 </ImageView>
+            <MenuBar layoutX="32.0" layoutY="-2.0" style="-fx-background-color: transparent;">
+              <menus>
+                <Menu mnemonicParsing="false" style="-fx-text-fill: #FFFFFF; -fx-background-color: transparent;" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadELAProcessor" style="-fx-background-color: transparent;" text="ELA Processor" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadTrainer" style="-fx-background-color: transparent;" text="NNetwork Trainer" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadBatchImageTester" style="-fx-background-color: transparent;" text="Batch Image Tester" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadSingleImageTester" style="-fx-background-color: transparent;" text="Single Image Tester" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
             </children>
         </AnchorPane>
     </children>

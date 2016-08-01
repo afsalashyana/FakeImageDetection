@@ -2,6 +2,7 @@ package com.qburst.fakeimagedetection.ui.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import com.qburst.fakeimagedetection.core.listener.BatchImageTrainingListener;
 import com.qburst.fakeimagedetection.ui.alert.Calert;
@@ -25,11 +26,11 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class TrainingInterfaceController implements
         Initializable, BatchImageTrainingListener {
@@ -44,7 +45,6 @@ public class TrainingInterfaceController implements
     private JFXTextField fakeLabel;
     @FXML
     private JFXButton startButton;
-
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -57,12 +57,6 @@ public class TrainingInterfaceController implements
     private JFXTextField momentum;
     @FXML
     private JFXTextField maxError;
-
-    ArrayList<String> imageLabels;
-    File srcDir = null;
-    File nnFile = null;
-    String rLabel = "";
-    String fLabel = "";
     @FXML
     private LineChart<Integer, Double> errorChart;
     @FXML
@@ -75,7 +69,17 @@ public class TrainingInterfaceController implements
     private JFXButton neuralSource;
     @FXML
     private JFXCheckBox nnIndicator;
-
+    @FXML
+    private Pane containerPlane;
+    @FXML
+    private JFXSpinner spinner;
+    
+    
+    ArrayList<String> imageLabels;
+    File srcDir = null;
+    File nnFile = null;
+    String rLabel = "";
+    String fLabel = "";
     XYChart.Series series;
     BatchImageTrainer neuralTrainer;
 
@@ -85,6 +89,8 @@ public class TrainingInterfaceController implements
         series = new XYChart.Series();
         series.setName("Learning Curve 1");
         errorChart.getData().add(series);
+
+        spinner.setVisible(false);
 
     }
 
@@ -128,6 +134,7 @@ public class TrainingInterfaceController implements
                     neuralTrainer.setMomentum(moment);
                     neuralTrainer.setLearningRate(lRate);
                     neuralTrainer.start();
+                    spinner.setVisible(true);
 
                     startButton.setAccessibleText("stop");
                     startButton.setStyle("-fx-background-color:#e53935;-fx-text-fill:#ffffff");
@@ -191,6 +198,7 @@ public class TrainingInterfaceController implements
     @Override
     public void batchImageTrainingCompleted() {
         saveButton.setDisable(false);
+        spinner.setVisible(false);
     }
 
     @Override

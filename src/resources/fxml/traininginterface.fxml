@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
@@ -9,43 +10,57 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.TrainingInterfaceController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="448.0" prefWidth="963.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.TrainingInterfaceController">
     <children>
-        <AnchorPane prefHeight="449.0" prefWidth="920.0">
-            <children>
-                <JFXButton fx:id="sourceIndicator" buttonType="RAISED" layoutX="138.0" layoutY="86.0" onAction="#loadImageSource" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Image Source" />
-                <JFXTextField fx:id="realLabel" labelFloat="true" layoutX="86.0" layoutY="154.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Real Image label" text="real" />
-                <JFXTextField fx:id="fakeLabel" labelFloat="true" layoutX="292.0" layoutY="153.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Fake Image Label" text="faked" />
-                <JFXButton fx:id="startButton" accessibleText="start" buttonType="RAISED" layoutX="80.0" layoutY="402.0" onAction="#startTraining" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Start Training" />
-                <JFXCheckBox fx:id="srcIndicator" layoutX="337.0" layoutY="95.0" text=" " />
-                <JFXTextField fx:id="width" labelFloat="true" layoutX="86.0" layoutY="209.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Width of Image" text="100" />
-                <JFXTextField fx:id="height" labelFloat="true" layoutX="293.0" layoutY="208.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Height of Image" text="100" />
-                <JFXTextField fx:id="learningRate" labelFloat="true" layoutX="87.0" layoutY="262.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Learning Rate" text="0.2" />
-                <JFXTextField fx:id="momentum" labelFloat="true" layoutX="294.0" layoutY="264.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Momentum" text="0.7" />
-                <JFXTextField fx:id="maxError" labelFloat="true" layoutX="87.0" layoutY="318.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Maximum Error" text="0.01" />
-                <LineChart fx:id="errorChart" layoutX="489.0" layoutY="30.0" title="Total Network Error Graph">
-                    <xAxis>
-                        <CategoryAxis side="BOTTOM" fx:id="xAxis" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis fx:id="yAxis" side="LEFT" />
-                    </yAxis>
-                </LineChart>
-                <JFXButton fx:id="saveButton" accessibleText="start" buttonType="RAISED" disable="true" layoutX="287.0" layoutY="400.0" onAction="#saveLearnedNetwork" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Save Learned Network" />
-                <MenuBar layoutY="-5.0" prefHeight="29.0" prefWidth="965.0">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="File">
-                            <items>
-                                <MenuItem mnemonicParsing="false" onAction="#loadNewTrainingWindow" text="New Training Window" />
-                            </items>
-                        </Menu>
-                    </menus>
-                </MenuBar>
-                <JFXButton fx:id="neuralSource" buttonType="RAISED" layoutX="138.0" layoutY="39.0" onAction="#loadNeuralNetwork" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Neural Network" />
-                <JFXCheckBox fx:id="nnIndicator" layoutX="337.0" layoutY="48.0" text=" " />
-            </children>
-        </AnchorPane>
+      <StackPane layoutX="475.0" layoutY="41.0" prefHeight="389.0" prefWidth="462.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <LineChart fx:id="errorChart" prefHeight="378.0" prefWidth="462.0" title="Total Network Error Graph">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis fx:id="yAxis" side="LEFT" />
+               </yAxis>
+            </LineChart>
+         </children>
+         <effect>
+            <DropShadow blurType="TWO_PASS_BOX" />
+         </effect>
+      </StackPane>
+      <MenuBar layoutX="-2.0" layoutY="-4.0" prefHeight="29.0" prefWidth="965.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#loadNewTrainingWindow" text="New Training Window" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Pane fx:id="containerPlane" layoutX="34.0" layoutY="41.0" prefHeight="389.0" prefWidth="423.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <JFXButton fx:id="sourceIndicator" layoutX="74.0" layoutY="59.0" onAction="#loadImageSource" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Image Source" />
+            <JFXTextField fx:id="realLabel" labelFloat="true" layoutX="22.0" layoutY="127.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Real Image label" text="real" />
+            <JFXTextField fx:id="fakeLabel" labelFloat="true" layoutX="228.0" layoutY="126.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Fake Image Label" text="faked" />
+            <JFXButton fx:id="startButton" accessibleText="start" buttonType="RAISED" layoutX="14.0" layoutY="344.0" onAction="#startTraining" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Start Training" />
+            <JFXCheckBox fx:id="srcIndicator" layoutX="273.0" layoutY="68.0" text=" " />
+            <JFXTextField fx:id="width" labelFloat="true" layoutX="22.0" layoutY="182.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Width of Image" text="100" />
+            <JFXTextField fx:id="height" labelFloat="true" layoutX="229.0" layoutY="181.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Height of Image" text="100" />
+            <JFXTextField fx:id="learningRate" labelFloat="true" layoutX="23.0" layoutY="235.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Learning Rate" text="0.2" />
+            <JFXTextField fx:id="momentum" labelFloat="true" layoutX="230.0" layoutY="237.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Momentum" text="0.7" />
+            <JFXTextField fx:id="maxError" labelFloat="true" layoutX="23.0" layoutY="291.0" maxWidth="171.0" minWidth="171.0" prefHeight="33.0" prefWidth="171.0" promptText="Maximum Error" text="0.01" />
+            <JFXButton fx:id="saveButton" accessibleText="start" buttonType="RAISED" disable="true" layoutX="221.0" layoutY="344.0" onAction="#saveLearnedNetwork" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Save Learned Network" />
+            <JFXButton fx:id="neuralSource" layoutX="74.0" layoutY="12.0" onAction="#loadNeuralNetwork" prefHeight="33.0" prefWidth="182.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Choose Neural Network" />
+            <JFXCheckBox fx:id="nnIndicator" layoutX="273.0" layoutY="21.0" text=" " />
+            <JFXSpinner fx:id="spinner" layoutX="300.0" layoutY="292.0" />
+         </children>
+         <effect>
+            <DropShadow blurType="TWO_PASS_BOX" />
+         </effect>
+      </Pane>
     </children>
 </AnchorPane>

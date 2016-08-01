@@ -3,12 +3,14 @@ package com.qburst.fakeimagedetection.ui.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.qburst.fakeimagedetection.ui.alert.Calert;
 import com.qburst.fakeimagedetection.core.metadata.MetadataProcessor;
-import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
+import com.qburst.fakeimagedetection.ui.BatchImageTester;
+import com.qburst.fakeimagedetection.ui.ELABatchImageProcessor;
+import com.qburst.fakeimagedetection.ui.SingleImageCheck;
+import com.qburst.fakeimagedetection.ui.TrainerMain;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +21,10 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,6 +35,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class LaunchScreeenController implements Initializable {
@@ -226,6 +232,50 @@ public class LaunchScreeenController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(LaunchScreeenController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void loadELAProcessor(ActionEvent event) throws Exception {
+        ELABatchImageProcessor processor = new ELABatchImageProcessor();
+        Stage stage = new Stage();
+        stage.initOwner(rootPane.getScene().getWindow());
+        stage.initModality(Modality.WINDOW_MODAL);
+        processor.start(stage);
+    }
+
+    @FXML
+    private void loadTrainer(ActionEvent event) throws Exception {
+        TrainerMain trainer = new TrainerMain();
+        Stage stage = new Stage();
+        stage.initOwner(rootPane.getScene().getWindow());
+        stage.initModality(Modality.APPLICATION_MODAL);
+        trainer.start(stage);
+        stage.setOnCloseRequest((WindowEvent event1) -> {
+            event1.consume();
+            stage.close();
+        });
+    }
+
+    @FXML
+    private void loadBatchImageTester(ActionEvent event) throws Exception {
+        BatchImageTester tester = new BatchImageTester();
+        Stage stage = new Stage();
+        stage.initOwner(rootPane.getScene().getWindow());
+        stage.initModality(Modality.WINDOW_MODAL);
+        tester.start(stage);
+    }
+
+    @FXML
+    private void loadSingleImageTester(ActionEvent event) throws Exception {
+        SingleImageCheck siCheck = new SingleImageCheck();
+        Stage stage = new Stage();
+        stage.initOwner(rootPane.getScene().getWindow());
+        stage.initModality(Modality.WINDOW_MODAL);
+        siCheck.start(stage);
+        stage.setOnCloseRequest((WindowEvent event1) -> {
+            event1.consume();
+            stage.close();
+        });
     }
 
 }

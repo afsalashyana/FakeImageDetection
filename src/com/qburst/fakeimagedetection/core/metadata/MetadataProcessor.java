@@ -22,7 +22,7 @@ public class MetadataProcessor {
             Logger.getLogger(MetadataProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (Directory directory : data.getDirectories()) {
-            extracted_data += "----------------------------------------------" + directory.getName() + "---------------------------------" + "\n";
+            extracted_data += String.format("----------------------------------------------%15s---------------------------------\n", directory.getName());
             for (Tag tag : directory.getTags()) {
                 extracted_data += tag + "\n";
             }

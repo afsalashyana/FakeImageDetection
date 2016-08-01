@@ -14,9 +14,9 @@
          <children>
               <JFXButton buttonType="RAISED" layoutX="77.0" layoutY="12.0" onAction="#loadSourceFolder" prefHeight="50.0" prefWidth="181.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Load Source Foder" />
               <JFXCheckBox fx:id="srcIndicator" layoutX="294.0" layoutY="29.0" text=" " />
-              <JFXTextField fx:id="sWidth" labelFloat="true" layoutX="11.0" layoutY="169.0" maxWidth="181.0" minWidth="170.0" prefHeight="35.0" prefWidth="170.0" promptText="Sampling Width" />
+              <JFXTextField fx:id="sWidth" labelFloat="true" layoutX="14.0" layoutY="169.0" maxWidth="181.0" minWidth="170.0" prefHeight="35.0" prefWidth="170.0" promptText="Sampling Width" />
               <JFXTextField fx:id="sHeight" labelFloat="true" layoutX="226.0" layoutY="168.0" maxWidth="181.0" minWidth="181.0" prefHeight="35.0" prefWidth="181.0" promptText="Sampling Height" />
-              <JFXTextField fx:id="outputBatchName" layoutX="16.0" layoutY="215.0" maxWidth="403.0" minWidth="390.0" prefHeight="32.0" prefWidth="390.0" promptText="Output Batch Name" />
+              <JFXTextField fx:id="outputBatchName" labelFloat="true" layoutX="13.0" layoutY="215.0" maxWidth="403.0" minWidth="390.0" prefHeight="32.0" prefWidth="393.0" promptText="Output Batch Name" />
               <JFXButton buttonType="RAISED" layoutX="78.0" layoutY="73.0" onAction="#loadDestinationFolder" prefHeight="50.0" prefWidth="181.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Load Destination Foder" />
               <JFXCheckBox fx:id="destIndicator" layoutX="295.0" layoutY="90.0" text=" " />
               <JFXButton buttonType="RAISED" layoutX="165.0" layoutY="262.0" onAction="#startProcessing" prefHeight="35.0" prefWidth="80.0" style="-fx-background-color: #1976D2; -fx-text-fill: #ffffff;" text="Start" />

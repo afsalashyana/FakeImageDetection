@@ -29,7 +29,7 @@
             </LineChart>
          </children>
          <effect>
-            <DropShadow blurType="TWO_PASS_BOX" />
+            <DropShadow blurType="TWO_PASS_BOX" height="10.0" radius="4.5" width="10.0" />
          </effect>
       </StackPane>
       <MenuBar layoutX="-2.0" layoutY="-4.0" prefHeight="29.0" prefWidth="965.0">
@@ -59,7 +59,7 @@
             <JFXSpinner fx:id="spinner" layoutX="300.0" layoutY="292.0" />
          </children>
          <effect>
-            <DropShadow blurType="TWO_PASS_BOX" />
+            <DropShadow blurType="TWO_PASS_BOX" height="10.0" radius="4.5" width="10.0" />
          </effect>
       </Pane>
     </children>

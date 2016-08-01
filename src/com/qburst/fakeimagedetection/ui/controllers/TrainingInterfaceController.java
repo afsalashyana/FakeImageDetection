@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,9 +93,9 @@ public class TrainingInterfaceController implements
         errorChart.getData().add(series);
 
         spinner.setVisible(false);
-
     }
 
+    
     @FXML
     private void loadImageSource(ActionEvent event) {
         DirectoryChooser chooser = new DirectoryChooser();

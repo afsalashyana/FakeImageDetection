@@ -114,8 +114,8 @@ public class MetadataResultController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
             metadata_display_controller = fxmlLoader.getController();
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.resizableProperty().set(false);
             stage.setTitle("Metadata Information");
             stage.setScene(new Scene(root1));
             stage.show();

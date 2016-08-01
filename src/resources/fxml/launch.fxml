@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -56,11 +57,17 @@
                     <font>
                         <Font name="Roboto Medium" size="15.0" />
                     </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </JFXButton>
                 <ImageView fx:id="homeIcon" fitHeight="63.0" fitWidth="62.0" layoutX="821.0" layoutY="19.0" onMouseClicked="#rollBack" pickOnBounds="true" preserveRatio="true" visible="false">
                     <image>
                         <Image url="@home.png" />
                     </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </ImageView>
             <MenuBar layoutX="32.0" layoutY="-2.0" style="-fx-background-color: transparent;">
               <menus>

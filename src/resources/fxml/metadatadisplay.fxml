@@ -2,13 +2,21 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.MetadataDisplayController">
+<AnchorPane id="AnchorPane" prefHeight="437.0" prefWidth="600.0" style="-fx-background-color: #e7e7e7;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.MetadataDisplayController">
     <children>
-        <JFXTextArea fx:id="displayField" editable="false" layoutX="14.0" layoutY="41.0" maxWidth="573.0" minWidth="573.0" prefHeight="317.0" prefWidth="573.0" />
-        <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Metadata Information" textAlignment="CENTER" wrappingWidth="572.9999899864197" />
-        <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="186.0" layoutY="367.0" onAction="#closeWindow" prefHeight="26.0" prefWidth="245.0" ripplerFill="RED" styleClass="load_image_button" stylesheets="@../stylesheets/main.css" text="Close" />
+        <JFXTextArea fx:id="displayField" editable="false" layoutX="14.0" layoutY="49.0" maxWidth="573.0" minWidth="573.0" prefHeight="317.0" prefWidth="573.0">
+         <effect>
+            <DropShadow height="5.0" radius="2.0" width="5.0" />
+         </effect></JFXTextArea>
+        <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Metadata Information" textAlignment="CENTER" wrappingWidth="572.9999899864197">
+         <font>
+            <Font name="Roboto Regular" size="17.0" />
+         </font></Text>
+        <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="186.0" layoutY="392.0" onAction="#closeWindow" prefHeight="26.0" prefWidth="245.0" ripplerFill="#650428" styleClass="load_image_button" stylesheets="@../stylesheets/main.css" text="Close" />
     </children>
 </AnchorPane>

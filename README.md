@@ -37,9 +37,17 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 - [x] Implement Command Line Interface
 - [ ] Reach success rate of 90%
 
+###Flow Chart : Detection
+<img src=http://i.imgur.com/TKX7uV6.png>
+
+###Flow Chart : Training
+<img src=http://i.imgur.com/wUoo1kb.png>
+
+
 ###Screenshots
 <img src=http://i.imgur.com/vzfdecs.png>
 <img src=http://i.imgur.com/T3TVsuj.png>
-<img src=http://i.imgur.com/GLNGz9j.png>
+<img src=http://i.imgur.com/0mzmfFp.png>
 <img src=http://i.imgur.com/z8DzhGD.png>
-<img src=http://i.imgur.com/kKfDCOX.png>
+<img src=http://i.imgur.com/mvc9tp0.png>
+<img src=http://i.imgur.com/yHQ5JGx.png>

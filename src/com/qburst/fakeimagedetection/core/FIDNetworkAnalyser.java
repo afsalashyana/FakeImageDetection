@@ -50,6 +50,8 @@ public class FIDNetworkAnalyser implements ErrorLevelAnalysisListener {
 
     @Override
     public void elaCompleted(BufferedImage image) {
+        if(image==null)
+            return;
         processOnNeuralNetwork(image);
     }
 }

@@ -91,8 +91,9 @@ public class NeuralNetProcessor extends NotifyingThread {
             System.out.println(output.toString());
             listener.neuralnetProcessCompleted(output);
 
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(NeuralNetProcessor.class.getName()).log(Level.SEVERE, null, ex);
+            listener.neuralnetProcessCompleted(null);
         }
     }
 

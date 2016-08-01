@@ -9,6 +9,7 @@ import com.qburst.fakeimagedetection.core.metadata.MetadataProcessor;
 import com.qburst.fakeimagedetection.core.processor.NeuralNetProcessor;
 import com.qburst.fakeimagedetection.core.trainer.SingleImageTrainer;
 import com.qburst.fakeimagedetection.core.listener.ThreadCompleteListener;
+import com.qburst.fakeimagedetection.ui.alert.Calert;
 import ij.ImagePlus;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -252,6 +253,16 @@ public class NeuralnetInterfaceController implements
 
     @Override
     public void neuralnetProcessCompleted(HashMap<String, Double> result) {
+        if (result == null) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Calert.showAlert("Forced Rollback", "Image Detection Failed:\nCorrupted File", AlertType.ERROR);
+                    rollBack(null);
+                    return;
+                }
+            });
+        }
         bulgingTransition.stop();
         updateIndicatorText("Done");
         loadResult(result);

@@ -17,6 +17,13 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 ####[JavaFX](http://docs.oracle.com/javase/8/javase-clienttechnologies.htm)
  JavaFX is used to implement modern user interface for the application.
 
+###Flow Chart : Detection
+<img src=http://i.imgur.com/TKX7uV6.png>
+
+###Flow Chart : Training
+<img src=http://i.imgur.com/wUoo1kb.png>
+
+
 ###Project Status 
 - [x] Implement Metadata Procesing Module
 - [x] Design a User Interface
@@ -36,13 +43,6 @@ Using Adobe Photoshop, Gimp etc, It is possible to make alterations on image whi
 - [x] Detach User Inteface from core
 - [x] Implement Command Line Interface
 - [ ] Reach success rate of 90%
-
-###Flow Chart : Detection
-<img src=http://i.imgur.com/TKX7uV6.png>
-
-###Flow Chart : Training
-<img src=http://i.imgur.com/wUoo1kb.png>
-
 
 ###Screenshots
 <img src=http://i.imgur.com/vzfdecs.png>

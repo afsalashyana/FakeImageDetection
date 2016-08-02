@@ -39,12 +39,14 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 
 public class NeuralnetInterfaceController implements
         Initializable, ErrorLevelAnalysisListener, ThreadCompleteListener, NeuralnetProcessorListener {
@@ -213,7 +215,21 @@ public class NeuralnetInterfaceController implements
 
             private void addELAListener() {
                 navigation_button.setOnAction((e) -> {
-                    new ImagePlus("Error Level Analysis", elaImage).show();
+                });
+
+                navigation_button.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (event.getButton() == MouseButton.PRIMARY) {
+                            new ImagePlus("Error Level Analysis", elaImage).show();
+                        } else if (event.getButton()==MouseButton.SECONDARY) {
+                            try {
+                                new ImagePlus("Original Image", ImageIO.read(LaunchScreeenController.processingFile)).show();
+                            } catch (IOException ex) {
+                                Logger.getLogger(NeuralnetInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
                 });
             }
         });

@@ -12,7 +12,6 @@ import ij.process.ImageProcessor;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javafx.application.Platform;
@@ -27,11 +26,6 @@ public class FIDErrorLevelAnalysis extends NotifyingThread {
     Dimension sampledDimension;
     ErrorLevelAnalysisListener listener;
 
-//    public FIDErrorLevelAnalysis(String fileLocation, int quality) {
-//        this.fileLocation = fileLocation;
-//        this.quality = quality;
-//        this.sampledDimension = new Dimension(100, 100);
-//    }
     public FIDErrorLevelAnalysis(String fileLocation,
             int quality, Dimension sampledDimension, ErrorLevelAnalysisListener listener) {
         this.fileLocation = fileLocation;

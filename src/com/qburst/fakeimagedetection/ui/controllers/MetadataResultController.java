@@ -2,6 +2,7 @@ package com.qburst.fakeimagedetection.ui.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
+import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
 import com.qburst.fakeimagedetection.core.metadata.MetadataProcessor;
 import java.io.IOException;
 import java.net.URL;
@@ -214,6 +215,12 @@ public class MetadataResultController implements Initializable {
             fakeReason += "Average Metadata Content. Edited" + "\n";
         }
         int total = fakeness + real;
+
+        float fakenessPercentage = (float) fakeness / total;
+        float realPercentage = (float) real / total;
+        ConstantObjects.fakeness = fakenessPercentage;
+        ConstantObjects.realness = realPercentage;
+        System.out.println("Fakeness from metedata = " + fakenessPercentage);
 
         System.err.println("Number of metadata fields = " + ctr);
         ObservableList<PieChart.Data> pieChartData

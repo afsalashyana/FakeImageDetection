@@ -1,6 +1,7 @@
 package com.qburst.fakeimagedetection.ui.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
 import com.qburst.fakeimagedetection.ui.alert.Calert;
 import com.qburst.fakeimagedetection.core.metadata.MetadataProcessor;
 import com.qburst.fakeimagedetection.ui.BatchImageTester;
@@ -21,15 +22,16 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -37,7 +39,6 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
@@ -70,6 +71,8 @@ public class LaunchScreeenController implements Initializable {
     ParallelTransition buttonParallelTransition;
     public static File processingFile = null;
     public static StackPane parentPaneForAll;
+    @FXML
+    private CheckMenuItem resultPropogation;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -134,7 +137,7 @@ public class LaunchScreeenController implements Initializable {
             final FileChooser fileChooser) {
         fileChooser.setTitle("View Pictures");
         fileChooser.setInitialDirectory(
-                new File(System.getProperty("user.home") + "/Pictures")
+                new File("/home/villan/Desktop/Sample Data")
         );
         FileChooser.ExtensionFilter extFilter
                 = new FileChooser.ExtensionFilter("Image Files", "*.JPG", "*.jpg", "*.png", "*.PNG", "*.jpeg", "*.JPEG", "*.TIFF", "*.TIF");
@@ -225,7 +228,7 @@ public class LaunchScreeenController implements Initializable {
     private void rollBack(MouseEvent event) {
         processingFile = null;
         try {
-            StackPane pane = FXMLLoader.load(getClass().getResource("/resources/fxml/launch.fxml"));
+            BorderPane pane = FXMLLoader.load(getClass().getResource("/resources/fxml/launch.fxml"));
             rootPane.getChildren().clear();
             rootPane.getChildren().setAll(pane);
             MetadataProcessor.extracted_data = "";
@@ -276,6 +279,17 @@ public class LaunchScreeenController implements Initializable {
             event1.consume();
             stage.close();
         });
+    }
+
+    @FXML
+    private void loadFullScreen(ActionEvent event) {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.setFullScreen(true);
+    }
+
+    @FXML
+    private void changeResultPropogation(ActionEvent event) {
+        ConstantObjects.shouldPropogateResult = resultPropogation.isSelected();
     }
 
 }

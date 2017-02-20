@@ -2,6 +2,7 @@ package com.qburst.fakeimagedetection.ui.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
+import com.qburst.fakeimagedetection.core.constants.ConstantObjects;
 import com.qburst.fakeimagedetection.core.errorlevelanalysis.FIDErrorLevelAnalysis;
 import com.qburst.fakeimagedetection.core.listener.ErrorLevelAnalysisListener;
 import com.qburst.fakeimagedetection.core.listener.NeuralnetProcessorListener;
@@ -144,13 +145,26 @@ public class NeuralnetInterfaceController implements
     }
 
     void loadResult(HashMap<String, Double> result) {
+        System.out.println("Considering Metadata Result: Fakeness = " + ConstantObjects.fakeness);
+        if (ConstantObjects.fakeness < 0) {
+            System.out.println("Invalid Result from metadata");
+        }
+
         Platform.runLater(new Runnable() {
+            final float NEURAL_NET_WEIGHT = 0.4f;
+            final float METADATA_NET_WEIGHT = 1-NEURAL_NET_WEIGHT;
+
             @Override
             public void run() {
                 double real = result.get("real") * 100;
                 double fake = result.get("faked") * 100;
 
                 DecimalFormat df2 = new DecimalFormat(".#");
+                if (ConstantObjects.shouldPropogateResult) {
+                    real = (real*NEURAL_NET_WEIGHT) + (METADATA_NET_WEIGHT * ConstantObjects.realness*100);
+                    fake = (fake*NEURAL_NET_WEIGHT) + (METADATA_NET_WEIGHT * ConstantObjects.fakeness*100);
+                }
+
                 if (real < 10 && fake < 10) {
                     String possibility;
                     if (real >= fake) {
@@ -222,7 +236,7 @@ public class NeuralnetInterfaceController implements
                     public void handle(MouseEvent event) {
                         if (event.getButton() == MouseButton.PRIMARY) {
                             new ImagePlus("Error Level Analysis", elaImage).show();
-                        } else if (event.getButton()==MouseButton.SECONDARY) {
+                        } else if (event.getButton() == MouseButton.SECONDARY) {
                             try {
                                 new ImagePlus("Original Image", ImageIO.read(LaunchScreeenController.processingFile)).show();
                             } catch (IOException ex) {

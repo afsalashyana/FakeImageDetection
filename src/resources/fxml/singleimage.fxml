@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="298.0" prefWidth="395.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.SingleImageAnalyzerController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="298.0" prefWidth="395.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gc.fakeimagedetection.ui.controllers.SingleImageAnalyzerController">
     <children>
       <AnchorPane layoutX="48.0" layoutY="22.0" prefHeight="253.0" prefWidth="305.0" style="-fx-background-color: #FFFFFF;">
          <children>

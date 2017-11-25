@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="448.0" prefWidth="963.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.TrainingInterfaceController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="448.0" prefWidth="963.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gc.fakeimagedetection.ui.controllers.TrainingInterfaceController">
     <children>
       <StackPane layoutX="475.0" layoutY="41.0" prefHeight="389.0" prefWidth="462.0" style="-fx-background-color: #FFFFFF;">
          <children>

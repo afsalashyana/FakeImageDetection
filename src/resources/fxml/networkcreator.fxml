@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="466.0" prefWidth="600.0" style="-fx-background-color: #e7e7e7;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.NetworkcreatorController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="466.0" prefWidth="600.0" style="-fx-background-color: #e7e7e7;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gc.fakeimagedetection.ui.controllers.NetworkcreatorController">
     <children>
         <ScrollPane layoutX="92.0" layoutY="14.0">
             <content>

@@ -6,7 +6,7 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="364.0" prefWidth="394.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.qburst.fakeimagedetection.ui.controllers.BatchImageTesterController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="364.0" prefWidth="394.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gc.fakeimagedetection.ui.controllers.BatchImageTesterController">
     <children>
       <AnchorPane layoutX="55.0" layoutY="30.0" prefHeight="302.0" prefWidth="289.0" style="-fx-background-color: #FFFFFF;">
          <children>

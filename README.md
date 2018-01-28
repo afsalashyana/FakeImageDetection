@@ -13,7 +13,7 @@ In the second level, the image is converted into error level analysed format and
   2. The second parameter considered is metadata of the image. A parallel module is added to the program which checks the metadata to determine the signature of various image editing programs. Since it is costly to execute a neural network, the metadata inspection will considerably increase the performance by detecting tampering at an early stage.
 
 ### Neural network structure
-| Layer | Nuerons |
+| Layer | Neurons |
 | ------------- | ------------- |
 | Input Layer  | 30,000 |
 | Hidden Layer 1  | 5000 - Sigmoid |

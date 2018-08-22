@@ -21,6 +21,10 @@ In the second level, the image is converted into error level analysed format and
 | Hidden Layer 3  | 100 - Sigmoid |
 | Output Layer  | 2 |
 
+
+### Watch on YouTube
+[![Watch a video](https://img.youtube.com/vi/FGnsV-BdRj0/0.jpg)](https://www.youtube.com/watch?v=FGnsV-BdRj0)
+
 ### Tools Used
 
 #### [Neuroph Studio](http://neuroph.sourceforge.net/)

@@ -1,5 +1,6 @@
 package com.gc.fakeimagedetection.ui;
 
+import com.gc.fakeimagedetection.ui.alert.CommonUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ public class ELABatchImageProcessor extends Application {
         stage.resizableProperty().setValue(false);
         stage.setTitle("Batch ELA processor");
         stage.setScene(scene);
+        CommonUtil.attachIcon(stage);
         stage.show();
     }
 

@@ -48,7 +48,11 @@ public class FIDErrorLevelAnalysis extends NotifyingThread {
             System.out.println("Dimension is set to " + sampledDimension);
             ImagePlus orig = new ImagePlus("Source Image", img);
 
-            String basePath = "/tmp/";
+            String basePath = "tmp/";
+            File file = new File(basePath);
+            if (!file.exists()) {
+                file.mkdir();
+            }
             String origPath = basePath + "-original.jpg";
             String resavedPath = basePath + "-resaved.jpg";
             String elaPath = basePath + "-ELA.png";

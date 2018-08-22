@@ -145,7 +145,7 @@ public class NeuralnetInterfaceController implements
     }
 
     void loadResult(HashMap<String, Double> result) {
-        System.out.println("Considering Metadata Result: Fakeness = " + ConstantObjects.fakeness);
+        System.out.println("Metadata Result: Fakeness = " + ConstantObjects.fakeness);
         if (ConstantObjects.fakeness < 0) {
             System.out.println("Invalid Result from metadata");
         }
@@ -295,6 +295,7 @@ public class NeuralnetInterfaceController implements
         }
         bulgingTransition.stop();
         updateIndicatorText("Done");
+        System.out.println("Neural net result:-\n" + result);
         loadResult(result);
     }
 }

@@ -133,14 +133,13 @@ public class LaunchScreeenController implements Initializable {
         loadMetaDataCheck();
     }
 
-    private static void configureFileChooser(
-            final FileChooser fileChooser) {
+    private static void configureFileChooser(final FileChooser fileChooser) {
         fileChooser.setTitle("View Pictures");
         fileChooser.setInitialDirectory(
                 new File(System.getProperty("user.dir"))
         );
         FileChooser.ExtensionFilter extFilter
-                = new FileChooser.ExtensionFilter("Image Files", "*.JPG", "*.jpg", "*.png", "*.PNG", "*.jpeg", "*.JPEG", "*.TIFF", "*.TIF");
+                = new FileChooser.ExtensionFilter("Image Files", "*.JPG", "*.jpg", "*.jpeg", "*.JPEG");
         fileChooser.getExtensionFilters().addAll(extFilter
         );
 

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.gc.fakeimagedetection.core.constants.ConstantObjects;
 import com.gc.fakeimagedetection.core.metadata.MetadataProcessor;
+import com.gc.fakeimagedetection.ui.alert.CommonUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -119,6 +120,7 @@ public class MetadataResultController implements Initializable {
             stage.resizableProperty().set(false);
             stage.setTitle("Metadata Information");
             stage.setScene(new Scene(root1));
+            CommonUtil.attachIcon(stage);
             stage.show();
         } catch (Exception e) {
 

@@ -1,5 +1,6 @@
 package com.gc.fakeimagedetection.ui;
 
+import com.gc.fakeimagedetection.ui.alert.CommonUtil;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ public class BatchImageTester extends Application {
         stage.resizableProperty().setValue(false);
         stage.setTitle("Batch Image Tester");
         stage.setScene(scene);
+        CommonUtil.attachIcon(stage);
         stage.show();
     }
 

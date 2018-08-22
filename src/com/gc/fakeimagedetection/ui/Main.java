@@ -3,6 +3,7 @@ package com.gc.fakeimagedetection.ui;
 import com.gc.fakeimagedetection.core.constants.ConstantObjects;
 import com.gc.fakeimagedetection.core.processor.NeuralNetProcessor;
 import com.gc.fakeimagedetection.core.trainer.SingleImageTrainer;
+import com.gc.fakeimagedetection.ui.alert.CommonUtil;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -22,10 +24,10 @@ public class Main extends Application {
 
         Scene scene = new Scene(root);
 
-//        stage.resizableProperty().setValue(false);
         stage.setTitle("Christopher");
         stage.setScene(scene);
         stage.show();
+        CommonUtil.attachIcon(stage);
         stage.setOnCloseRequest((WindowEvent event) -> {
             if (SingleImageTrainer.isDirty) {
                 Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -40,12 +42,12 @@ public class Main extends Application {
                 } else {
                     System.out.println("Changes discared");
                     System.exit(1);
-                }
+                }        
             }
         });
     }
 
-    public static void main(String[] args) {
+    public static void main(String[]  args) {
         launch(args);
     }
 

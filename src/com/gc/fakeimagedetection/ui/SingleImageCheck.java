@@ -1,5 +1,6 @@
 package com.gc.fakeimagedetection.ui;
 
+import com.gc.fakeimagedetection.ui.alert.CommonUtil;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ public class SingleImageCheck extends Application {
         stage.setTitle("Single Image Checker");
         stage.setScene(scene);
         stage.show();
+        CommonUtil.attachIcon(stage);
 
         stage.setOnCloseRequest((WindowEvent event) -> {
             System.exit(0);

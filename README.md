@@ -63,9 +63,10 @@ In the second level, the image is converted into error level analysed format and
 Journal link : http://www.ijcsits.org/papers/vol7no22017/4vol7no2.pdf
 
 ### Screenshots
-<img src=http://i.imgur.com/vzfdecs.png>
-<img src=http://i.imgur.com/T3TVsuj.png>
-<img src=http://i.imgur.com/0mzmfFp.png>
-<img src=http://i,.imgur.com/z8DzhGD.png>
-<img src=http://i.imgur.com/mvc9tp0.png>
-<img src=http://i.imgur.com/yHQ5JGx.png>
+<img src=https://i.imgur.com/DKMg1ow.gif>
+<img src=https://i.imgur.com/vzfdecs.png>
+<img src=https://i.imgur.com/T3TVsuj.png>
+<img src=https://i.imgur.com/0mzmfFp.png>
+<img src=https://i.imgur.com/z8DzhGD.png>
+<img src=https://i.imgur.com/mvc9tp0.png>
+<img src=https://i.imgur.com/yHQ5JGx.png>

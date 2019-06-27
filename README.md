@@ -60,4 +60,4 @@ In the second level, the image is converted into error level analysed format and
 - [x] Implement Command Line Interface
 - [ ] Reach success rate of 90%
 
-Journal link : http://www.ijcsits.org/papers/vol7no22017/4vol7no2.pdf
+Journal link : https://www.academia.edu/37977449/Fake_Image_Detection_Using_Machine_Learning
